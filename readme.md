@@ -68,7 +68,7 @@ Once GitHub Pages is set up, you can access `articles.html` at `https://youruser
         });
    });
    ```
-
+   The following JS read OA html pool, and non OA html pool. randomly get 3 articles from the pool and updated it by every loading.
    ```javascript
    async function loadRandomArticles() {
     // URLs of the HTML files
@@ -116,6 +116,82 @@ function selectRandomArticles(articles, count) {
 loadRandomArticles();
 
    ```
+   The following JS read OA html pool, and non OA html pool. randomly get 3 articles from the pool and updated it everyday.
+
+    ``` javascript
+    async function loadDailyArticles() {
+        // URLs of the HTML files
+        const openAccessURL = 'path/to/open_access_articles.html';
+        const memberOnlyURL = 'path/to/member_only_articles.html';
+
+        // Fetch and parse the articles from each HTML file
+        const openAccessArticles = await fetchArticles(openAccessURL);
+        const memberOnlyArticles = await fetchArticles(memberOnlyURL);
+
+        // Generate a daily seed based on the current date
+        const dailySeed = generateDailySeed();
+
+        // Select 3 articles from each list using the daily seed
+        const selectedOpenAccess = selectSeededArticles(openAccessArticles, 3, dailySeed);
+        const selectedMemberOnly = selectSeededArticles(memberOnlyArticles, 3, dailySeed + 1);
+
+        // Combine and display the selected articles
+        const articlesContainer = document.getElementById('articles-content');
+        articlesContainer.innerHTML = [...selectedOpenAccess, ...selectedMemberOnly].join('');
+    }
+
+    // Function to generate a daily seed based on the date
+    function generateDailySeed() {
+        const now = new Date();
+        return now.getFullYear() * 1000 + Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+    }
+
+    // Fetch and parse articles from a URL
+    async function fetchArticles(url) {
+        try {
+            const response = await fetch(url);
+            const htmlText = await response.text();
+
+            // Create a temporary DOM element to parse the HTML
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlText, 'text/html');
+
+            // Extract all article elements
+            return Array.from(doc.querySelectorAll('article')).map(article => article.outerHTML);
+        } catch (error) {
+            console.error(`Failed to load articles from ${url}`, error);
+            return [];
+        }
+    }
+
+    // Select a specified number of articles based on a seeded shuffle
+    function selectSeededArticles(articles, count, seed) {
+        const seededRandom = mulberry32(seed);
+        const shuffled = articles
+            .map((article) => ({ article, sortValue: seededRandom() }))
+            .sort((a, b) => a.sortValue - b.sortValue)
+            .map(({ article }) => article);
+
+        return shuffled.slice(0, count);
+    }
+
+    // Pseudo-random number generator using a seed
+    function mulberry32(seed) {
+        return function() {
+            let t = seed += 0x6D2B79F5;
+            t = Math.imul(t ^ t >>> 15, t | 1);
+            t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+            return ((t ^ t >>> 14) >>> 0) / 4294967296;
+        };
+    }
+
+    // Run the function to load daily articles on page load
+    loadDailyArticles();
+
+    ```
+
+
+
    Replace https://yourusername.github.io/your-repository-name/articles.html with your actual GitHub Pages URL. for example https://tang1693.github.io/PERShtml/articles.html
 
 ## Updating the Articles
