@@ -68,6 +68,54 @@ Once GitHub Pages is set up, you can access `articles.html` at `https://youruser
         });
    });
    ```
+
+   ```javascript
+   async function loadRandomArticles() {
+    // URLs of the HTML files
+    const openAccessURL = 'path/to/open_access_articles.html';
+    const memberOnlyURL = 'path/to/member_only_articles.html';
+
+    // Fetch and parse the articles from each HTML file
+    const openAccessArticles = await fetchArticles(openAccessURL);
+    const memberOnlyArticles = await fetchArticles(memberOnlyURL);
+
+    // Randomly select 3 articles from each group
+    const selectedOpenAccess = selectRandomArticles(openAccessArticles, 3);
+    const selectedMemberOnly = selectRandomArticles(memberOnlyArticles, 3);
+
+    // Combine and display the selected articles
+    const articlesContainer = document.getElementById('articles-content');
+    articlesContainer.innerHTML = [...selectedOpenAccess, ...selectedMemberOnly].join('');
+}
+
+// Fetch and parse articles from a URL
+async function fetchArticles(url) {
+    try {
+        const response = await fetch(url);
+        const htmlText = await response.text();
+
+        // Create a temporary DOM element to parse the HTML
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, 'text/html');
+
+        // Extract all article elements
+        return Array.from(doc.querySelectorAll('article')).map(article => article.outerHTML);
+    } catch (error) {
+        console.error(`Failed to load articles from ${url}`, error);
+        return [];
+    }
+}
+
+// Select a specified number of random articles from the list
+function selectRandomArticles(articles, count) {
+    const shuffled = articles.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count);
+}
+
+// Run the function to load random articles on page load
+loadRandomArticles();
+
+   ```
    Replace https://yourusername.github.io/your-repository-name/articles.html with your actual GitHub Pages URL. for example https://tang1693.github.io/PERShtml/articles.html
 
 ## Updating the Articles
