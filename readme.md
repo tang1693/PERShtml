@@ -86,34 +86,34 @@ Once GitHub Pages is set up, you can access `articles.html` at `https://youruser
     // Combine and display the selected articles
     const articlesContainer = document.getElementById('articles-content');
     articlesContainer.innerHTML = [...selectedOpenAccess, ...selectedMemberOnly].join('');
-}
-
-// Fetch and parse articles from a URL
-async function fetchArticles(url) {
-    try {
-        const response = await fetch(url);
-        const htmlText = await response.text();
-
-        // Create a temporary DOM element to parse the HTML
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlText, 'text/html');
-
-        // Extract all article elements
-        return Array.from(doc.querySelectorAll('article')).map(article => article.outerHTML);
-    } catch (error) {
-        console.error(`Failed to load articles from ${url}`, error);
-        return [];
     }
-}
 
-// Select a specified number of random articles from the list
-function selectRandomArticles(articles, count) {
-    const shuffled = articles.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, count);
-}
+    // Fetch and parse articles from a URL
+    async function fetchArticles(url) {
+        try {
+            const response = await fetch(url);
+            const htmlText = await response.text();
 
-// Run the function to load random articles on page load
-loadRandomArticles();
+            // Create a temporary DOM element to parse the HTML
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(htmlText, 'text/html');
+
+            // Extract all article elements
+            return Array.from(doc.querySelectorAll('article')).map(article => article.outerHTML);
+        } catch (error) {
+            console.error(`Failed to load articles from ${url}`, error);
+            return [];
+        }
+    }
+
+    // Select a specified number of random articles from the list
+    function selectRandomArticles(articles, count) {
+        const shuffled = articles.sort(() => 0.5 - Math.random());
+        return shuffled.slice(0, count);
+    }
+
+    // Run the function to load random articles on page load
+    loadRandomArticles();
 
    ```
    The following JS read OA html pool, and non OA html pool. randomly get 3 articles from the pool and updated it everyday.
