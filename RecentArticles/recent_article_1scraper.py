@@ -2,40 +2,38 @@ import requests
 from bs4 import BeautifulSoup
 import csv
 import pandas as pd
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
-# List of URLs to be processed
-urls = [
-    "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000010",
-    "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000009",
-    "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000008",
-    "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000007",
-    "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000006",
-    "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000005",
-    "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000004",
-    "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000003",
-    "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000002",
-    "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000001",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000012",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000011",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000010",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000009",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000008",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000007",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000006",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000005",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000004",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000003",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000002",
-    "https://www.ingentaconnect.com/content/asprs/pers/2023/00000089/00000001"
-    # Add more URLs here
-    # "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000011",
-    # "https://www.ingentaconnect.com/content/asprs/pers/2024/00000090/00000012",
-    # ...
-]
+# Base volume number; adjust if the pattern changes in future years
+VOLUME_BASE_YEAR = 2023
+VOLUME_BASE_NUMBER = 89  # Volume 89 corresponds to the year 2023
+
+# Generate URLs for the previous 25 months
+urls = []
+
+today = datetime.today()
+# Uncomment the following line to fix the date for testing purposes
+# today = datetime(2024, 11, 6)
+
+for i in range(25):
+    date = today - relativedelta(months=i)
+    year = date.year
+    month = date.month
+    volume = VOLUME_BASE_NUMBER + (year - VOLUME_BASE_YEAR)
+    issue_number = month
+
+    volume_str = f"{volume:08d}"
+    issue_str = f"{issue_number:08d}"
+
+    url = f"https://www.ingentaconnect.com/content/asprs/pers/{year}/{volume_str}/{issue_str}"
+    print(url)
+    urls.append(url)
 
 # Request headers for simulating a browser
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko)'
+                  ' Chrome/58.0.3029.110 Safari/537.3'
 }
 
 # List to store all articles data across URLs
@@ -45,12 +43,13 @@ all_articles_data = []
 for url in urls:
     # Request the page content
     response = requests.get(url, headers=headers)
-    soup = BeautifulSoup(response.content, 'html.parser')
 
     # Check if page was fetched correctly
     if response.status_code != 200:
         print(f"Failed to fetch the page at {url}")
         continue  # Skip this URL if it failed to fetch
+
+    soup = BeautifulSoup(response.content, 'html.parser')
 
     # Locate all sections with a heading that contains "Articles" but exclude "In-Press Articles"
     for section in soup.find_all('p', class_='heading'):
@@ -84,8 +83,12 @@ for url in urls:
                     article_url = "https://www.ingentaconnect.com" + article_link_tag['href'] if article_link_tag else 'N/A'
 
                     # Extract access status using the title attribute of the <img> inside the access icon
-                    access_icon_img = sibling.find('span', class_='access-icon').find('img')
-                    access_status = access_icon_img['title'] if access_icon_img and 'title' in access_icon_img.attrs else 'N/A'
+                    access_icon = sibling.find('span', class_='access-icon')
+                    if access_icon:
+                        access_icon_img = access_icon.find('img')
+                        access_status = access_icon_img['title'] if access_icon_img and 'title' in access_icon_img.attrs else 'N/A'
+                    else:
+                        access_status = 'N/A'
 
                     # Append to the all articles data list
                     all_articles_data.append({
