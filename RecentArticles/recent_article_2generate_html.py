@@ -44,9 +44,10 @@ for index, row in articles.iterrows():
         member_entry = ""
     else:
         access_text = ""
-        member_entry = ('<a href="https://my.asprs.org/ASPRSMember/Contacts/Sign_In.aspx?LoginRedirect=true&amp;returnurl=%2f" '
-                        'style="font-style: italic; padding: 3px 8px; background-color: #f1f1f1; border: 1px solid #1b5faa; '
-                        'border-radius: 3px; text-decoration: none; color: #1b5faa;">ASPRS Member entry</a>')
+        # member_entry = ('<a href="https://my.asprs.org/ASPRSMember/Contacts/Sign_In.aspx?LoginRedirect=true&amp;returnurl=%2f" '
+        #                 'style="font-style: italic; padding: 3px 8px; background-color: #f1f1f1; border: 1px solid #1b5faa; '
+        #                 'border-radius: 3px; text-decoration: none; color: #1b5faa;">ASPRS Member entry</a>')
+        member_entry = ""
 
     # Header with access info and ASPRS Member entry link if needed
     article_html += f'    <div style="display: flex; justify-content: space-between; align-items: center;">\n'
