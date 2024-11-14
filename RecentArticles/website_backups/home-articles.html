@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Articles with Search</title>
+        <!-- CSS for Tab Styling -->
+        <style>
+            .tab {
+            cursor: pointer;
+            padding: 10px 20px;
+            background-color: #e0e0e0;
+            border-radius: 5px 5px 0 0;
+            margin-right: 5px;
+            text-align: center;
+            transition: background-color 0.3s ease;
+            flex: 1;
+            }
+            .tab:hover {
+            background-color: #d3d3d3;
+            }
+            .tab-active {
+            background-color: #1b5faa;
+            color: white;
+            }
+            .tab-content {
+            padding-top: 10px;
+            }
+            /* Responsive Search Container */
+            @media (max-width: 600px) {
+            .tabs-search-container {
+            flex-direction: column;
+            align-items: flex-start;
+            }
+            .search-container {
+            margin-left: 0;
+            margin-top: 10px;
+            width: 100%;
+            }
+            .search-container input {
+            width: 70%;
+            }
+            .search-container button {
+            width: 28%;
+            margin-left: 2%;
+            }
+            }
+            /* Consistent Border-Radius for Search Input and Button */
+            #searchInput {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px; /* Match the button's border-radius */
+            outline: none;
+            }
+            .search-container button {
+            padding: 6px 12px;
+            font-size: 16px;
+            margin-left: 5px;
+            cursor: pointer;
+            border: 1px solid #1b5faa;
+            background-color: #1b5faa;
+            color: white;
+            border-radius: 5px; /* Same radius as input */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            }
+            .search-container button:hover {
+            background-color: #163d8a;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="margin: 0px; display: flex; align-items: center; justify-content: space-between;">
+        <strong style="font-size: 32px;">Articles</strong><a href="https://my.asprs.org/ASPRSMember/Contacts/Sign_In.aspx?LoginRedirect=true&amp;returnurl=%2f" style="padding: 3px 8px; background-color: rgb(241, 241, 241); border: 1px solid rgb(27, 95, 170); border-radius: 3px; text-decoration: none; color: rgb(27, 95, 170);"><strong><em style=""><span style="font-size: 20px;">ASPRS Member entry
+        </span></em></strong></a>
+        </div>
+        <em><span style="font-size: 18px;">
+        <strong>
+        <!-- Tabs Navigation with Search -->
+        </strong>
+        </span></em>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #000; margin-bottom: 20px;" class="tabs-search-container"><em><span style="font-size: 18px;"><strong>
+        <!-- Tabs Container -->
+        </strong>
+        </span></em>
+        <div style="display: flex; flex: 1;">
+        <div class="tab tab-active" onclick="showTab('content0')" id="tab0">All Issues</div>
+        <div class="tab tab-active" onclick="showTab('content1')" id="tab1">Recent Articles</div>
+        <div class="tab" onclick="showTab('content2')" id="tab2">Most Cited</div>
+        <div class="tab" onclick="showTab('content4')" id="tab4">Most Downloaded</div>
+        <div class="tab" onclick="showTab('content3')" id="tab3">In Press</div>
+        </div>
+        <!-- Search Container -->
+        <div style="margin-left: 20px; display: flex; align-items: center;" class="search-container">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button onclick="performSearch()">Search</button>
+        </div>
+        </div>
+        <!-- Tab All Issues -->
+        <div id="content0" class="tab-content">
+        <div id="issues-content"></div>
+        </div>
+        <!-- Tab Recent Articles -->
+        <div id="content1" class="tab-content">
+        <div id="articles-content"></div>
+        <!-- "More Articles" Button -->
+        <div style="text-align: center; margin-top: 20px;">
+        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Articles</a>
+        </div>
+        </div>
+        <!-- Most Cited Articles -->
+        <div id="content2" class="tab-content" style="display:none;">
+        <div id="Most-cited-content"></div>
+        <!-- "More Articles" Button -->
+        <div style="text-align: center; margin-top: 20px;">
+        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Articles</a>
+        </div>
+        </div>
+        <!-- Most Download Articles -->
+        <div id="content4" class="tab-content" style="display:none;">
+        <div id="Most-download-content"></div>
+        <!-- "More Articles" Button -->
+        <div style="text-align: center; margin-top: 20px;">
+        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Articles</a>
+        </div>
+        </div>
+        <!-- In Press Articles -->
+        <div id="content3" class="tab-content" style="display:none;">
+        <article style="padding: 15px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles</div>
+        </div>
+        <h3 style="margin: 5px 0;">
+        <a href="#" style="text-decoration: none; color: #1b5faa;">
+        In Press: Mapping Climate Change Effects Using AI
+        </a>
+        </h3>
+        <div style="font-style: italic;">In Press, pp. TBD</div>
+        <div>Authors: Kumar, Rajesh; Wang, Yi</div>
+        </article>
+        <article style="border-top: 1px solid #000; padding: 15px;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        <h3 style="margin: 5px 0;">
+        <a href="#" style="text-decoration: none; color: #1b5faa;">
+        In Press: Multispectral Imaging in Archaeology
+        </a>
+        </h3>
+        <div style="font-style: italic;">In Press, pp. TBD</div>
+        <div>Authors: Oliveira, Manuel; Zhao, Ling</div>
+        </article>
+        <article style="border-top: 1px solid #000; padding: 15px;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        <h3 style="margin: 5px 0;">
+        <a href="#" style="text-decoration: none; color: #1b5faa;">
+        In Press: Remote Sensing Applications for Forestry
+        </a>
+        </h3>
+        <div style="font-style: italic;">In Press, pp. TBD</div>
+        <div>Authors: Green, Sarah; Foster, Alex</div>
+        </article>
+        <!-- "More Articles" Button -->
+        <div style="text-align: center; margin-top: 20px;">
+        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Articles</a>
+        </div>
+        </div>
+        <!-- JavaScript for Tab Switching and Search Functionality -->
+        <script>
+    function showTab(tabId) {
+      // Hide all tab contents
+      var tabs = document.getElementsByClassName('tab-content');
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].style.display = 'none';
+      }
+      // Remove active class from all tabs
+      var tabButtons = document.getElementsByClassName('tab');
+      for (var i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove('tab-active');
+      }
+      // Show the selected tab content
+      document.getElementById(tabId).style.display = 'block';
+      // Add active class to the clicked tab
+      document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('tab-active');
+    }
+
+    function performSearch() {
+      var userInput = document.getElementById('searchInput').value.trim();
+      if (userInput === '') {
+        alert('Please enter a search term.');
+        return;
+      }
+      var encodedInput = encodeURIComponent(userInput);
+      var url = 'https://www.ingentaconnect.com/search?form_name=advanced&value1=' + encodedInput +
+                '&option1=tka&operator2=AND&option2=author&value2=&operator3=AND&value3=00991112&' +
+                'option3=issnisbndoi&operator4=AND&option4=volume&value4=&operator5=AND&option5=issue&' +
+                'value5=&freetype=unlimited&sortField=default&sortDescending=true&pageSize=102';
+      window.open(url, '_blank'); // Opens the search in a new tab
+    }
+
+    // Display the first tab by default
+    document.addEventListener('DOMContentLoaded', function() {
+      showTab('content1');
+    });
+
+document.addEventListener("DOMContentLoaded", function() {
+ // Fetch the articles HTML content and inject it into the placeholder div
+ fetch('https://tang1693.github.io/PERShtml/issues.html')
+     .then(response => {
+         if (!response.ok) {
+             throw new Error("Network response was not ok " + response.statusText);
+         }
+         return response.text();
+     })
+     .then(html => {
+         document.getElementById('issues-content').innerHTML = html;
+     })
+     .catch(error => {
+         console.error("Failed to load articles.html:", error);
+         document.getElementById('issues').innerHTML = "<p>Failed to load articles. Please try again later.</p>";
+     });
+});
+  
+
+
+
+
+
+
+//read articles from Github.
+async function loadDailyArticles() {
+    // URLs of the HTML files
+    const openAccessURL = 'https://tang1693.github.io/PERShtml/open_access_articles.html';
+    const memberOnlyURL = 'https://tang1693.github.io/PERShtml/member_only_articles.html';
+
+    // Fetch and parse the articles from each HTML file
+    const openAccessArticles = await fetchArticles(openAccessURL);
+    const memberOnlyArticles = await fetchArticles(memberOnlyURL);
+
+    // Generate a daily seed based on the current date
+    const dailySeed = generateDailySeed();
+
+    // Select 3 articles from each list using the daily seed
+    const selectedOpenAccess = selectSeededArticles(openAccessArticles, 3, dailySeed);
+    const selectedMemberOnly = selectSeededArticles(memberOnlyArticles, 3, dailySeed + 1);
+
+    // Combine and display the selected articles
+    const articlesContainer = document.getElementById('articles-content');
+    articlesContainer.innerHTML = [...selectedOpenAccess, ...selectedMemberOnly].join('');
+}
+
+// Function to generate a daily seed based on the date
+function generateDailySeed() {
+    const now = new Date();
+    return now.getFullYear() * 1000 + Math.floor((now - new Date(now.getFullYear(), 0, 0)) / 86400000);
+}
+
+// Fetch and parse articles from a URL
+async function fetchArticles(url) {
+    try {
+        const response = await fetch(url);
+        const htmlText = await response.text();
+
+        // Create a temporary DOM element to parse the HTML
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, 'text/html');
+
+        // Extract all article elements
+        return Array.from(doc.querySelectorAll('article')).map(article => article.outerHTML);
+    } catch (error) {
+        console.error(`Failed to load articles from ${url}`, error);
+        return [];
+    }
+}
+
+// Select a specified number of articles based on a seeded shuffle
+function selectSeededArticles(articles, count, seed) {
+    const seededRandom = mulberry32(seed);
+    const shuffled = articles
+        .map((article) => ({ article, sortValue: seededRandom() }))
+        .sort((a, b) => a.sortValue - b.sortValue)
+        .map(({ article }) => article);
+
+    return shuffled.slice(0, count);
+}
+
+// Pseudo-random number generator using a seed
+function mulberry32(seed) {
+    return function() {
+        let t = seed += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+}
+
+// Run the function to load daily articles on page load
+loadDailyArticles();
+
+
+//most cited content load from github
+document.addEventListener("DOMContentLoaded", function() {
+ // Fetch the articles HTML content and inject it into the placeholder div
+ fetch('https://tang1693.github.io/PERShtml/top_6_articles.html')
+     .then(response => {
+         if (!response.ok) {
+             throw new Error("Network response was not ok " + response.statusText);
+         }
+         return response.text();
+     })
+     .then(html => {
+         document.getElementById('Most-cited-content').innerHTML = html;
+        //<div id="Most-cited-content"></div>
+     })
+     .catch(error => {
+         console.error("Failed to load articles.html:", error);
+         document.getElementById('articles-content').innerHTML = "<p>Failed to load articles. Please try again later.</p>";
+     });
+});
+
+//most download content load from github
+document.addEventListener("DOMContentLoaded", function() {
+ // Fetch the articles HTML content and inject it into the placeholder div
+ fetch('https://tang1693.github.io/PERShtml/most_download_articles.html')
+     .then(response => {
+         if (!response.ok) {
+             throw new Error("Network response was not ok " + response.statusText);
+         }
+         return response.text();
+     })
+     .then(html => {
+         document.getElementById('Most-download-content').innerHTML = html;
+        //<div id="Most-download-content"></div>
+     })
+     .catch(error => {
+         console.error("Failed to load articles.html:", error);
+         document.getElementById('articles-content').innerHTML = "<p>Failed to load articles. Please try again later.</p>";
+     });
+});
+
+
+
+
+
+
+  </script>
+    </body>
+</html>

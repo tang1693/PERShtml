@@ -66,16 +66,16 @@ def generate_issue_links(year, volume, start_issue=1, end_issue=12, check_latest
 
 def generate_html():
     """
-    Generates the HTML block for the last 5 years of issues.
+    Generates the HTML block for all issues from January 2023 to the current month.
     """
+    start_year = 2003
     current_year = datetime.now().year
     current_month = datetime.now().month
     html_output = '<div style="margin: 40px;">\n'
-    html_output += '<strong style="font-size: 32px; display: block; margin-bottom: 20px;">All Issues</strong>\n'
+    # html_output += '<strong style="font-size: 32px; display: block; margin-bottom: 20px;">All Issues</strong>\n'
     html_output += '<div style="display: flex; flex-wrap: wrap; gap: 20px;">\n'
 
-    for year_offset in range(5):
-        year = current_year - year_offset
+    for year in range(current_year, start_year - 1, -1):
         volume = calculate_volume(year)  # Calculate the volume based on the year
         start_issue = 1
         end_issue = 12 if year != current_year else current_month  # Only up to the current month for the current year
@@ -96,7 +96,7 @@ def generate_html():
 
     html_output += '</div>\n'
     html_output += '<div style="text-align: center; margin-top: 20px;">\n'
-    html_output += '<a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Issues</a>\n'
+    html_output += '<a href="https://www.asprs.org/pers-archives-of-the-past" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Issues</a>\n'
     html_output += '</div>\n</div>'
 
     return html_output
