@@ -96,7 +96,7 @@ def generate_html():
 
     html_output += '</div>\n'
     html_output += '<div style="text-align: center; margin-top: 20px;">\n'
-    html_output += '<a href="https://www.asprs.org/pers-archives-of-the-past" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Issues</a>\n'
+    # html_output += '<a href="https://www.asprs.org/pers-archives-of-the-past" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Issues</a>\n'
     html_output += '</div>\n</div>'
 
     return html_output
