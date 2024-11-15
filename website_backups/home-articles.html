@@ -87,7 +87,7 @@
         </strong>
         </span></em>
         <div style="display: flex; flex: 1;">
-        <div class="tab tab-active" onclick="showTab('content0')" id="tab0">All Issues</div>
+        <div class="tab tab-active" onclick="showTab('content0')" id="tab0">All Issues (Archives)</div>
         <div class="tab tab-active" onclick="showTab('content1')" id="tab1">Recent Articles</div>
         <div class="tab" onclick="showTab('content2')" id="tab2">Most Cited</div>
         <div class="tab" onclick="showTab('content4')" id="tab4">Most Downloaded</div>
@@ -110,33 +110,41 @@
         <!-- Tab Recent Articles -->
         <div id="content1" class="tab-content">
         <div id="articles-content"></div>
-        <!-- "More Articles" Button -->
+        <!-- "All Articles" Button -->
         <div style="text-align: center; margin-top: 20px;">
-        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;"><strong>More Articles</strong></a>
+            <a href="javascript:void(0);" onclick="showTabAndScrollToTop()" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">
+                <strong>All Issues</strong>
+            </a>
         </div>
         </div>
         <!-- Most Cited Articles -->
         <div id="content2" class="tab-content" style="display:none;">
         <div id="Most-cited-content"></div>
-        <!-- "More Articles" Button -->
+        <!-- "All Articles" Button -->
         <div style="text-align: center; margin-top: 20px;">
-        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;"><strong>More Articles</strong></a>
+            <a href="javascript:void(0);" onclick="showTabAndScrollToTop()" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">
+                <strong>All Issues</strong>
+            </a>
         </div>
         </div>
         <!-- Most Download Articles -->
         <div id="content4" class="tab-content" style="display:none;">
         <div id="Most-download-content"></div>
-        <!-- "More Articles" Button -->
+        <!-- "All Articles" Button -->
         <div style="text-align: center; margin-top: 20px;">
-        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;"><strong>More Articles</strong></a>
+            <a href="javascript:void(0);" onclick="showTabAndScrollToTop()" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">
+                <strong>All Issues</strong>
+            </a>
         </div>
         </div>
         <!-- In Press Articles -->
         <div id="content3" class="tab-content" style="display:none;">
         <div id="Inpress-content"></div>
-        <!-- "More Articles" Button -->
+        <!-- "All Articles" Button -->
         <div style="text-align: center; margin-top: 20px;">
-        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;"><strong>More Articles</strong></a>
+            <a href="javascript:void(0);" onclick="showTabAndScrollToTop()" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">
+                <strong>All Issues</strong>
+            </a>
         </div>
         </div>
         <!-- JavaScript for Tab Switching and Search Functionality -->
@@ -334,7 +342,10 @@ document.addEventListener("DOMContentLoaded", function() {
      });
 });
 
-
+function showTabAndScrollToTop() {
+    showTab('content0'); // Call the function to show the "all issues" tab
+    window.scrollTo({ top: 0, behavior: 'smooth' }); // Scroll to the top of the page smoothly
+}
 
 
 

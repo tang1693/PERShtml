@@ -4,6 +4,9 @@ import pandas as pd
 csv_filename = 'articles_with_citations.csv'
 articles = pd.read_csv(csv_filename)
 
+# Remove rows where the 'Authors' column is empty
+articles.dropna(subset=['Authors'], inplace=True)
+
 # Replace empty citation values with 0 for sorting
 articles['Citations'].fillna(0, inplace=True)
 
