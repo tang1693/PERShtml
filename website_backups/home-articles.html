@@ -5,6 +5,10 @@
         <title>Articles with Search</title>
         <!-- CSS for Tab Styling -->
         <style>
+
+            h3{
+                color: #000;
+            }
             .tab {
             cursor: pointer;
             padding: 10px 20px;
@@ -98,13 +102,17 @@
         <!-- Tab All Issues -->
         <div id="content0" class="tab-content">
         <div id="issues-content"></div>
+        <!-- "More Issues" Button -->
+        <div style="text-align: center; margin-top: 20px;">
+        <a href="https://www.asprs.org/pers-archives-of-the-past" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;"><strong>Achieves before 2003</strong></a>
+        </div>
         </div>
         <!-- Tab Recent Articles -->
         <div id="content1" class="tab-content">
         <div id="articles-content"></div>
         <!-- "More Articles" Button -->
         <div style="text-align: center; margin-top: 20px;">
-        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Articles</a>
+        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;"><strong>More Articles</strong></a>
         </div>
         </div>
         <!-- Most Cited Articles -->
@@ -112,7 +120,7 @@
         <div id="Most-cited-content"></div>
         <!-- "More Articles" Button -->
         <div style="text-align: center; margin-top: 20px;">
-        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Articles</a>
+        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;"><strong>More Articles</strong></a>
         </div>
         </div>
         <!-- Most Download Articles -->
@@ -120,46 +128,15 @@
         <div id="Most-download-content"></div>
         <!-- "More Articles" Button -->
         <div style="text-align: center; margin-top: 20px;">
-        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Articles</a>
+        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;"><strong>More Articles</strong></a>
         </div>
         </div>
         <!-- In Press Articles -->
         <div id="content3" class="tab-content" style="display:none;">
-        <article style="padding: 15px;">
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles</div>
-        </div>
-        <h3 style="margin: 5px 0;">
-        <a href="#" style="text-decoration: none; color: #1b5faa;">
-        In Press: Mapping Climate Change Effects Using AI
-        </a>
-        </h3>
-        <div style="font-style: italic;">In Press, pp. TBD</div>
-        <div>Authors: Kumar, Rajesh; Wang, Yi</div>
-        </article>
-        <article style="border-top: 1px solid #000; padding: 15px;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-        <h3 style="margin: 5px 0;">
-        <a href="#" style="text-decoration: none; color: #1b5faa;">
-        In Press: Multispectral Imaging in Archaeology
-        </a>
-        </h3>
-        <div style="font-style: italic;">In Press, pp. TBD</div>
-        <div>Authors: Oliveira, Manuel; Zhao, Ling</div>
-        </article>
-        <article style="border-top: 1px solid #000; padding: 15px;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-        <h3 style="margin: 5px 0;">
-        <a href="#" style="text-decoration: none; color: #1b5faa;">
-        In Press: Remote Sensing Applications for Forestry
-        </a>
-        </h3>
-        <div style="font-style: italic;">In Press, pp. TBD</div>
-        <div>Authors: Green, Sarah; Foster, Alex</div>
-        </article>
+        <div id="Inpress-content"></div>
         <!-- "More Articles" Button -->
         <div style="text-align: center; margin-top: 20px;">
-        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Articles</a>
+        <a href="https://www.ingentaconnect.com/content/asprs/pers" style="font-size: 20px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;"><strong>More Articles</strong></a>
         </div>
         </div>
         <!-- JavaScript for Tab Switching and Search Functionality -->
@@ -327,6 +304,28 @@ document.addEventListener("DOMContentLoaded", function() {
      })
      .then(html => {
          document.getElementById('Most-download-content').innerHTML = html;
+        //<div id="Most-download-content"></div>
+     })
+     .catch(error => {
+         console.error("Failed to load articles.html:", error);
+         document.getElementById('articles-content').innerHTML = "<p>Failed to load articles. Please try again later.</p>";
+     });
+});
+
+
+
+//most download content load from github
+document.addEventListener("DOMContentLoaded", function() {
+ // Fetch the articles HTML content and inject it into the placeholder div
+ fetch('https://tang1693.github.io/PERShtml/in_press_articles.html')
+     .then(response => {
+         if (!response.ok) {
+             throw new Error("Network response was not ok " + response.statusText);
+         }
+         return response.text();
+     })
+     .then(html => {
+         document.getElementById('Inpress-content').innerHTML = html;
         //<div id="Most-download-content"></div>
      })
      .catch(error => {
