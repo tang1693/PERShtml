@@ -2,8 +2,11 @@ import pandas as pd
 import re
 
 # Load the CSV file
-csv_filename = 'filtered_articles_info.csv'
+csv_filename = 'filtered_articles_info_abs.csv'
 articles = pd.read_csv(csv_filename)
+
+# Filter out articles with "No Abstract"
+articles = articles[articles["Abstract"] != "No Abstract"]
 
 # Start the HTML content for Open Access and non-Open Access
 html_open_access = ""
@@ -67,6 +70,9 @@ for index, row in articles.iterrows():
     
     # Add authors
     article_html += f'    <div>Authors: {row["Authors"]}</div>\n'
+    
+    # Add abstract
+    article_html += f'    <div>Abstract: {row["Abstract"]}</div>\n'
     
     # Close the article section
     article_html += '</article>\n'

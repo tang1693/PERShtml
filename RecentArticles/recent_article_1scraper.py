@@ -43,7 +43,7 @@ all_articles_data = []
 for url in urls:
     # Request the page content
     response = requests.get(url, headers=headers)
-
+ 
     # Check if page was fetched correctly
     if response.status_code != 200:
         print(f"Failed to fetch the page at {url}")
@@ -65,6 +65,26 @@ for url in urls:
                     # Extract title
                     title_tag = sibling.find('strong')
                     title = title_tag.get_text(strip=True) if title_tag else 'N/A'
+                    
+                    # Extract URL
+                    article_link_tag = sibling.find('a')
+                    article_url = "https://www.ingentaconnect.com" + article_link_tag['href'] if article_link_tag else 'N/A'
+                    
+                    # Extract Abstract by visiting the article URL
+                    abstract = 'N/A'  # Default value in case of failure
+                    if article_url != 'N/A':
+                        print(f"Fetching abstract for {article_url}")
+                        try:
+                            article_response = requests.get(article_url, headers=headers)
+                            if article_response.status_code == 200:
+                                article_soup = BeautifulSoup(article_response.content, 'html.parser')
+
+                                # Locate the abstract section (adjust selector based on the actual HTML structure)
+                                abstract_div = article_soup.find('div', id="Abst")  
+                                if abstract_div:
+                                    abstract = abstract_div.get_text(strip=True).replace('\n', ' ').replace('\r', '').strip()
+                        except Exception as e:
+                            print(f"Failed to fetch abstract for {article_url}: {e}")
 
                     # Extract authors
                     authors_tag = sibling.find('em')
@@ -78,9 +98,6 @@ for url in urls:
                             break
                     pages = page_info if page_info else 'N/A'
 
-                    # Extract URL
-                    article_link_tag = sibling.find('a')
-                    article_url = "https://www.ingentaconnect.com" + article_link_tag['href'] if article_link_tag else 'N/A'
 
                     # Extract access status using the title attribute of the <img> inside the access icon
                     access_icon = sibling.find('span', class_='access-icon')
@@ -96,15 +113,17 @@ for url in urls:
                         'Authors': authors,
                         'Pages': pages,
                         'Access': access_status,
-                        'URL': article_url
+                        'URL': article_url,
+                        'Abstract': abstract  
                     })
 
 # Convert to DataFrame to remove duplicates
-df = pd.DataFrame(all_articles_data)
+# df = pd.DataFrame(all_articles_data)
+df = pd.DataFrame(all_articles_data, columns=['Title', 'Authors', 'Pages', 'Access', 'URL', 'Abstract'])
 df.drop_duplicates(inplace=True)
 
 # Write data to CSV without duplicates
-csv_filename = 'filtered_articles_info.csv'
+csv_filename = 'filtered_articles_info_abs.csv'
 df.to_csv(csv_filename, index=False)
 
 print(f"Data successfully saved to {csv_filename} without duplicates")
