@@ -7,8 +7,8 @@ from scholarly import scholarly
 if os.path.exists('articles_with_citations_scholarly.csv'):
     articles = pd.read_csv('articles_with_citations_scholarly.csv')
 else:
-    # Load 'filtered_articles_info.csv' and add 'Citations' column
-    articles = pd.read_csv('filtered_articles_info.csv')
+    # Load 'filtered_articles_info_abs.csv' and add 'Citations' column
+    articles = pd.read_csv('filtered_articles_info_abs.csv')
     articles['Citations'] = None
     articles.to_csv('articles_with_citations_scholarly.csv', index=False)
 

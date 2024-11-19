@@ -3,7 +3,13 @@ import re
 
 # Load the sorted CSV file and get the top 6 articles
 csv_filename = 'sorted_articles_by_citations.csv'
-articles = pd.read_csv(csv_filename).head(6)  # Select the top 6 articles
+articles = pd.read_csv(csv_filename)
+
+# Filter out articles with "No Abstract"
+articles = articles[articles["Abstract"] != "No Abstract"]
+
+# Select the top 6 articles
+articles = articles.head(6)
 
 # Initialize HTML content
 html_content = '<div id="articles-content">\n'
@@ -29,7 +35,7 @@ def parse_date_from_url(url):
 # Generate HTML for each article
 for index, row in articles.iterrows():
     # Set article border-top style except for the first article
-    border_style = "border-top: 1px solid #000; padding: 15px;" if index > 0 else "padding: 15px;"
+    border_style = "border-top: 1px solid #000; padding: 15px;" #if index > 0 else "padding: 15px;"
     
     # Parse the publication date
     pub_date = parse_date_from_url(row["URL"])
@@ -67,6 +73,15 @@ for index, row in articles.iterrows():
     
     # Add authors
     article_html += f'    <div>Authors: {row["Authors"]}</div>\n'
+    
+    # Add abstract with foldable content using <details> and <summary>
+    article_html += f'''    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">{'Read more'}...</summary>
+            {row["Abstract"]}
+        </details>
+    </div>\n'''
     
     # Close the article section
     article_html += '</article>\n'
