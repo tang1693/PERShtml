@@ -72,7 +72,7 @@ for index, row in articles.iterrows():
     article_html += f'''    <div>
         Abstract: 
         <details>
-            <summary>{'Click to read more'}...</summary>
+            <summary style="color: #1b5faa;">{'Read more'}...</summary>
             {row["Abstract"]}
         </details>
     </div>\n'''
