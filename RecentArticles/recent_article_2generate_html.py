@@ -72,8 +72,9 @@ for index, row in articles.iterrows():
     article_html += f'''    <div>
         Abstract: <span id="abstract-short-{index}" style="display: inline;">{row["Abstract"][:100]}...</span>
         <span id="abstract-full-{index}" style="display: none;">{row["Abstract"]}</span>
-        <a href="#" id="toggle-abstract-{index}" onclick="toggleAbstract({index}); return false;" style="color: #1b5faa; text-decoration: none;">[Read more]</a>
+        <a href="#" id="toggle-abstract-{index}" onclick="toggleAbstract(event, {index});" style="color: #1b5faa; text-decoration: none;">[Read more]</a>
     </div>\n'''
+
     
     # Close the article section
     article_html += '</article>\n'
@@ -87,7 +88,10 @@ for index, row in articles.iterrows():
 # Add JavaScript and CSS for foldable functionality
 foldable_script = '''
 <script>
-    function toggleAbstract(index) {
+    function toggleAbstract(event, index) {
+        // Prevent the default anchor tag behavior
+        event.preventDefault();
+        
         var shortAbstract = document.getElementById(`abstract-short-${index}`);
         var fullAbstract = document.getElementById(`abstract-full-${index}`);
         var toggleLink = document.getElementById(`toggle-abstract-${index}`);
