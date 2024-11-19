@@ -160,6 +160,24 @@ def generate_top_articles_html(csv_filename, output_filename, top_n=6):
         # Start the article section
         article_html = f'<article style="{border_style}">\n'
         
+        # Add the header section with "ASPRS Member entry" if not open access
+        if row['Access'] == "Open Access content":
+            access_text = '<span style="color: rgb(0, 191, 255);">Open Access</span>'
+            member_entry = ""
+        else:
+            access_text = ""
+            # member_entry = ('<a href="https://my.asprs.org/ASPRSMember/Contacts/Sign_In.aspx?LoginRedirect=true&amp;returnurl=%2f" '
+            #                 'style="font-style: italic; padding: 3px 8px; background-color: #f1f1f1; border: 1px solid #1b5faa; '
+            #                 'border-radius: 3px; text-decoration: none; color: #1b5faa;">ASPRS Member entry</a>')
+            member_entry = ""
+            
+
+        # Header with access info and ASPRS Member entry link if needed
+        article_html += f'    <div style="display: flex; justify-content: space-between; align-items: center;">\n'
+        article_html += f'        <div style="font-weight: bold; color: gray;">Research Articles {access_text}</div>\n'
+        article_html += f'        {member_entry}\n'
+        article_html += f'    </div>\n'
+        
         # Add the title and link
         article_html += f'    <h3 style="margin: 5px 0;">\n'
         article_html += f'        <a href="{row["URL"]}" style="text-decoration: none; color: #1b5faa;">\n'
