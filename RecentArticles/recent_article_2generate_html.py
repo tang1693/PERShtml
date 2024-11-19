@@ -68,13 +68,14 @@ for index, row in articles.iterrows():
     # Add authors
     article_html += f'    <div>Authors: {row["Authors"]}</div>\n'
     
-    # Add abstract with foldable content
+    # Add abstract with foldable content using <details> and <summary>
     article_html += f'''    <div>
-        Abstract: <span id="abstract-short-{index}" style="display: inline;">{row["Abstract"][:100]}...</span>
-        <span id="abstract-full-{index}" style="display: none;">{row["Abstract"]}</span>
-        <a href="#" id="toggle-abstract-{index}" onclick="toggleAbstract({index}); return false;" style="color: #1b5faa; text-decoration: none;">[Read more]</a>
+        Abstract: 
+        <details>
+            <summary>{'Click to read more'}...</summary>
+            {row["Abstract"]}
+        </details>
     </div>\n'''
-
 
 
     
@@ -88,25 +89,8 @@ for index, row in articles.iterrows():
         html_member_only += article_html
 
 # Add JavaScript and CSS for foldable functionality
-foldable_script = '''
-<script>
-    function toggleAbstract(index) {
-        const shortAbstract = document.getElementById(`abstract-short-${index}`);
-        const fullAbstract = document.getElementById(`abstract-full-${index}`);
-        const toggleLink = document.getElementById(`toggle-abstract-${index}`);
-        
-        if (shortAbstract.style.display === "none") {
-            shortAbstract.style.display = "inline";
-            fullAbstract.style.display = "none";
-            toggleLink.textContent = "[Read more]";
-        } else {
-            shortAbstract.style.display = "none";
-            fullAbstract.style.display = "inline";
-            toggleLink.textContent = "[Read less]";
-        }
-    }
-</script>
-'''
+foldable_script = ''''''
+
 
 # Include the script in the HTML files
 html_open_access = foldable_script + html_open_access
