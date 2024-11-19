@@ -10,7 +10,7 @@ articles = pd.read_csv(csv_filename)
 articles['Citations'] = None
 
 # Set your Serpdog API key
-API_KEY = '66e64a2420f355d4e815dbfa'
+API_KEY = 'KEY'
 BASE_URL = 'https://api.serpdog.io/scholar'
 
 # Function to get citation count from Serpdog Google Scholar API
