@@ -74,7 +74,7 @@ def csv_to_html(csv_file, html_file):
 
     for index, row in df_articles.iterrows():
         # Add border style for articles after the first
-        border_style = "border-top: 1px solid #000; padding: 15px;" if index > 0 else "padding: 15px;"
+        border_style = "border-top: 1px solid #000; padding: 15px;" #if index > 0 else "padding: 15px;"
         
         # Start the article section
         article_html = f'<article style="{border_style}">\n'
