@@ -47,9 +47,6 @@ for index, row in articles.iterrows():
         member_entry = ""
     else:
         access_text = ""
-        # member_entry = ('<a href="https://my.asprs.org/ASPRSMember/Contacts/Sign_In.aspx?LoginRedirect=true&amp;returnurl=%2f" '
-        #                 'style="font-style: italic; padding: 3px 8px; background-color: #f1f1f1; border: 1px solid #1b5faa; '
-        #                 'border-radius: 3px; text-decoration: none; color: #1b5faa;">ASPRS Member entry</a>')
         member_entry = ""
 
     # Header with access info and ASPRS Member entry link if needed
@@ -71,8 +68,12 @@ for index, row in articles.iterrows():
     # Add authors
     article_html += f'    <div>Authors: {row["Authors"]}</div>\n'
     
-    # Add abstract
-    article_html += f'    <div>Abstract: {row["Abstract"]}</div>\n'
+    # Add abstract with foldable content
+    article_html += f'''    <div>
+        Abstract: <span id="abstract-short-{index}" style="display: inline;">{row["Abstract"][:100]}...</span>
+        <span id="abstract-full-{index}" style="display: none;">{row["Abstract"]}</span>
+        <a href="#" id="toggle-abstract-{index}" onclick="toggleAbstract({index}); return false;" style="color: #1b5faa; text-decoration: none;">[Read more]</a>
+    </div>\n'''
     
     # Close the article section
     article_html += '</article>\n'
@@ -82,6 +83,31 @@ for index, row in articles.iterrows():
         html_open_access += article_html
     else:
         html_member_only += article_html
+
+# Add JavaScript and CSS for foldable functionality
+foldable_script = '''
+<script>
+    function toggleAbstract(index) {
+        var shortAbstract = document.getElementById(`abstract-short-${index}`);
+        var fullAbstract = document.getElementById(`abstract-full-${index}`);
+        var toggleLink = document.getElementById(`toggle-abstract-${index}`);
+        
+        if (shortAbstract.style.display === "none") {
+            shortAbstract.style.display = "inline";
+            fullAbstract.style.display = "none";
+            toggleLink.textContent = "[Read more]";
+        } else {
+            shortAbstract.style.display = "none";
+            fullAbstract.style.display = "inline";
+            toggleLink.textContent = "[Read less]";
+        }
+    }
+</script>
+'''
+
+# Include the script in the HTML files
+html_open_access = foldable_script + html_open_access
+html_member_only = foldable_script + html_member_only
 
 # Save to HTML files
 open_access_filename = 'open_access_articles.html'
