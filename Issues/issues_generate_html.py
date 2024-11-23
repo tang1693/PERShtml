@@ -90,7 +90,7 @@ def generate_html():
 
         for url, issue_name, access_status in issues:
             access_html = f' <strong style="color: green;">{access_status}</strong>' if access_status == "Full access" else ""
-            html_output += f'    <li><a href="{url}">{issue_name}</a>{access_html}</li>\n'
+            html_output += f'    <li><a href="{url}" rel="noreferrer" >{issue_name}</a>{access_html}</li>\n'
 
         html_output += '</ul>\n</div>\n'
 
