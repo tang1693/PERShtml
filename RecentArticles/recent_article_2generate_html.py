@@ -57,7 +57,7 @@ for index, row in articles.iterrows():
     
     # Add the title and link
     article_html += f'    <h3 style="margin: 5px 0;">\n'
-    article_html += f'        <a href="{row["URL"]}" style="text-decoration: none; color: #1b5faa;">\n'
+    article_html += f'        <a href="{row["URL"]}" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">\n'
     article_html += f'            {row["Title"]}\n'
     article_html += f'        </a>\n'
     article_html += f'    </h3>\n'
