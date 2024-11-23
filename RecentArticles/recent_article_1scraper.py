@@ -16,7 +16,7 @@ today = datetime.today()
 # Uncomment the following line to fix the date for testing purposes
 # today = datetime(2024, 11, 6)
 
-for i in range(5):
+for i in range(25):
     date = today - relativedelta(months=i)
     year = date.year
     month = date.month
