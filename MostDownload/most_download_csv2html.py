@@ -88,7 +88,7 @@ def load_data_from_doi(csv_filename):
     print(f"Data successfully updated in {csv_filename}")
 
 
-def sort_csv(csv_filename, sorted_column='Total Downloads'):
+def sort_csv(csv_filename, output_filename, sorted_column='Total Downloads'):
 
     # Load the CSV file with citation data
     articles = pd.read_csv(csv_filename)
@@ -105,13 +105,13 @@ def sort_csv(csv_filename, sorted_column='Total Downloads'):
     sorted_articles.drop_duplicates(subset=['DOI'], inplace=True)
 
     # Save the sorted data back to a new CSV file
-    sorted_csv_filename = 'MostDownload/asprs_all_views_per_article_per_month_sorted.csv'
-    sorted_articles.head(20).to_csv(sorted_csv_filename, index=False)
+    # sorted_csv_filename = 'MostDownload/asprs_all_views_per_article_per_month_sorted.csv'
+    sorted_articles.head(20).to_csv(output_filename, index=False)
 
-    print(f"Sorted data saved to {sorted_csv_filename}")
+    print(f"Sorted data saved to {output_filename}")
 
 
-def csv_clean(csv_filename):
+def csv_clean(csv_filename, output_filename):
 
     # Load the CSV file with citation data
     articles = pd.read_csv(csv_filename)
@@ -123,10 +123,9 @@ def csv_clean(csv_filename):
     articles = articles[articles['Abstract'] != 'No Abstract']
 
     # Save the sorted data back to a new CSV file
-    csv_filename = 'MostDownload/asprs_all_views_per_article_per_month_sorted.csv'
-    articles.head(20).to_csv(csv_filename, index=False)
+    articles.head(20).to_csv(output_filename, index=False)
 
-    print(f"Cleaned data saved to {csv_filename}")
+    print(f"Cleaned data saved to {output_filename}")
 
 
 def generate_top_articles_html(csv_filename, output_filename, top_n=6):
@@ -214,10 +213,11 @@ def generate_top_articles_html(csv_filename, output_filename, top_n=6):
 
 
 # Example usage
-csv_filename = 'MostDownload/asprs_all_views_per_article_per_month.csv'  # Input CSV file with 'DOI' column
-csv_filename_sorted = 'MostDownload/asprs_all_views_per_article_per_month_sorted.csv'  
-# sort_csv(csv_filename)
-# load_data_from_doi(csv_filename_sorted) 
-# csv_clean(csv_filename_sorted)
+csv_filename = 'MostDownload/2024dec.csv'  # Input CSV file with 'DOI' column
+csv_filename_sorted = 'MostDownload/2024dec_sorted.csv'  
 output_filename = 'most_download_articles.html'
+
+sort_csv(csv_filename, csv_filename_sorted, sorted_column='Total Downloads')
+load_data_from_doi(csv_filename_sorted) 
+csv_clean(csv_filename_sorted, csv_filename_sorted)
 generate_top_articles_html(csv_filename_sorted, output_filename)
