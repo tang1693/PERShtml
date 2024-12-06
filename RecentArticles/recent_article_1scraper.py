@@ -125,7 +125,7 @@ def fetch_to_csv(how_many_months=25):
     return df
 
 
-# df = fetch_to_csv()
+df = fetch_to_csv()
 
 # load csv file to df
 df = pd.read_csv('filtered_articles_info_abs.csv')
