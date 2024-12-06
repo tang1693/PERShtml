@@ -6,7 +6,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 # return df
-def fetch_to_csv(how_many_months=25):
+def fetch_to_csv(how_many_months=24):
     # Base volume number; adjust if the pattern changes in future years
     VOLUME_BASE_YEAR = 2023
     VOLUME_BASE_NUMBER = 89  # Volume 89 corresponds to the year 2023
@@ -127,8 +127,11 @@ def fetch_to_csv(how_many_months=25):
 
 df = fetch_to_csv()
 
+
+
+
 # load csv file to df
-df = pd.read_csv('filtered_articles_info_abs.csv')
+# df = pd.read_csv('filtered_articles_info_abs.csv')
 
 # drop duplicates
 df.drop_duplicates(inplace=True)
@@ -141,6 +144,7 @@ df = df[df['Authors'] != 'N/A']
 # drop if abstract contains "no abstract"
 df = df[~df['Abstract'].str.contains('no abstract', case=False)]
 
+# will need to save the heads of the csv
 # Write data to CSV without duplicates
 csv_filename = 'filtered_articles_info_abs.csv'
 df.to_csv(csv_filename, index=False)
