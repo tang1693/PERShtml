@@ -87,11 +87,12 @@ def generate_html():
         html_output += '<div style="flex: 1 1 calc(20% - 20px);">\n'
         html_output += f'<ul class="bobby" style="padding: 0; list-style: none;">\n'
         html_output += f'    <li class="issueVolume" style="font-size: 12px; font-weight: 700;">Volume {volume}</li>\n'
-
+        
         for url, issue_name, access_status in issues:
-            access_html = f' <strong style="color: green;">{access_status}</strong>' if access_status == "Full access" else ""
+            access_html = f' <strong style="color: green;">{access_status}</strong>'
             html_output += f'    <li><a href="{url}" rel="noreferrer" >{issue_name}</a>{access_html}</li>\n'
 
+                
         html_output += '</ul>\n</div>\n'
 
     html_output += '</div>\n'
@@ -101,11 +102,44 @@ def generate_html():
 
     return html_output
 
+
+
+def remove_recent_full_access(html_content, count=14):
+    """
+    Removes the most recent `count` occurrences of `<strong style="color: green;">Full access</strong>`
+    from the given HTML content.
+
+    Args:
+        html_content (str): The input HTML content.
+        count (int): The number of most recent occurrences to remove.
+
+    Returns:
+        str: The modified HTML content.
+    """
+    # Parse the HTML content
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    # Find all <strong> elements with the specific style (color: green)
+    full_access_elements = soup.find_all('strong', style='color: green;')
+
+    # Remove the topmost `count` elements
+    for element in full_access_elements[:count]:
+        element.decompose()
+
+    # Return the modified HTML content
+    return str(soup)
+
+
+
+
 # Generate the HTML
 html_content = generate_html()
 
+# remove the most recent 14 full access
+html_content_removed = remove_recent_full_access(html_content, count=15)
+
 # Save the HTML output to a file
 with open('issues.html', 'w') as f:
-    f.write(html_content)
+    f.write(html_content_removed)
 
 print("HTML file 'issues.html' has been generated.")
