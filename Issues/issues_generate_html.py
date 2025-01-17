@@ -66,41 +66,124 @@ def generate_issue_links(year, volume, start_issue=1, end_issue=12, check_latest
 
 def generate_html():
     """
-    Generates the HTML block for all issues from January 2023 to the current month.
+    Generates the HTML block for all issues from January 2003 to the current month.
     """
     start_year = 2003
     current_year = datetime.now().year
     current_month = datetime.now().month
-    html_output = '<div style="margin: 40px;">\n'
-    # html_output += '<strong style="font-size: 32px; display: block; margin-bottom: 20px;">All Issues</strong>\n'
-    html_output += '<div style="display: flex; flex-wrap: wrap; gap: 20px;">\n'
+    base_url = "https://tang1693.github.io/PERShtml/IssuesArticles/html"  # Base URL for the hosted HTML files
+
+    html_output = '''
+    <div style="margin: 40px;">
+        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+    '''
 
     for year in range(current_year, start_year - 1, -1):
         volume = calculate_volume(year)  # Calculate the volume based on the year
         start_issue = 1
         end_issue = 12 if year != current_year else current_month  # Only up to the current month for the current year
 
-        # Only check the most recent issue if we're in the current year
-        check_latest_only = (year == current_year)
+        issues = generate_issue_links(year, volume, start_issue, end_issue)
+        html_output += f'''
+        <div style="flex: 1 1 calc(20% - 20px);">
+            <ul class="bobby" style="padding: 0; list-style: none;">
+                <li class="issueVolume" style="font-size: 12px; font-weight: 700;">Volume {volume}</li>
+        '''
         
-        issues = generate_issue_links(year, volume, start_issue, end_issue, check_latest_only)
-        html_output += '<div style="flex: 1 1 calc(20% - 20px);">\n'
-        html_output += f'<ul class="bobby" style="padding: 0; list-style: none;">\n'
-        html_output += f'    <li class="issueVolume" style="font-size: 12px; font-weight: 700;">Volume {volume}</li>\n'
-        
-        for url, issue_name, access_status in issues:
+        for _, issue_name, access_status in issues:
+            # Construct the corresponding HTML file URL
+            issue_number = issue_name.split(",")[0].replace("No. ", "").strip()
+            issue_url = f"{base_url}/{year}{int(issue_number):02d}.html"
+
             access_html = f' <strong style="color: green;">{access_status}</strong>'
-            html_output += f'    <li><a href="{url}" rel="noreferrer" >{issue_name}</a>{access_html}</li>\n'
+            html_output += f'''
+                <li>
+                    <a href="#" onclick="openModal('{issue_url}'); return false;" rel="noreferrer">{issue_name}</a>{access_html}
+                </li>
+            '''
 
-                
-        html_output += '</ul>\n</div>\n'
+        html_output += '''
+            </ul>
+        </div>
+        '''
 
-    html_output += '</div>\n'
-    html_output += '<div style="text-align: center; margin-top: 20px;">\n'
-    # html_output += '<a href="https://www.asprs.org/pers-archives-of-the-past" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Issues</a>\n'
-    html_output += '</div>\n</div>'
+    html_output += '''
+        </div>
+        <div style="text-align: center; margin-top: 20px;">
+        </div>
+    </div>
+
+    <!-- Modal structure -->
+    <div id="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; text-align: center; padding-top: 50px;" onclick="closeModalOnOutsideClick(event);">
+        <div style="position: relative; display: inline-block; width: 80%; height: 80%; background: #fff; border-radius: 10px; overflow: hidden;" onclick="event.stopPropagation();">
+            <button onclick="closeModal();" style="position: absolute; top: 10px; right: 10px; font-size: 18px; padding: 5px 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+            <iframe id="modal-content" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+        </div>
+    </div>
+
+    <!-- JavaScript for modal functionality -->
+    <script>
+        function openModal(url) {
+            document.getElementById('modal-content').src = url;
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.getElementById('modal-content').src = '';  // Clear the content
+        }
+
+        function closeModalOnOutsideClick(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+    '''
 
     return html_output
+
+
+
+
+# def generate_html():
+#     """
+#     Generates the HTML block for all issues from January 2023 to the current month.
+#     """
+#     start_year = 2003
+#     current_year = datetime.now().year
+#     current_month = datetime.now().month
+#     html_output = '<div style="margin: 40px;">\n'
+#     # html_output += '<strong style="font-size: 32px; display: block; margin-bottom: 20px;">All Issues</strong>\n'
+#     html_output += '<div style="display: flex; flex-wrap: wrap; gap: 20px;">\n'
+
+#     for year in range(current_year, start_year - 1, -1):
+#         volume = calculate_volume(year)  # Calculate the volume based on the year
+#         start_issue = 1
+#         end_issue = 12 if year != current_year else current_month  # Only up to the current month for the current year
+
+#         # Only check the most recent issue if we're in the current year
+#         check_latest_only = (year == current_year)
+        
+#         issues = generate_issue_links(year, volume, start_issue, end_issue, check_latest_only)
+#         html_output += '<div style="flex: 1 1 calc(20% - 20px);">\n'
+#         html_output += f'<ul class="bobby" style="padding: 0; list-style: none;">\n'
+#         html_output += f'    <li class="issueVolume" style="font-size: 12px; font-weight: 700;">Volume {volume}</li>\n'
+        
+#         for url, issue_name, access_status in issues:
+#             access_html = f' <strong style="color: green;">{access_status}</strong>'
+#             html_output += f'    <li><a href="{url}" rel="noreferrer" >{issue_name}</a>{access_html}</li>\n'
+
+                
+#         html_output += '</ul>\n</div>\n'
+
+#     html_output += '</div>\n'
+#     html_output += '<div style="text-align: center; margin-top: 20px;">\n'
+#     # html_output += '<a href="https://www.asprs.org/pers-archives-of-the-past" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Issues</a>\n'
+#     html_output += '</div>\n</div>'
+
+#     return html_output
 
 
 

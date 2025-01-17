@@ -79,7 +79,7 @@ for issue, issue_articles in grouped_articles:
     # Generate HTML content for the issue
     issue_html = ""
     for index, row in issue_articles.iterrows():
-        border_style = "border-top: 1px solid #000; padding: 15px;" if index > 0 else "padding: 15px;"
+        border_style = "padding: 15px;"
 
         article_html = f'<article style="{border_style}">\n'
         access_text = '<span style="color: rgb(0, 191, 255);">Open Access</span>' if row['Access'] == "Open Access content" else ""
