@@ -98,7 +98,7 @@ def generate_html():
             access_html = f' <strong style="color: green;">{access_status}</strong>'
             html_output += f'''
                 <li>
-                    <a href="#" onclick="openModal('{issue_url}'); return false;" rel="noreferrer">{issue_name}</a>{access_html}
+                    <a href="#" onclick="openIssueModal('{issue_url}'); return false;" rel="noreferrer">{issue_name}</a>{access_html}
                 </li>
             '''
 
@@ -113,30 +113,30 @@ def generate_html():
         </div>
     </div>
 
-    <!-- Modal structure -->
-    <div id="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; text-align: center; padding-top: 50px;" onclick="closeModalOnOutsideClick(event);">
+    <!-- Modal structure for issue content -->
+    <div id="issueModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; text-align: center; padding-top: 50px;" onclick="closeIssueModalOnOutsideClick(event);">
         <div style="position: relative; display: inline-block; width: 80%; height: 80%; background: #fff; border-radius: 10px; overflow: hidden;" onclick="event.stopPropagation();">
-            <button onclick="closeModal();" style="position: absolute; top: 10px; right: 10px; font-size: 18px; padding: 5px 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
-            <iframe id="modal-content" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+            <button onclick="closeIssueModal();" style="position: absolute; top: 10px; right: 10px; font-size: 18px; padding: 5px 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+            <iframe id="issueModalContent" src="" style="width: 100%; height: 100%; border: none;"></iframe>
         </div>
     </div>
 
-    <!-- JavaScript for modal functionality -->
+    <!-- JavaScript for issue modal functionality -->
     <script>
-        function openModal(url) {
-            document.getElementById('modal-content').src = url;
-            document.getElementById('modal').style.display = 'block';
+        function openIssueModal(url) {
+            document.getElementById('issueModalContent').src = url;
+            document.getElementById('issueModal').style.display = 'block';
         }
 
-        function closeModal() {
-            document.getElementById('modal').style.display = 'none';
-            document.getElementById('modal-content').src = '';  // Clear the content
+        function closeIssueModal() {
+            document.getElementById('issueModal').style.display = 'none';
+            document.getElementById('issueModalContent').src = '';  // Clear the content
         }
 
-        function closeModalOnOutsideClick(event) {
-            const modal = document.getElementById('modal');
+        function closeIssueModalOnOutsideClick(event) {
+            const modal = document.getElementById('issueModal');
             if (event.target === modal) {
-                closeModal();
+                closeIssueModal();
             }
         }
     </script>
