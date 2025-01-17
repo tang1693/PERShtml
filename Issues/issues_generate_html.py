@@ -65,7 +65,6 @@ def generate_issue_links(year, volume, start_issue=1, end_issue=12, check_latest
     return issues
 
 
-
 def generate_html():
     """
     Generates the HTML block for all issues from January 2003 to the current month.
@@ -100,7 +99,7 @@ def generate_html():
             access_html = f' <strong style="color: green;">{access_status}</strong>'
             html_output += f'''
                 <li>
-                    <a href="javascript:void(0);" onclick="openIssueModal('{issue_url}');">{issue_name}</a>{access_html}
+                    <a href="javascript:void(0);" onclick="openCustomModal('{issue_url}');">{issue_name}</a>{access_html}
                 </li>
             '''
 
@@ -116,33 +115,33 @@ def generate_html():
     </div>
 
     <!-- Modal structure for issue content -->
-    <div id="issueModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; text-align: center; padding-top: 50px;" onclick="closeIssueModalOnOutsideClick(event);">
+    <div id="customModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; text-align: center; padding-top: 50px;" onclick="closeCustomModalOnOutsideClick(event);">
         <div style="position: relative; display: inline-block; width: 80%; height: 80%; background: #fff; border-radius: 10px; overflow: hidden;" onclick="event.stopPropagation();">
-            <button onclick="closeIssueModal();" style="position: absolute; top: 10px; right: 10px; font-size: 18px; padding: 5px 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
-            <iframe id="issueModalContent" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+            <button onclick="closeCustomModal();" style="position: absolute; top: 10px; right: 10px; font-size: 18px; padding: 5px 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+            <iframe id="customModalContent" src="" style="width: 100%; height: 100%; border: none;"></iframe>
         </div>
     </div>
 
-    <!-- JavaScript for issue modal functionality -->
+    <!-- JavaScript for custom modal functionality -->
     <script>
-        function openIssueModal(url) {
-            const modal = document.getElementById('issueModal');
-            const iframe = document.getElementById('issueModalContent');
+        function openCustomModal(url) {
+            const modal = document.getElementById('customModal');
+            const iframe = document.getElementById('customModalContent');
             iframe.src = url;  // Set the iframe content to the provided URL
             modal.style.display = 'block';  // Show the modal
         }
 
-        function closeIssueModal() {
-            const modal = document.getElementById('issueModal');
-            const iframe = document.getElementById('issueModalContent');
+        function closeCustomModal() {
+            const modal = document.getElementById('customModal');
+            const iframe = document.getElementById('customModalContent');
             modal.style.display = 'none';  // Hide the modal
             iframe.src = '';  // Clear the iframe content
         }
 
-        function closeIssueModalOnOutsideClick(event) {
-            const modal = document.getElementById('issueModal');
+        function closeCustomModalOnOutsideClick(event) {
+            const modal = document.getElementById('customModal');
             if (event.target === modal) {
-                closeIssueModal();
+                closeCustomModal();
             }
         }
     </script>

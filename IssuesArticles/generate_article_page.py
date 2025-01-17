@@ -89,7 +89,7 @@ for issue, issue_articles in grouped_articles:
         article_html += f'        <div style="font-weight: bold; color: gray;">Research Articles {access_text}</div>\n'
         article_html += f'    </div>\n'
         article_html += f'    <h3 style="margin: 5px 0;">\n'
-        article_html += f'        <a href="{row["URL"]}" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">\n'
+        article_html += f'        <a href="{row["URL"]}" target="_blank" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">\n'
         article_html += f'            {row["Title"]}\n'
         article_html += f'        </a>\n'
         article_html += f'    </h3>\n'
