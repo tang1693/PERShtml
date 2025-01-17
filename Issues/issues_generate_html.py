@@ -65,6 +65,9 @@ def generate_issue_links(year, volume, start_issue=1, end_issue=12, check_latest
     return issues
 
 
+
+
+
 def generate_html():
     """
     Generates the HTML block for all issues from January 2003 to the current month.
@@ -74,7 +77,43 @@ def generate_html():
     current_month = datetime.now().month
     base_url = "https://tang1693.github.io/PERShtml/IssuesArticles/html"  # Base URL for the hosted HTML files
 
-    html_output = '''
+    # JavaScript for modal functionality (moved to the top)
+    script_block = '''
+    <script>
+        function openCustomModal(url) {
+            const modal = document.getElementById('customModal');
+            const iframe = document.getElementById('customModalContent');
+            iframe.src = url;  // Set the iframe content to the provided URL
+            modal.style.display = 'block';  // Show the modal
+        }
+
+        function closeCustomModal() {
+            const modal = document.getElementById('customModal');
+            const iframe = document.getElementById('customModalContent');
+            modal.style.display = 'none';  // Hide the modal
+            iframe.src = '';  // Clear the iframe content
+        }
+
+        function closeCustomModalOnOutsideClick(event) {
+            const modal = document.getElementById('customModal');
+            if (event.target === modal) {
+                closeCustomModal();
+            }
+        }
+    </script>
+    '''
+
+    # Begin the HTML output
+    html_output = f'''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>PE&RS Issues</title>
+        {script_block} <!-- Include the script block here -->
+    </head>
+    <body>
     <div style="margin: 40px;">
         <div style="display: flex; flex-wrap: wrap; gap: 20px;">
     '''
@@ -121,33 +160,12 @@ def generate_html():
             <iframe id="customModalContent" src="" style="width: 100%; height: 100%; border: none;"></iframe>
         </div>
     </div>
-
-    <!-- JavaScript for custom modal functionality -->
-    <script>
-        function openCustomModal(url) {
-            const modal = document.getElementById('customModal');
-            const iframe = document.getElementById('customModalContent');
-            iframe.src = url;  // Set the iframe content to the provided URL
-            modal.style.display = 'block';  // Show the modal
-        }
-
-        function closeCustomModal() {
-            const modal = document.getElementById('customModal');
-            const iframe = document.getElementById('customModalContent');
-            modal.style.display = 'none';  // Hide the modal
-            iframe.src = '';  // Clear the iframe content
-        }
-
-        function closeCustomModalOnOutsideClick(event) {
-            const modal = document.getElementById('customModal');
-            if (event.target === modal) {
-                closeCustomModal();
-            }
-        }
-    </script>
+    </body>
+    </html>
     '''
 
     return html_output
+
 
 
 
