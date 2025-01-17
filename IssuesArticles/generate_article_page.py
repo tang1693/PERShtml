@@ -4,7 +4,6 @@ import re
 import unicodedata
 from rapidfuzz import fuzz, process  # Faster alternative to fuzzywuzzy
 
-
 # Load the CSV file
 csv_filename = 'ALL_articles_Update.csv'
 articles = pd.read_csv(csv_filename)
@@ -12,8 +11,8 @@ articles = pd.read_csv(csv_filename)
 # Log file to track processed issues
 log_filename = 'processed_issues.log'
 
-# Base directory for graphical abstracts
-ga_base_dir = 'IssuesArticles/html/img'
+# Base URL for graphical abstracts
+ga_base_url = "https://raw.githubusercontent.com/tang1693/PERShtml/refs/heads/main/IssuesArticles/html/img"
 
 # Helper function to parse year and issue from URL
 def parse_year_issue_from_url(url):
@@ -32,22 +31,19 @@ def normalize_string(s):
     s = re.sub(r'\s+', ' ', s)  # Remove extra whitespace
     return s.strip().lower()  # Convert to lowercase
 
-# Find the GA image for an article using similarity scoring
+# Find the GA image URL for an article using similarity scoring
 def find_ga_image(article_title, issue):
     year = issue[:4]
     issue_no = issue[4:]
-    ga_dir = os.path.join(ga_base_dir, year, issue_no)
+    ga_dir = os.path.join("IssuesArticles/html/img", year, issue_no)
 
-    # print(f"Checking GA directory: {ga_dir}")
-
+    # Check if the directory exists
     if not os.path.exists(ga_dir):
-        print(f"Directory {ga_dir} does not exist.")
+        print(f"Directory {ga_dir} does not exist. Skipping GA for this article.")
         return None  # No directory for this issue
 
     # List all files in the GA directory
     file_list = os.listdir(ga_dir)
-    # print(f"Files in {ga_dir}: {file_list}")
-
     # Extract filenames without extensions
     filenames = [os.path.splitext(filename)[0] for filename in file_list]
 
@@ -58,12 +54,13 @@ def find_ga_image(article_title, issue):
         best_match, score, _ = result  # Unpack result (best_match, score, index)
         # If the score is above a threshold, consider it a match
         if score >= 30:  # Adjust threshold as needed
-            print(f"Best match for article '{article_title}' -> '{best_match}' (Score: {score})")
             matched_filename = file_list[filenames.index(best_match)]
-            return os.path.join(ga_dir, matched_filename)
+            print(f"Best match for article '{article_title}' -> '{matched_filename}' (Score: {score})")
+            return f"{ga_base_url}/{year}/{issue_no}/{matched_filename}"  # Return full URL
     else:
         print(f"No sufficiently similar match found for article '{article_title}'.")
     return None
+
 
 # Read processed issues from log file
 processed_issues = set()
@@ -100,10 +97,10 @@ for issue, issue_articles in grouped_articles:
         article_html += f'    <div>Authors: {row["Authors"]}</div>\n'
 
         # Add the graphical abstract if it exists
-        ga_image_path = find_ga_image(row["Title"], issue)
-        if ga_image_path:
+        ga_image_url = find_ga_image(row["Title"], issue)
+        if ga_image_url:
             article_html += f'    <div>\n'
-            article_html += f'        <img src="{ga_image_path}" alt="Graphical Abstract" style="width: 600px; max-width: 100%;">\n'
+            article_html += f'        <img src="{ga_image_url}" alt="Graphical Abstract" style="width: 600px; max-width: 100%;">\n'
             article_html += f'    </div>\n'
 
         # Add abstract with foldable content using <details> and <summary>
