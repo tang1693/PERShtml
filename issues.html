@@ -20,7 +20,9 @@
             modal.style.display = 'none';  // Hide the modal
             iframe.src = '';  // Clear the iframe content
         }
-
+        
+        // if user want to close the modal by clicking outside the modal
+        // remember this part of the code is actually not useful. it only works when the code is in html file. lol
         function closeCustomModalOnOutsideClick(event) {
             const modal = document.getElementById('customModal');
             if (event.target === modal) {
@@ -949,7 +951,7 @@
 </div>
 <!-- Modal structure for issue content -->
 <div id="customModal" onclick="closeCustomModalOnOutsideClick(event);" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; text-align: center; padding-top: 50px;">
-<div onclick="event.stopPropagation();" style="position: relative; display: inline-block; width: 60%; height: 80%; background: #fff; border-radius: 10px; overflow: hidden;">
+<div onclick="event.stopPropagation();" style="position: relative; display: inline-block; width: 70%; height: 95%; background: #fff; border-radius: 10px; overflow: hidden;">
 <div onclick="closeCustomModal();" style="position: absolute; top: 10px; right: 10px; font-size: 18px; padding: 5px 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">
                     Close
                 </div>
