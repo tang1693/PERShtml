@@ -150,6 +150,31 @@
         </div>
         <!-- JavaScript for Tab Switching and Search Functionality -->
         <script>
+
+    function openCustomModal(url) {
+        const modal = document.getElementById('customModal');
+        const iframe = document.getElementById('customModalContent');
+        iframe.src = url;  // Set the iframe content to the provided URL
+        modal.style.display = 'block';  // Show the modal
+    }
+
+    function closeCustomModal() {
+        const modal = document.getElementById('customModal');
+        const iframe = document.getElementById('customModalContent');
+        modal.style.display = 'none';  // Hide the modal
+        iframe.src = '';  // Clear the iframe content
+    }
+
+    function closeCustomModalOnOutsideClick(event) {
+        const modal = document.getElementById('customModal');
+        if (event.target === modal) {
+            closeCustomModal();
+        }
+    }
+
+
+
+
     function showTab(tabId) {
       // Hide all tab contents
       var tabs = document.getElementsByClassName('tab-content');

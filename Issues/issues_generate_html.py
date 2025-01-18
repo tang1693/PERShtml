@@ -157,7 +157,7 @@ def generate_html():
     
     <div id="customModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; text-align: center; padding-top: 50px;" onclick="closeCustomModalOnOutsideClick(event);">
         <div style="position: relative; display: inline-block; width: 60%; height: 80%; background: #fff; border-radius: 10px; overflow: hidden;" onclick="event.stopPropagation();">
-            <button onclick="closeCustomModal();" style="position: absolute; top: 10px; right: 10px; font-size: 18px; padding: 5px 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
+            <button type="button" onclick="closeCustomModal();" style="position: absolute; top: 10px; right: 10px; font-size: 18px; padding: 5px 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;">Close</button>
             <iframe id="customModalContent" src="" style="width: 100%; height: 100%; border: none;"></iframe>
         </div>
     </div>
