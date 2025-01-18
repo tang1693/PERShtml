@@ -142,7 +142,7 @@ for issue, issue_articles in grouped_articles:
     <body>
         <header>
             <h1>{title}</h1>
-            <p>Displaying articles from {title}.</p>
+            <p>Photogrammetric Engineering and Remote Sensing</p>
         </header>
         <main>
     """
@@ -189,7 +189,7 @@ for issue, issue_articles in grouped_articles:
     issue_html += f"""
         </main>
         <footer>
-            <p>Generated automatically for Issue {issue_no} - Year {year}</p>
+            <p>PE&RS Issue {issue_no} - Year {year}</p>
         </footer>
     </body>
     </html>
