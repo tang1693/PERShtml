@@ -93,7 +93,9 @@ def generate_html():
             modal.style.display = 'none';  // Hide the modal
             iframe.src = '';  // Clear the iframe content
         }
-
+        
+        // if user want to close the modal by clicking outside the modal
+        // remember this part of the code is actually not useful. it only works when the code is in html file. lol
         function closeCustomModalOnOutsideClick(event) {
             const modal = document.getElementById('customModal');
             if (event.target === modal) {
