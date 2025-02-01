@@ -252,7 +252,7 @@ def remove_recent_full_access(html_content, count=14):
 html_content = generate_html()
 
 # remove the most recent 14 full access
-html_content_removed = remove_recent_full_access(html_content, count=15)
+html_content_removed = remove_recent_full_access(html_content, count=13)
 
 # Save the HTML output to a file
 with open('issues.html', 'w') as f:
