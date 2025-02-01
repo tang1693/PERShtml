@@ -42,7 +42,7 @@ def fetch_articles(url, headers):
     for section in soup.find_all('p', class_='heading'):
         heading_text = section.get_text(strip=True)
         # if "Articles" in heading_text and heading_text != "In-Press Articles": # only worked after 2015 march issue
-        if ("Articles" in heading_text or "Original" in heading_text) and heading_text != "In-Press Articles": # worked for all issues
+        if ("Article" in heading_text or "Original" in heading_text or "Columns" in heading_text) and heading_text != "In-Press Articles": # worked for all issues
 
             for sibling in section.find_next_siblings():
                 if sibling.name == "p" and "heading" in sibling.get("class", []):
