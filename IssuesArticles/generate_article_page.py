@@ -80,6 +80,8 @@ for issue, issue_articles in grouped_articles:
     year = issue[:4]
     issue_no = issue[4:]
     title = f"Issue {issue_no} - Year {year}"
+    issue_url = issue_articles.iloc[0]["URL"].rsplit("/", 1)[0]
+
 
     # Generate HTML content for the issue
     issue_html = f"""
@@ -142,6 +144,7 @@ for issue, issue_articles in grouped_articles:
     <body>
         <header>
             <h1>{title}</h1>
+            <p><a href="{issue_url}" target="_blank" style="color: white;">View Full Issue</a></p>
             <p>Photogrammetric Engineering and Remote Sensing</p>
         </header>
         <main>
