@@ -41,6 +41,9 @@ exam: member_only_articles and open_access_articles html
 - check all the GA is added to the /IssuesArticles/html/img/year/month/ same name as the article title.
 - run recent_articles_1screaper.py to get the new articles. 
 if you need to rerun part of whole of the process. delete the processed_urls.log and run the process again.
+the csv file is ALL_articles_Update.csv
+- then goes to IssuesArticles/remove_dublicated_rows_CSV.py to remove the duplicate rows.
+the csv file is ALL_articles_Update_cleaned.csv
 - run generate_articles_page.py to generate the html.
 if you need to rerun part of whole of the process. delete the processed_issues.log and run the process again.
 - exam: /IssuesArticles/html/yyyymm.html
