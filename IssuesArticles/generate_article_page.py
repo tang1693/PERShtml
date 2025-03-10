@@ -5,7 +5,7 @@ import unicodedata
 from rapidfuzz import fuzz, process  # Faster alternative to fuzzywuzzy
 
 # Load the CSV file
-csv_filename = 'ALL_articles_Update.csv'
+csv_filename = 'ALL_articles_Update_cleaned.csv'
 articles = pd.read_csv(csv_filename)
 
 # Log file to track processed issues
