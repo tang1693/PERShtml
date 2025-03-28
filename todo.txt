@@ -31,7 +31,7 @@ https://www.ingentaconnect.com/contentone/asprs/pers/yyyy/00000091/000000mm
 - exam: most_download_articles.html
 
 5. Recent Articles 
-- run rencent_articles_1screaper.py 
+- run rencent_articles_1screaper.py (if issue were released ahead of time. change local time to next monoth and run.) 
 it fet all the info from recent 24 issues. and collect them to the pool
 - run recent_articles_2generate_html.py
 it generates all the artilces in the pool to html. and the html on pers will select them randomly
@@ -39,12 +39,22 @@ exam: member_only_articles and open_access_articles html
 
 6. Update the IssuesArticles
 - check all the GA is added to the /IssuesArticles/html/img/year/month/ same name as the article title.
-- run recent_articles_1screaper.py to get the new articles. 
+- run 
+
+recent_articles_1screaper.py  (if issue were released ahead of time. change local time to next monoth and run.)
+then 
+remove_dublicated_rows_CSV.py
+
+to get the new articles. 
 if you need to rerun part of whole of the process. delete the processed_urls.log and run the process again.
 the csv file is ALL_articles_Update.csv
 - then goes to IssuesArticles/remove_dublicated_rows_CSV.py to remove the duplicate rows.
 the csv file is ALL_articles_Update_cleaned.csv
-- run generate_articles_page.py to generate the html.
+- run 
+
+generate_articles_page.py 
+
+to generate the html.
 if you need to rerun part of whole of the process. delete the processed_issues.log and run the process again.
 - exam: /IssuesArticles/html/yyyymm.html
 
