@@ -83,7 +83,7 @@ def csv_to_html(csv_file, html_file):
         article_html += f'    <h3 style="margin: 5px 0;">{row["Title"]}</h3>\n'
         
         # Add authors
-        article_html += f'    <div>Authors: {row["Authors"]}</div>\n'
+        article_html += f'    <div>{row["Authors"]}</div>\n'
         
         # Close the article section
         article_html += '</article>\n'
