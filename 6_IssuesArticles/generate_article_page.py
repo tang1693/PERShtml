@@ -35,7 +35,7 @@ def normalize_string(s):
 def find_ga_image(article_title, issue):
     year = issue[:4]
     issue_no = issue[4:]
-    ga_dir = os.path.join("6_IssuesArticles/html/img", year, issue_no)
+    ga_dir = os.path.join("IssuesArticles/html/img", year, issue_no)
 
     # Check if the directory exists
     if not os.path.exists(ga_dir):
@@ -199,7 +199,7 @@ for issue, issue_articles in grouped_articles:
     """
 
     # Save the issue HTML to a file
-    issue_filename = f'6_IssuesArticles/html/{issue}.html'
+    issue_filename = f'IssuesArticles/html/{issue}.html'
     with open(issue_filename, 'w', encoding='utf-8') as issue_file:
         issue_file.write(issue_html)
 
