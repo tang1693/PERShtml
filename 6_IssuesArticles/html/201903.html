@@ -1,0 +1,186 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Issue 03 - Year 2019</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                line-height: 1.6;
+                margin: 0;
+                padding: 0;
+                background-color: #f9f9f9;
+                color: #333;
+            }
+            header {
+                background-color: #1b5faa;
+                color: white;
+                padding: 20px;
+                text-align: center;
+            }
+            article {
+                background-color: #fff;
+                margin: 20px auto;
+                padding: 20px;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                max-width: 800px;
+            }
+            h1 {
+                font-size: 1.8em;
+                margin-bottom: 0.5em;
+            }
+            h3 {
+                font-size: 1.4em;
+                margin: 10px 0;
+            }
+            .separator {
+                border-bottom: 1px solid #ddd;
+                margin: 20px 0;
+            }
+            footer {
+                text-align: center;
+                margin-top: 40px;
+                font-size: 0.9em;
+                color: #666;
+            }
+            .ga-image img {
+                max-width: 100%;
+                height: auto;
+                border: 1px solid #ddd;
+                border-radius: 5px;
+                margin: 10px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h1>Issue 03 - Year 2019</h1>
+            <p><a href="https://www.ingentaconnect.com/contentone/asprs/pers/2019/00000085/00000003" target="_blank" style="color: white;">View Full Issue</a></p>
+            <p>Photogrammetric Engineering and Remote Sensing</p>
+        </header>
+        <main>
+    <article style="padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2019/00000085/00000003/art00011;jsessionid=bsppvri8co0a.x-ic-live-01" target="_blank" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            An Image-Pyramid-Based Raster-to-Vector Conversion (IPBRTVC) Framework for Consecutive-Scale Cartography and Synchronized Generalization of Classic Objects
+        </a>
+    </h3>
+    <div style="font-style: italic;">201903, pp. 169-178(10)</div>
+    <div>Authors: Li, Chang; Liu, Xiaojuan; Lu, Wei</div>
+    <div>
+            Abstract: 
+            <details>
+                <summary style="color: #1b5faa;">Read more...</summary>
+                There are some key problems in raster-to-vector conversion and cartographic generalization, which include (1) deficient automation and low accuracy in the traditional raster-to-vector conversion processing; (2) data-source inconsistency in cartographic generation, i.e., different raster data sources converted to vector; and (3) how to acquire arbitrary-scale vector data. To solve these problems, we initially propose an innovative image-pyramid-based raster-to-vector conversion (IPBRTVC) framework with quality control for consecutive-scale cartography and synchronized generalization, of which details can be modified accordingly under the IPBRTVC framework. Landsat-8 imagery and Defense Meteorological Satellite Program (DMSP)/Operational Linescan System (OLS) night-time light imagery are used as a test dataset to extract classic objects in the geometry level. Experimental results show that the IPBRTVC framework not only solves the aforementioned problems well but also (1) improves efficiency of data processing by avoiding problems of corresponding features matching and topology errors, (2) contributes to develop relevant parallel computing system, and (3) helps to integrate the raster-to-vector conversion and consecutive-scale cartography.
+            </details>
+        </div>
+</article>
+<div class="separator"></div><article style="padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2019/00000085/00000003/art00012;jsessionid=bsppvri8co0a.x-ic-live-01" target="_blank" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Land Cover Classification in Combined Elevation and Optical Images Supported by OSM Data, Mixed-level Features, and Non-local Optimization Algorithms
+        </a>
+    </h3>
+    <div style="font-style: italic;">201903, pp. 179-195(17)</div>
+    <div>Authors: Bulatov, Dimitri; Häufel, Gisela; Lucks, Lukas; Pohl, Melanie</div>
+    <div>
+            Abstract: 
+            <details>
+                <summary style="color: #1b5faa;">Read more...</summary>
+                Land cover classification from airborne data is considered a challenging task in Remote Sensing. Even in the case of available elevation data, shadows and strong intra-class variations of appearances are abundant in urban terrain. In this paper, we propose an approach for supervised land cover classification that has three main contributions. Firstly, for the cumbersome task of training data sampling we propose an algorithm which combines the freely available OpenStreetMap data with the actual sensor data and requires only a minimum of user interaction. The key idea of this algorithm is to rasterize the vector data using a fast segmentation result. Secondly, pixel-wise classification may take long and be quite sensitive to the resolution and quality of input data. Therefore, superpixel decomposition of images, supported by a general framework on operations with superpixels, guarantees fast grouping of pixel-wise features and their assignment to one of four important classes (building, tree, grass and road). Particularly for extraction of street canyons lying in the shadowy regions, high-level features based on stripes are introduced. Finally, the output of a probabilistic learning algorithm can be postprocessed by a non-local optimization module operating on Markov Random Fields, thus allowing to correct noisy results using a smoothness prior. Extensive tests on three datasets of quite different nature have been performed with two probabilistic learners: The well-known Random Forest and by far less known Import Vector Machine are explored. Thus, this work provides insights about promising feature sets for both classifiers. The quantitative results for the ISPRS benchmark dataset Vaihingen are promising, achieving up to 94.5% and 87.1% accuracy on superpixel and on pixel level, respectively, despite the fact that only around 10% of available labeled data were used. At the same time, the results for two additional datasets, validated with the autonomously acquired training data, yielded a significantly lower number of misclassified superpixels. This confirms that the proposed algorithm on training data extraction works quite well in reducing errors of second kind. However, it tends to extract predominantly huge and easy-to-classify areas, while in complicated, ambiguous regions, first type errors often occur. For this and other algorithm shortcomings, directions of future research are outlined.
+            </details>
+        </div>
+</article>
+<div class="separator"></div><article style="padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2019/00000085/00000003/art00014;jsessionid=bsppvri8co0a.x-ic-live-01" target="_blank" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Improved Camera Distortion Correction and Depth Estimation for Lenslet Light Field Camera
+        </a>
+    </h3>
+    <div style="font-style: italic;">201903, pp. 197-208(12)</div>
+    <div>Authors: Yang, Changkun; Liu, Zhaoqin; Di, Kaichang; Wang, Yexin; Peng, Man</div>
+    <div>
+            Abstract: 
+            <details>
+                <summary style="color: #1b5faa;">Read more...</summary>
+                A light field camera can capture both radiance and angular information, providing a novel solution for depth estimation. The paper proposes two improved methods including distortion model optimization and depth estimation refinement for a lenslet light field camera. For distortion model optimization, a novel 14-parameter distortion model that involves sub-aperture images generation is applied to correct the light field camera images. For depth estimation refinement, an algorithm reducing the high influence of outliers on depth estimation in weak texture regions is proposed based on multi-view stereo matching using the cost volume. Experimental results show the projection error has decreased by about 30% and the depth root-mean-squared error on real world images has decreased by about 42% with our distortion correction method and depth estimation method compared with state of art algorithms. It verifies the correctness and effectiveness of our proposed methods and show significant improvement on accuracy of depth map estimation.
+            </details>
+        </div>
+</article>
+<div class="separator"></div><article style="padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2019/00000085/00000003/art00015;jsessionid=bsppvri8co0a.x-ic-live-01" target="_blank" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Analysis and Correction of Digital Elevation Models for Plain Areas
+        </a>
+    </h3>
+    <div style="font-style: italic;">201903, pp. 209-219(11)</div>
+    <div>Authors: Ochoa, Cristian Guevara; Vives, Luis; Zimmermann, Erik; Masson, Ignacio; Fajardo, Luisa; Scioli, Carlos</div>
+    <div>
+            Abstract: 
+            <details>
+                <summary style="color: #1b5faa;">Read more...</summary>
+                Water movement modeling in plain areas requires digital elevation models (DEMs) adequately representing the morphological and geomorphological land patterns including the presence of civil structures that could affect water flow patterns. This has a direct effect on water accumulation and water flow direction. The objectives of this work were to analyze, compare and improve DEMs so surface water movement in plain areas could be predicted. In order to do that, we evaluated the accuracy of a digital elevation data set consisting in 4064 points measured with a differential global positioning system (GPS) in a plain area of central Buenos Aires province. Three DEMs were analyzed: (1) the Advanced Spaceborne Thermal Emission and Reflection Radiometer (ASTER), (2) the Shuttle Radar Topography Mission (SRTM) and (3) the Advanced Land Observing Satellite with the Phased Array Type L-Band Synthetic Aperture Radar (ALOS PALSAR). Several topographic attributes (i.e., height, surface area, land slope, delimitation of geomorphological units, civil structures, basin boundaries and streams network) and different interpolation methods were analyzed. The results showed that both the SRTM and the ALOS PALSAR DEMs had a ± 4.4 m root mean square error (RMSE) in contrast to the ASTER DEM which had a ± 9 m RMSE. Our analysis proved that the best DEM representing the study area is the SRTM. The most suitable interpolation methods applied to the SRTM were the inverse distance weighting and the ANUDEM, whereas the spline method displayed the lowest vertical accuracy. With the proposed method we obtained a DEM for the study area with a ± 3.2 m RMSE, a 33% error reduction compared to the raw DEM.
+            </details>
+        </div>
+</article>
+<div class="separator"></div><article style="padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2019/00000085/00000003/art00016;jsessionid=bsppvri8co0a.x-ic-live-01" target="_blank" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            An Evaluation of Reflectance Calibration Methods for UAV Spectral Imagery
+        </a>
+    </h3>
+    <div style="font-style: italic;">201903, pp. 221-230(10)</div>
+    <div>Authors: Edwards, Jarrod; Anderson, John; Shuart, William; Woolard, Jason</div>
+    <div>
+            Abstract: 
+            <details>
+                <summary style="color: #1b5faa;">Read more...</summary>
+                Spectral imagery using micro-unmanned aerial vehicles is rapidly advancing. This study compared reflectance calibration methods for imagery acquired using the Parrot Sequoia imager, a commercial multispectral sensor package. For the study, two orthomosaics were calibrated using 1) a manufacturer-suggested AIRINOV standard correction using PIX4D software and 2) the Empirical Line Calibration (ELC) method using ground radiometric data on specific in-scene targets. Both scenes were analyzed for target spectral agreement by ground radiometric survey. Regression analysis demonstrated more favorable target correlation for the ELC imagery than the AIRINOV-calibrated imagery, with Root Mean Square Error (RMSE) analysis supporting these results. Finally, classification maps were produced between the data sets. Error analysis resulted in an overall accuracy of 24% for the AIRINOV map compared to ELC-based truth data, with a considerable number of pixels associated with brighter targets unclassified. These results demonstrate the need for standardized calibration procedures in the spectral correction of small-format remote sensor data.
+            </details>
+        </div>
+</article>
+<div class="separator"></div><article style="padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2019/00000085/00000003/art00017;jsessionid=bsppvri8co0a.x-ic-live-01" target="_blank" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Interaction Relationship Between Built-Up Land Expansion and Demographic-Social-Economic Urbanization in Shanghai-Hangzhou Bay Metropolitan Region of Eastern China
+        </a>
+    </h3>
+    <div style="font-style: italic;">201903, pp. 231-240(10)</div>
+    <div>Authors: Xiao, Rui; Huang, Xin; Yu, Weixuan; Lin, Meng; Zhang, Zhonghao</div>
+    <div>
+            Abstract: 
+            <details>
+                <summary style="color: #1b5faa;">Read more...</summary>
+                Employing coupling coordination degree model (CCDM), this research attempts to reveal the interaction relationships between built-up land expansion (BLE) and demographic-social-economic (DSE) urbanization in Shanghai–Hangzhou Bay (SHB) Metropolitan Region. It first compared the development trends of four elements, including built-up land expansion level, demographic urbanization, social urbanization, and economic urbanization from 1994 to 2015 through descriptive statistics. Then CCDM was used to identify the spiral escalation trend relationships between built-up land expansion and demographic/social/economic urbanization, respectively. The findings revealed that the degree of coupling coordination between BLE and DSE urbanization had the trend to ascend in SHB, and Shanghai has a more superior balanced development tendency than other cities. It concludes that CCDM can be implemented as an effective approach to evaluate the coupling relationship, and the related agencies in SHB can strengthen the coordination to provide suggestions and make decisions for the coordinated development of urban agglomeration.
+            </details>
+        </div>
+</article>
+<div class="separator"></div>
+        </main>
+        <footer>
+            <p>PE&RS Issue 03 - Year 2019</p>
+        </footer>
+    </body>
+    </html>
+    
