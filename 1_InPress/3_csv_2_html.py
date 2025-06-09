@@ -34,7 +34,7 @@ for index, row in articles.iterrows():
 
     # --- Publication info (Pages as date) ---
     if pd.notna(row['Pages']) and row['Pages'] != 'N/A':
-        article_html += f'    <div style="font-style: italic;">Published online: {row["Pages"]}</div>\n'
+        article_html += f'    <div style="font-style: italic;">Avaliable online: {row["Pages"]}</div>\n'
 
     # --- Authors ---
     if pd.notna(row['Authors']) and row['Authors'] != 'N/A':
