@@ -68,7 +68,7 @@ try:
     unique_data = list({(title, date, link, status) for title, date, link, status in extracted_data})
 
     # Save to CSV
-    output_csv = "InPress/fast_track_items.csv"
+    output_csv = "1_InPress/fast_track_items.csv"
     with open(output_csv, mode='w', newline='', encoding='utf-8') as f:
         writer = csv.writer(f)
         writer.writerow(['Title', 'Date', 'Link', 'Access Status'])

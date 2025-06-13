@@ -1,8 +1,11 @@
 import runpy
 
 # 1. update InPress. 
+print("❤️❤️❤️1.1. update InPress. ")
 runpy.run_path("1_InPress/1_read_ingenta_generate_html.py")
+print("❤️❤️❤️1.2. load csv and visit website and load abs to csv. ")
 runpy.run_path("1_InPress/2_load_csv_visit_website_load_abs_2_csv.py")
+print("❤️❤️❤️1.3. csv to html. ")
 runpy.run_path("1_InPress/3_csv_2_html.py")
 
 # - exam: 1_InPress/filtered_InPress_articles_info_abs.csv
@@ -20,6 +23,7 @@ runpy.run_path("1_InPress/3_csv_2_html.py")
 # - exam: in_press_articles.html
 
 # 2. Issues
+print("❤️❤️❤️2. Issues. ")
 runpy.run_path("2_Issues/issues_generate_html.py")
 # - exam: issues.html 
 # check if latest issues exist.
@@ -45,9 +49,11 @@ runpy.run_path("2_Issues/issues_generate_html.py")
 
 # 5. Recent Articles 
 # - run rencent_articles_1screaper.py (if issue were released ahead of time. change local time to next monoth and run.) 
+print("❤️❤️❤️5.1. Recent Articles. ")
 runpy.run_path("5_RecentArticles/recent_article_1scraper.py")
 # it fet all the info from recent 24 issues. and collect them to the pool
 # - run recent_articles_2generate_html.py
+print("❤️❤️❤️5.2. Recent Articles. ")
 runpy.run_path("5_RecentArticles/recent_article_2generate_html.py")
 # it generates all the artilces in the pool to html. and the html on pers will select them randomly
 # exam: member_only_articles and open_access_articles html
@@ -55,13 +61,17 @@ runpy.run_path("5_RecentArticles/recent_article_2generate_html.py")
 # 6. Update the IssuesArticles
 # goto S3 bucket to download the issues GA.
 # https://us-east-1.console.aws.amazon.com/s3/buckets/persearlyaccess?region=us-east-1&tab=objects&bucketType=general
+# use tang.1693 account
+
 # - download the issues GA.
-# - check all the GA is added to the /IssuesArticles/html/img/year/month/ same name as the article title.
+# - check all the GA is added to the 6_IssuesArticles/IssuesArticles/html/img/year/month/ same name as the article title.
 # - run 
+print("❤️❤️❤️6.1. Update the IssuesArticles. ")
 runpy.run_path("6_IssuesArticles/recent_article_1scraper.py")
 # (if issue were released ahead of time. change local time to next monoth and run.)
 # then 
 # remove_dublicated_rows_CSV.py
+print("❤️❤️❤️6.2. Update the IssuesArticles. ")
 runpy.run_path("6_IssuesArticles/remove_dublicated_rows_CSV.py")
 
 # to get the new articles. 
@@ -70,7 +80,8 @@ runpy.run_path("6_IssuesArticles/remove_dublicated_rows_CSV.py")
 # - then goes to IssuesArticles/remove_dublicated_rows_CSV.py to remove the duplicate rows.
 # the csv file is ALL_articles_Update_cleaned.csv
 # - run 
-runpy.run_path("6_IssuesArticles/generate_articles_page.py")
+print("❤️❤️❤️6.3. Update the IssuesArticles. ")
+runpy.run_path("6_IssuesArticles/generate_article_page.py")
 # generate_articles_page.py 
 
 # to generate the html.

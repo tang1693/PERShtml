@@ -5,9 +5,9 @@ import os
 import time
 
 # Input and output file names
-input_csv = 'InPress/fast_track_items.csv'  # <-- your CSV file with Title, Date, Link, Access Status
-log_filename = 'InPress/processed_urls.log'
-output_csv = 'InPress/filtered_InPress_articles_info_abs.csv'
+input_csv = '1_InPress/fast_track_items.csv'  # <-- your CSV file with Title, Date, Link, Access Status
+log_filename = '1_InPress/processed_urls.log'
+output_csv = '1_InPress/filtered_InPress_articles_info_abs.csv'
 
 # Read the input CSV
 df_input = pd.read_csv(input_csv)
