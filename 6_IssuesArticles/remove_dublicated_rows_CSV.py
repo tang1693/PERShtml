@@ -7,6 +7,16 @@ def remove_duplicates(input_csv, output_csv):
     # Remove duplicate rows based on 'Title' column
     df_cleaned = df.drop_duplicates(subset=['Title'])
     
+    # Remove row where Title is empty
+    df_cleaned = df_cleaned[df_cleaned['Title'].notna()]
+    
+    # Remove row where Authors is empty
+    df_cleaned = df_cleaned[df_cleaned['Authors'].notna()]
+    
+    # Remove row where Abstract is empty
+    df_cleaned = df_cleaned[df_cleaned['Abstract'].notna()]
+    
+    
     # Save the cleaned data to a new CSV file
     df_cleaned.to_csv(output_csv, index=False)
     
