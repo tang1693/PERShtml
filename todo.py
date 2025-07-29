@@ -58,10 +58,26 @@ runpy.run_path("5_RecentArticles/recent_article_2generate_html.py")
 # it generates all the artilces in the pool to html. and the html on pers will select them randomly
 # exam: member_only_articles and open_access_articles html
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # 6. Update the IssuesArticles
 # goto S3 bucket to download the issues GA.
 # https://us-east-1.console.aws.amazon.com/s3/buckets/persearlyaccess?region=us-east-1&tab=objects&bucketType=general
 # use tang.1693 account
+# or download from https://www.ingentaconnect.com/content/asprs/pers
 
 # - download the issues GA.
 # - check all the GA is added to the 6_IssuesArticles/IssuesArticles/html/img/year/month/ same name as the article title.
