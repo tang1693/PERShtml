@@ -1,5 +1,31 @@
 import runpy
 
+
+
+
+# 第一步 先来这儿看看 https://www.ingentaconnect.com/content/asprs/pers 
+# 如果有新的issue，去Google drive 看看是否已经有GA
+# https://drive.google.com/drive/folders/14mqTBJmv95i1fhYYnhUeoFkHNkZgzj-5
+# 把 GA 下载到 IssuesArticles/html/img/year/month/ 文件夹下
+# 把时间调整到 下个月 (setting/general/date and time/ ). 如果Ingenta提前发了的话!~
+# 然后直接运行就好. 下面的不需要去动了就
+
+# 跑这个过程大概10分钟~
+
+#跑完了记得把时间调整回去
+# Git推送到服务器
+# 去网页上看看, 是否正确捏
+
+# 1. 然后就准备更新Editor choice
+# 2. 准备更新公众号捏. 
+
+
+
+
+
+
+
+
 # 1. update InPress. 
 print("❤️❤️❤️1.1. update InPress. ")
 runpy.run_path("1_InPress/1_read_ingenta_generate_html.py")
@@ -104,6 +130,7 @@ runpy.run_path("6_IssuesArticles/generate_article_page.py")
 # if you need to rerun part of whole of the process. delete the processed_issues.log and run the process again.
 # - exam: /IssuesArticles/html/yyyymm.html
 
+print("❤️❤️❤️ FINISH SUCCESSFULLY ❤️❤️❤️")
 
 # !!!!!!!
 # add the editor's choice to the html.
