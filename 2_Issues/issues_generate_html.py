@@ -238,9 +238,22 @@ def remove_recent_full_access(html_content, count=14):
     # Find all <strong> elements with the specific style (color: green)
     full_access_elements = soup.find_all('strong', style='color: green;')
 
-    # Remove the topmost `count` elements
-    for element in full_access_elements[:count]:
-        element.decompose()
+    # # Remove the topmost `count` elements
+    # for element in full_access_elements[:count]:
+    #     element.decompose()
+
+    # Modify the last one
+    latest_element = full_access_elements[0] # the first one is the most recent one. has been changed to "NEW"
+    latest_element.string = "NEW"
+    latest_element['style'] = 'color: red;'
+
+    # If there are any such elements
+    if full_access_elements:
+        # Remove 
+        for element in full_access_elements[1:count]: # remove the rest of the full access elements except the most recent one.
+            element.decompose()
+
+
 
     # Return the modified HTML content
     return str(soup)
