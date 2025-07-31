@@ -104,3 +104,17 @@ runpy.run_path("6_IssuesArticles/generate_article_page.py")
 # if you need to rerun part of whole of the process. delete the processed_issues.log and run the process again.
 # - exam: /IssuesArticles/html/yyyymm.html
 
+
+# !!!!!!!
+# add the editor's choice to the html.
+# beloe this part of the HTML:
+#       <div style="display: flex; justify-content: space-between; align-items: center;">
+#             <div style="font-weight: bold; color: gray;">Research Articles </div>
+#       </div>
+
+# add the following:    
+#     <span style="background-color: gold; color: black; font-weight: bold; padding: 3px 8px; border-radius: 5px; font-size: 12px; margin-left: 0px;">
+#         Editor’s Choice
+#     </span>
+
+
