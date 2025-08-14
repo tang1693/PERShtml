@@ -18,6 +18,7 @@ import runpy
 
 # 1. 然后就准备更新Editor choice
 # 2. 准备更新公众号捏. 
+# 3. 把Editor choice 简介发给GPT 然后发给 YUKI Day ASPRS Office <office@asprs.org>
 
 
 
