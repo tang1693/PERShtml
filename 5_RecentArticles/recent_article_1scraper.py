@@ -4,6 +4,8 @@ import csv
 import pandas as pd
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
+import requests
+
 
 # return df
 def fetch_to_csv(how_many_months=24):
@@ -44,7 +46,7 @@ def fetch_to_csv(how_many_months=24):
     # Iterate over each URL
     for url in urls:
         # Request the page content
-        response = requests.get(url, headers=headers)
+        response = requests.get(url, headers=headers, verify=False)
     
         # Check if page was fetched correctly
         if response.status_code != 200:
@@ -77,7 +79,7 @@ def fetch_to_csv(how_many_months=24):
                         if article_url != 'N/A':
                             print(f"Fetching abstract for {article_url}")
                             try:
-                                article_response = requests.get(article_url, headers=headers)
+                                article_response = requests.get(article_url, headers=headers, verify=False)
                                 if article_response.status_code == 200:
                                     article_soup = BeautifulSoup(article_response.content, 'html.parser')
 

@@ -33,7 +33,7 @@ def generate_urls(how_many_months=24):
 # Fetch articles from a single URL and save data incrementally
 def fetch_articles(url, headers):
     all_articles_data = []
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=headers, verify=False)
     if response.status_code != 200:
         print(f"Failed to fetch the page at {url}")
         return all_articles_data
@@ -57,7 +57,7 @@ def fetch_articles(url, headers):
                     abstract = 'N/A'
                     if article_url != 'N/A':
                         try:
-                            article_response = requests.get(article_url, headers=headers)
+                            article_response = requests.get(article_url, headers=headers, verify=False)
                             if article_response.status_code == 200:
                                 article_soup = BeautifulSoup(article_response.content, 'html.parser')
                                 abstract_div = article_soup.find('div', id="Abst")
