@@ -6,7 +6,7 @@ import urllib3
 
 # 第一步 先来这儿看看 https://www.ingentaconnect.com/content/asprs/pers 
 # 如果有新的issue，去Google drive 看看是否已经有GA
-# https://drive.google.com/drive/folders/14mqTBJmv95i1fhYYnhUeoFkHNkZgzj-5
+# https://drive.google.com/drive/folders/1JEHu4ewGk2vPgRUZpzh9jlgDG0OVHzOC
 # 把 GA 下载到 IssuesArticles/html/img/year/month/ 文件夹下
 # 把时间调整到 下个月 (setting/general/date and time/ ). 如果Ingenta提前发了的话!~
 # 然后直接运行就好. 下面的不需要去动了就
