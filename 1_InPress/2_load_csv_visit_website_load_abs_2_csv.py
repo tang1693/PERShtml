@@ -3,21 +3,18 @@ import requests
 from bs4 import BeautifulSoup
 import os
 import time
+import re
 
 # Input and output file names
-input_csv = '1_InPress/fast_track_items.csv'  # <-- your CSV file with Title, Date, Link, Access Status
+input_csv = '1_InPress/fast_track_items.csv'
 log_filename = '1_InPress/processed_urls.log'
 output_csv = '1_InPress/filtered_InPress_articles_info_abs.csv'
-
-# Read the input CSV
-df_input = pd.read_csv(input_csv)
 
 # Setup headers for requests
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
 }
 
-# Function to fetch authors and abstract
 def fetch_articles(url, headers):
     try:
         response = requests.get(url, headers=headers, timeout=10)
@@ -30,12 +27,20 @@ def fetch_articles(url, headers):
         if authors_strong:
             authors_parent_p = authors_strong.find_parent('p')
             if authors_parent_p:
-                # Get all <a> tags inside this <p>
+                # 1. Get all text from <a> tags (names and numbers are often separated)
                 author_links = authors_parent_p.find_all('a')
-                # Extract their text and join by "; "
-                authors = '; '.join(a.get_text(strip=True) for a in author_links)
+                raw_authors_str = '; '.join(a.get_text(strip=True) for a in author_links)
+                
+                # 2. Use regex to remove standalone numbers (affiliations)
+                # This looks for digits that are either alone or surrounded by semicolons/spaces
+                clean_step1 = re.sub(r'\b\d+\b', '', raw_authors_str)
+                
+                # 3. Clean up the resulting semicolons and whitespace
+                # Split by semicolon, strip whitespace, and filter out empty strings
+                names_list = [n.strip() for n in clean_step1.split(';') if n.strip()]
+                authors = '; '.join(names_list)
 
-        # Extract Abstract correctly
+        # --- Extract Abstract ---
         abstract = 'N/A'
         abstract_div = soup.find('div', id='Abst')
         if abstract_div:
@@ -46,6 +51,11 @@ def fetch_articles(url, headers):
     except Exception as e:
         print(f"Error fetching {url}: {e}")
         return 'N/A', 'N/A'
+
+# --- Main Processing Logic ---
+
+# Read the input CSV
+df_input = pd.read_csv(input_csv)
 
 # Prepare log of already processed URLs
 processed_urls = set()
@@ -91,4 +101,4 @@ for idx, row in df_input.iterrows():
 
     time.sleep(1)  # Be polite to the server
 
-print("✅ All articles processed and saved!")
+print("✅ All articles processed and saved with cleaned author names!")
