@@ -8,32 +8,39 @@ import csv
 import os
 import time
 
+
+
 # Set up Chrome options
 options = Options()
-options.add_argument("--headless")  # Run headless
+options.add_argument("--headless")
 options.add_argument("--disable-gpu")
 options.add_argument("--no-sandbox")
-# Set a custom cache directory to avoid permission warnings
 options.add_argument(f"--user-data-dir={os.path.expanduser('~')}/.selenium_cache")
 
 # Initialize the Chrome driver
 driver = webdriver.Chrome(options=options)
 
+# --- NEW: Set a general page load timeout (e.g., 60 seconds) ---
+driver.set_page_load_timeout(120)
+
 try:
     # Open the ASPRS PERS page
     driver.get('https://www.ingentaconnect.com/content/asprs/pers')
 
+    # --- UPDATED: Increased timeout from 15 to 60 seconds ---
+    wait = WebDriverWait(driver, 60)
+    
     # Wait until the tab appears and click it
-    wait = WebDriverWait(driver, 15)
     fast_track_tab = wait.until(EC.element_to_be_clickable((By.ID, "tab-fast")))
     fast_track_tab.click()
 
-    # Wait for the fast track content to load
-    wait.until(EC.presence_of_element_located((By.ID, "fasttrackItems")))
-    time.sleep(2)  # slight extra wait to ensure all items loaded
+    # --- UPDATED: Wait specifically for the items within the list to appear ---
+    # This is more reliable than a hard time.sleep(2)
+    wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "ul#fasttrackItems li")))
 
     # Get page source after clicking
     html_content = driver.page_source
+
 
     # Parse with BeautifulSoup
     soup = BeautifulSoup(html_content, 'html.parser')

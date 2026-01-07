@@ -17,7 +17,7 @@ headers = {
 
 def fetch_articles(url, headers):
     try:
-        response = requests.get(url, headers=headers, timeout=10)
+        response = requests.get(url, headers=headers, timeout=120)
         response.raise_for_status()
         soup = BeautifulSoup(response.text, 'html.parser')
 

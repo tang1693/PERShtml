@@ -1,12 +1,52 @@
 import runpy
 import requests
+import warnings
+import logging
+import os
 import urllib3
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+
+# 1. Suppress General Python Warnings (Deprecation, etc.)
+warnings.filterwarnings("ignore")
+
+# 2. Suppress SSL/Insecure Request Warnings
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+# 3. Suppress Selenium and Library Logging
+logging.getLogger('selenium').setLevel(logging.ERROR)
+logging.getLogger('urllib3').setLevel(logging.ERROR)
+
+options = Options()
+options.add_argument("--headless")
+options.add_argument("--disable-gpu")
+options.add_argument("--no-sandbox")
+
+# 4. Silence Chrome Browser Console Logs
+options.add_argument("--log-level=3") 
+options.add_experimental_option('excludeSwitches', ['enable-logging'])
+
+driver = webdriver.Chrome(options=options)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 # 第一步 先来这儿看看 https://www.ingentaconnect.com/content/asprs/pers 
 # 如果有新的issue，去Google drive 看看是否已经有GA
-# https://drive.google.com/drive/folders/1JEHu4ewGk2vPgRUZpzh9jlgDG0OVHzOC
+# https://drive.google.com/drive/folders/1vgP1MI7tQmGU6uJnP94W5PsWTxUVQkFT
 # 把 GA 下载到 IssuesArticles/html/img/year/month/ 文件夹下
 # 把时间调整到 下个月 (setting/general/date and time/ ). 如果Ingenta提前发了的话!~
 # 然后直接运行就好. 下面的不需要去动了就
@@ -82,21 +122,6 @@ print("❤️❤️❤️5.2. Recent Articles. ")
 runpy.run_path("5_RecentArticles/recent_article_2generate_html.py")
 # it generates all the artilces in the pool to html. and the html on pers will select them randomly
 # exam: member_only_articles and open_access_articles html
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # 6. Update the IssuesArticles
 # goto S3 bucket to download the issues GA.
