@@ -32,33 +32,70 @@ def normalize_string(s):
     return s.strip().lower()  # Convert to lowercase
 
 # Find the GA image URL for an article using similarity scoring
+# def find_ga_image(article_title, issue):
+#     year = issue[:4]
+#     issue_no = issue[4:]
+#     ga_dir = os.path.join("IssuesArticles/html/img", year, issue_no)
+
+#     # Check if the directory exists
+#     if not os.path.exists(ga_dir):
+#         print(f"Directory {ga_dir} does not exist. Skipping GA for this article.")
+#         return None  # No directory for this issue
+
+#     # List all files in the GA directory
+#     file_list = os.listdir(ga_dir)
+#     # Extract filenames without extensions
+#     filenames = [os.path.splitext(filename)[0] for filename in file_list]
+
+#     # Find the best match using similarity scoring
+#     result = process.extractOne(article_title, filenames, scorer=fuzz.token_sort_ratio)
+
+#     if result:
+#         best_match, score, _ = result  # Unpack result (best_match, score, index)
+#         # If the score is above a threshold, consider it a match
+#         if score >= 30:  # Adjust threshold as needed
+#             matched_filename = file_list[filenames.index(best_match)]
+#             print(f"Best match for article '{article_title}' -> '{matched_filename}' (Score: {score})")
+#             return f"{ga_base_url}/{year}/{issue_no}/{matched_filename}"  # Return full URL
+#     else:
+#         print(f"No sufficiently similar match found for article '{article_title}'.")
+#     return None
+
 def find_ga_image(article_title, issue):
     year = issue[:4]
     issue_no = issue[4:]
-    ga_dir = os.path.join("IssuesArticles/html/img", year, issue_no)
+    
+    # Construct the relative path
+    relative_path = os.path.join("IssuesArticles/html/img", year, issue_no)
+    
+    # Get the absolute path to see exactly where Python is looking on your PC
+    absolute_path = os.path.abspath(relative_path)
+    
+    # Print the folder URL/Path for debugging
+    print(f"---> Searching for GA in: {absolute_path}")
 
     # Check if the directory exists
-    if not os.path.exists(ga_dir):
-        print(f"Directory {ga_dir} does not exist. Skipping GA for this article.")
-        return None  # No directory for this issue
+    if not os.path.exists(relative_path):
+        print(f"!!! FOLDER NOT FOUND: {relative_path}")
+        return None 
 
     # List all files in the GA directory
-    file_list = os.listdir(ga_dir)
-    # Extract filenames without extensions
+    file_list = os.listdir(relative_path)
     filenames = [os.path.splitext(filename)[0] for filename in file_list]
 
-    # Find the best match using similarity scoring
+    # Find the best match
     result = process.extractOne(article_title, filenames, scorer=fuzz.token_sort_ratio)
 
     if result:
-        best_match, score, _ = result  # Unpack result (best_match, score, index)
-        # If the score is above a threshold, consider it a match
-        if score >= 30:  # Adjust threshold as needed
+        best_match, score, _ = result 
+        if score >= 30: 
             matched_filename = file_list[filenames.index(best_match)]
-            print(f"Best match for article '{article_title}' -> '{matched_filename}' (Score: {score})")
-            return f"{ga_base_url}/{year}/{issue_no}/{matched_filename}"  # Return full URL
-    else:
-        print(f"No sufficiently similar match found for article '{article_title}'.")
+            # Construct the GitHub URL
+            full_github_url = f"{ga_base_url}/{year}/{issue_no}/{matched_filename}"
+            print(f"SUCCESS: Match found ({score}%). URL: {full_github_url}")
+            return full_github_url
+    
+    print(f"FAILED: No match for '{article_title[:30]}...' in {relative_path}")
     return None
 
 
