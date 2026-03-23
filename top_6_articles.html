@@ -1,198 +1,122 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Most Cited Articles (Last 2 Years)</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
-            line-height: 1.6;
-        }
-        h1 {
-            color: #1b5faa;
-            margin-bottom: 10px;
-        }
-        .subtitle {
-            color: gray;
-            font-size: 14px;
-            margin-bottom: 30px;
-        }
-        article {
-            padding: 15px;
-            margin-bottom: 10px;
-        }
-        article:not(:first-child) {
-            border-top: 1px solid #ddd;
-        }
-        .rank {
-            display: inline-block;
-            width: 40px;
-            font-weight: bold;
-            color: #1b5faa;
-        }
-        .citations {
-            display: inline-block;
-            background: #e3f2fd;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-weight: bold;
-            color: #1976d2;
-            margin-left: 10px;
-        }
-        .title {
-            margin: 5px 0;
-        }
-        .title a {
-            text-decoration: none;
-            color: #1b5faa;
-            font-size: 16px;
-            font-weight: 500;
-        }
-        .title a:hover {
-            text-decoration: underline;
-        }
-        .metadata {
-            color: #666;
-            font-size: 14px;
-            margin: 5px 0;
-        }
-        .authors {
-            color: #444;
-            font-size: 14px;
-        }
-        .abstract {
-            color: #555;
-            font-size: 14px;
-            margin-top: 8px;
-        }
-        details {
-            cursor: pointer;
-        }
-        summary {
-            color: #1b5faa;
-            font-weight: 500;
-        }
-    </style>
-</head>
-<body>
-    <h1>Most Cited Articles</h1>
-    <div class="subtitle">Top 6 articles from the last 2 years (based on Scopus citations)</div>
-
-    <article>
-        <div>
-            <span class="rank">#1</span>
-            <span class="citations">16 citations</span>
-        </div>
-        <div class="title">
-            <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000012/art00012;jsessionid=9a8ib0ew1wvq.x-ic-live-03" target="_blank" rel="noreferrer">Image Fusion in Remote Sensing: An Overview and Meta-Analysis</a>
-        </div>
-        <div class="metadata">nan, pp. 755-775(21)</div>
-        <div class="authors">Authors: Albanwan, Hessah; Qin, Rongjun; Tang, Yang</div>
-        <div class="abstract">
-            Abstract: 
-            <details>
-                <summary>Read more...</summary>
-                <p>Remote sensing image fusion is consistently used to turn raw images of different resolutions, sources, and modalities into accurate, complete, and spatiotemporally coherent images. It facilitates downstream applications such as pan sharpening, change detection, and classification. However, image fusion solutions are highly disparate to various remote sensing problems and are often narrowly defined in existing reviews as topical applications (e. g., pan sharpening). Theoretically, image fusion can be applied to any gridded data through pixel-level operations; thus, we expand its scope by comprehensively surveying relevant works. We develop a simple taxonomy for many-to-one and many-to-many image fusion, defining it as a mapping problem turning one or multiple images into another set based on desired coherence. Furthermore, we provide a meta-analysis to cover 10,420 peer-reviewed papers from the 1980s to 2023 studying various types of image fusion and their applications. Finally, we discuss image fusion's benefits and emerging challenges to provide open research directions.</p>
-            </details>
-        </div>
-    </article>
-
-    <article>
-        <div>
-            <span class="rank">#2</span>
-            <span class="citations">11 citations</span>
-        </div>
-        <div class="title">
-            <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000011/art00012;jsessionid=vj4y1qllys3s.x-ic-live-02" target="_blank" rel="noreferrer">Machine Learning and New-Generation Spaceborne Hyperspectral Data Advance Crop Type Mapping</a>
-        </div>
-        <div class="metadata">nan, pp. 687-698(12)</div>
-        <div class="authors">Authors: Aneece, Itiya; Thenkabail, Prasad S.; McCormick, Richard; Alifu, Haireti; Foley, Daniel; Oliphant, Adam J.; Teluguntla, Pardhasaradhi</div>
-        <div class="abstract">
-            Abstract: 
-            <details>
-                <summary>Read more...</summary>
-                <p>Hyperspectral sensors provide near-continuous spectral data that can facilitate advancements in agricultural crop classification and characterization, which are important for addressing global food and water security issues. We investigated two new-generation hyperspectral sensors, Germany’s Deutsches Zentrum für Luft‐ und Raumfahrt Earth Sensing Imaging Spectrometer (DESIS) and Italy’s PRecursore IperSpettrale della Missione Applicativa (PRISMA), within California???s Central Valley in August 2021 focusing on five irrigated agricultural crops (alfalfa, almonds, corn, grapes, and pistachios). With reference data from the U.S. Department of Agriculture Cropland Data Layer, we developed a spectral library of the crops and classified them using three machine learning algorithms (support vector machines [SVM], random forest [RF], and spectral angle mapper [SAM]) and two philosophies: 1. Full spectral analysis (FSA) and 2. Optimal hyperspectral narrowband (OHNB) analysis. For FSA, we used 59 DESIS four-bin product bands and 207 of 238 PRISMA bands. For OHNB analysis, 9 DESIS and 16 PRISMA nonredundant OHNBs for studying crops were selected. FSA achieved only 1% to 3% higher accuracies relative to OHNB analysis in most cases. SVM provided the best results, closely followed by RF. Using both DESIS and PRISMA image OHNBs in SVM for classification led to higher accuracy than using either image alone, with an overall accuracy of 99%, producer’s accuracies of 94% to 100%, and user???s accuracies of 95% to 100%.</p>
-            </details>
-        </div>
-    </article>
-
-    <article>
-        <div>
-            <span class="rank">#3</span>
-            <span class="citations">11 citations</span>
-        </div>
-        <div class="title">
-            <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000007/art00009;jsessionid=8r5ofsaiftek3.x-ic-live-02" target="_blank" rel="noreferrer">Assessing the Utility of Uncrewed Aerial System Photogrammetrically Derived Point Clouds for Land Cover Classification in the Alaska North Slope</a>
-        </div>
-        <div class="metadata">nan, pp. 405-414(10)</div>
-        <div class="authors">Authors: Liu, Jung-kuan; Qin, Rongjun; Arundel, Samantha T.</div>
-        <div class="abstract">
-            Abstract: 
-            <details>
-                <summary>Read more...</summary>
-                <p>Uncrewed aerial systems (UASs) have been used to collect “pseudo field plot” data in the form of large-scale stereo imagery to supplement and bolster direct field observations to monitor areas in Alaska. These data supplement field data that is difficult to collect in such a vast landscape with a relatively short field season. Dense photogrammetrically derived point clouds are created and are facilitated to extract land cover data using a support vector machine (SVM) classifier in this study. We test our approach using point clouds derived from 1-cm stereo imagery of plots in the Alaska North Slope region and compare the results to field observations. The results show that the overall accuracy of six land cover classes (bare soil, shrub, grass, forb/herb, rock, and litter) is 96.8% from classified patches. Shrub had the highest accuracy (>99%) and forb/herb achieved the lowest (<48%). This study reveals that the approach could be used as reference data to check field observations in remote areas.</p>
-            </details>
-        </div>
-    </article>
-
-    <article>
-        <div>
-            <span class="rank">#4</span>
-            <span class="citations">10 citations</span>
-        </div>
-        <div class="title">
-            <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000006/art00009;jsessionid=ehe231hgm4fh1.x-ic-live-03" target="_blank" rel="noreferrer">An Improved YOLO Network for Insulator and Insulator Defect Detection in UAV Images</a>
-        </div>
-        <div class="metadata">nan, pp. 355-361(7)</div>
-        <div class="authors">Authors: Zhou, Fangrong; Liu, Lifeng; Hu, Hao; Jin, Weishi; Zheng, Zezhong; Li, Zhongnian; Ma, Yi; Wang, Qun</div>
-        <div class="abstract">
-            Abstract: 
-            <details>
-                <summary>Read more...</summary>
-                <p>The power grid plays a vital role in the construction of livelihood projects by transmitting electrical energy. In the event of insulator explosions on power grid towers, these insulators may detach, presenting potential safety risks to transmission lines. The identification of such failures relies on the examination of images captured by unmanned aerial vehicles (UAVs). However, accurately detecting insulator defects remains challenging, particularly when dealing with variations in size. Existing methods exhibit limited accuracy in detecting small objects. In this paper, we propose a novel detection method that incorporates the convolutional block attention module (CBAM) as an attention mechanism into the backbone of the "you only look once" version 5 (YOLOv5) model. Additionally, we integrate a residual structure into the model to learn additional information and features related to insulators, thereby enhancing detection efficiency. Experimental results demonstrate that our proposed method achieved F1 scores of 0.87 for insulator detection and 0.89 for insulator defect detection. The improved YOLOv5 network shows promise in detecting insulators and their defects in UAV images.</p>
-            </details>
-        </div>
-    </article>
-
-    <article>
-        <div>
-            <span class="rank">#5</span>
-            <span class="citations">9 citations</span>
-        </div>
-        <div class="title">
-            <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000006/art00012;jsessionid=ehe231hgm4fh1.x-ic-live-03" target="_blank" rel="noreferrer">Real-Time Cross-View Image Matching and Camera Pose Determination for Unmanned Aerial Vehicles</a>
-        </div>
-        <div class="metadata">nan, pp. 371-381(11)</div>
-        <div class="authors">Authors: Chen, Long; Wu, Bo; Duan, Ran; Chen, Zeyu</div>
-        <div class="abstract">
-            Abstract: 
-            <details>
-                <summary>Read more...</summary>
-                <p>In global navigation satellite systems (GNSS)-denied environments, vision-based methods are commonly used for the positioning and navigation of aerial robots. However, traditional methods often suffer from accumulative estimation errors over time, leading to trajectory drift and lack real-time performance, particularly in large-scale scenarios. This article presents novel approaches, including feature-based cross-view image matching and the integration of visual odometry and photogrammetric space resection for camera pose determination in real-time. Experimental evaluation with real UAV datasets demonstrated that the proposed method reliably matches features in cross-view images with large differences in spatial resolution, coverage, and perspective views, achieving a root-mean-square error of 4.7 m for absolute position error and 0.33° for rotation error, and delivering real-time performance of 12 frames per second (FPS) when implemented in a lightweight edge device onboard UAV. This approach offters potential for diverse intelligent UAV applications in GNSS-denied environments based on real-time feedback control.</p>
-            </details>
-        </div>
-    </article>
-
-    <article>
-        <div>
-            <span class="rank">#6</span>
-            <span class="citations">7 citations</span>
-        </div>
-        <div class="title">
-            <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000004/art00011;jsessionid=2quh4khn56cjt.x-ic-live-03" target="_blank" rel="noreferrer">Investigation of Underwater Photogrammetry Method with Cost-Effective Action Cameras and Comparative Analysis between Reconstructed 3D Point Clouds</a>
-        </div>
-        <div class="metadata">nan, pp. 251-259(9)</div>
-        <div class="authors">Authors: Hamal, Seda Nur Gamze; Ulvi, Ali</div>
-        <div class="abstract">
-            Abstract: 
-            <details>
-                <summary>Read more...</summary>
-                <p>Currently, digital cameras and equipment used underwater are often inaccessible to the general public due to their professional-grade quality and high cost. Therefore alternative solutions have been sought that are both cost-effective and suitable for nonprofessional use. A review of the literature shows that researchers primarily use GoPro action cameras, while other action cameras with similar capabilities are rarely used. This study thus examines underwater photogrammetry methods using a widely recognized action camera as a reference and compares it with another camera of similar characteristics as a potential alternative. For a comprehensive temporal analysis in underwater studies, both cameras were used to capture photographic and video imagery, and the resulting 3D point clouds were compared. Comparison criteria included data collection and processing times, point cloud densities, cloud-to-cloud analysis, and assessments of surface density and roughness. Having analysed, the study concluded that the proposed alternative action camera can feasibly be used in underwater photogrammetry.</p>
-            </details>
-        </div>
-    </article>
-
-</body>
-</html>
+<div id="articles-content">
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000012/art00012;jsessionid=9a8ib0ew1wvq.x-ic-live-03" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Image Fusion in Remote Sensing: An Overview and Meta-Analysis
+        </a>
+    </h3>
+    <div style="font-style: italic;">December 2024, pp. 755-775(21)</div>
+    <div>Authors: Albanwan, Hessah; Qin, Rongjun; Tang, Yang</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Remote sensing image fusion is consistently used to turn raw images of different resolutions, sources, and modalities into accurate, complete, and spatiotemporally coherent images. It facilitates downstream applications such as pan sharpening, change detection, and classification. However, image fusion solutions are highly disparate to various remote sensing problems and are often narrowly defined in existing reviews as topical applications (e. g., pan sharpening). Theoretically, image fusion can be applied to any gridded data through pixel-level operations; thus, we expand its scope by comprehensively surveying relevant works. We develop a simple taxonomy for many-to-one and many-to-many image fusion, defining it as a mapping problem turning one or multiple images into another set based on desired coherence. Furthermore, we provide a meta-analysis to cover 10,420 peer-reviewed papers from the 1980s to 2023 studying various types of image fusion and their applications. Finally, we discuss image fusion's benefits and emerging challenges to provide open research directions.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000011/art00012;jsessionid=vj4y1qllys3s.x-ic-live-02" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Machine Learning and New-Generation Spaceborne Hyperspectral Data Advance Crop Type Mapping
+        </a>
+    </h3>
+    <div style="font-style: italic;">November 2024, pp. 687-698(12)</div>
+    <div>Authors: Aneece, Itiya; Thenkabail, Prasad S.; McCormick, Richard; Alifu, Haireti; Foley, Daniel; Oliphant, Adam J.; Teluguntla, Pardhasaradhi</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Hyperspectral sensors provide near-continuous spectral data that can facilitate advancements in agricultural crop classification and characterization, which are important for addressing global food and water security issues. We investigated two new-generation hyperspectral sensors, Germany’s Deutsches Zentrum für Luft‐ und Raumfahrt Earth Sensing Imaging Spectrometer (DESIS) and Italy’s PRecursore IperSpettrale della Missione Applicativa (PRISMA), within California???s Central Valley in August 2021 focusing on five irrigated agricultural crops (alfalfa, almonds, corn, grapes, and pistachios). With reference data from the U.S. Department of Agriculture Cropland Data Layer, we developed a spectral library of the crops and classified them using three machine learning algorithms (support vector machines [SVM], random forest [RF], and spectral angle mapper [SAM]) and two philosophies: 1. Full spectral analysis (FSA) and 2. Optimal hyperspectral narrowband (OHNB) analysis. For FSA, we used 59 DESIS four-bin product bands and 207 of 238 PRISMA bands. For OHNB analysis, 9 DESIS and 16 PRISMA nonredundant OHNBs for studying crops were selected. FSA achieved only 1% to 3% higher accuracies relative to OHNB analysis in most cases. SVM provided the best results, closely followed by RF. Using both DESIS and PRISMA image OHNBs in SVM for classification led to higher accuracy than using either image alone, with an overall accuracy of 99%, producer’s accuracies of 94% to 100%, and user???s accuracies of 95% to 100%.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000007/art00009;jsessionid=8r5ofsaiftek3.x-ic-live-02" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Assessing the Utility of Uncrewed Aerial System Photogrammetrically Derived Point Clouds for Land Cover Classification in the Alaska North Slope
+        </a>
+    </h3>
+    <div style="font-style: italic;">July 2024, pp. 405-414(10)</div>
+    <div>Authors: Liu, Jung-kuan; Qin, Rongjun; Arundel, Samantha T.</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Uncrewed aerial systems (UASs) have been used to collect “pseudo field plot” data in the form of large-scale stereo imagery to supplement and bolster direct field observations to monitor areas in Alaska. These data supplement field data that is difficult to collect in such a vast landscape with a relatively short field season. Dense photogrammetrically derived point clouds are created and are facilitated to extract land cover data using a support vector machine (SVM) classifier in this study. We test our approach using point clouds derived from 1-cm stereo imagery of plots in the Alaska North Slope region and compare the results to field observations. The results show that the overall accuracy of six land cover classes (bare soil, shrub, grass, forb/herb, rock, and litter) is 96.8% from classified patches. Shrub had the highest accuracy (>99%) and forb/herb achieved the lowest (<48%). This study reveals that the approach could be used as reference data to check field observations in remote areas.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000006/art00009;jsessionid=ehe231hgm4fh1.x-ic-live-03" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            An Improved YOLO Network for Insulator and Insulator Defect Detection in UAV Images
+        </a>
+    </h3>
+    <div style="font-style: italic;">June 2024, pp. 355-361(7)</div>
+    <div>Authors: Zhou, Fangrong; Liu, Lifeng; Hu, Hao; Jin, Weishi; Zheng, Zezhong; Li, Zhongnian; Ma, Yi; Wang, Qun</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            The power grid plays a vital role in the construction of livelihood projects by transmitting electrical energy. In the event of insulator explosions on power grid towers, these insulators may detach, presenting potential safety risks to transmission lines. The identification of such failures relies on the examination of images captured by unmanned aerial vehicles (UAVs). However, accurately detecting insulator defects remains challenging, particularly when dealing with variations in size. Existing methods exhibit limited accuracy in detecting small objects. In this paper, we propose a novel detection method that incorporates the convolutional block attention module (CBAM) as an attention mechanism into the backbone of the "you only look once" version 5 (YOLOv5) model. Additionally, we integrate a residual structure into the model to learn additional information and features related to insulators, thereby enhancing detection efficiency. Experimental results demonstrate that our proposed method achieved F1 scores of 0.87 for insulator detection and 0.89 for insulator defect detection. The improved YOLOv5 network shows promise in detecting insulators and their defects in UAV images.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000006/art00012;jsessionid=ehe231hgm4fh1.x-ic-live-03" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Real-Time Cross-View Image Matching and Camera Pose Determination for Unmanned Aerial Vehicles
+        </a>
+    </h3>
+    <div style="font-style: italic;">June 2024, pp. 371-381(11)</div>
+    <div>Authors: Chen, Long; Wu, Bo; Duan, Ran; Chen, Zeyu</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            In global navigation satellite systems (GNSS)-denied environments, vision-based methods are commonly used for the positioning and navigation of aerial robots. However, traditional methods often suffer from accumulative estimation errors over time, leading to trajectory drift and lack real-time performance, particularly in large-scale scenarios. This article presents novel approaches, including feature-based cross-view image matching and the integration of visual odometry and photogrammetric space resection for camera pose determination in real-time. Experimental evaluation with real UAV datasets demonstrated that the proposed method reliably matches features in cross-view images with large differences in spatial resolution, coverage, and perspective views, achieving a root-mean-square error of 4.7 m for absolute position error and 0.33° for rotation error, and delivering real-time performance of 12 frames per second (FPS) when implemented in a lightweight edge device onboard UAV. This approach offters potential for diverse intelligent UAV applications in GNSS-denied environments based on real-time feedback control.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2024/00000090/00000004/art00011;jsessionid=2quh4khn56cjt.x-ic-live-03" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Investigation of Underwater Photogrammetry Method with Cost-Effective Action Cameras and Comparative Analysis between Reconstructed 3D Point Clouds
+        </a>
+    </h3>
+    <div style="font-style: italic;">April 2024, pp. 251-259(9)</div>
+    <div>Authors: Hamal, Seda Nur Gamze; Ulvi, Ali</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Currently, digital cameras and equipment used underwater are often inaccessible to the general public due to their professional-grade quality and high cost. Therefore alternative solutions have been sought that are both cost-effective and suitable for nonprofessional use. A review of the literature shows that researchers primarily use GoPro action cameras, while other action cameras with similar capabilities are rarely used. This study thus examines underwater photogrammetry methods using a widely recognized action camera as a reference and compares it with another camera of similar characteristics as a potential alternative. For a comprehensive temporal analysis in underwater studies, both cameras were used to capture photographic and video imagery, and the resulting 3D point clouds were compared. Comparison criteria included data collection and processing times, point cloud densities, cloud-to-cloud analysis, and assessments of surface density and roughness. Having analysed, the study concluded that the proposed alternative action camera can feasibly be used in underwater photogrammetry.
+        </details>
+    </div>
+</article>
+</div>
