@@ -37,9 +37,19 @@ def get_pub_date(row):
     return "Unknown Date"
 
 # Generate HTML for each article
+article_count_oa = 0  # Counter for Open Access articles
+article_count_member = 0  # Counter for Member-only articles
+
 for index, row in articles.iterrows():
-    # Set article border-top style except for the first article
-    border_style = "border-top: 1px solid #000; padding: 15px;" if index > 0 else "padding: 15px;"
+    # Determine border style based on article position in its category
+    is_open_access = (row['Access'] == "Open Access content")
+    
+    if is_open_access:
+        border_style = "border-top: 1px solid #000; padding: 15px;" if article_count_oa > 0 else "padding: 15px;"
+        article_count_oa += 1
+    else:
+        border_style = "border-top: 1px solid #000; padding: 15px;" if article_count_member > 0 else "padding: 15px;"
+        article_count_member += 1
     
     # Get the publication date
     pub_date = get_pub_date(row)
