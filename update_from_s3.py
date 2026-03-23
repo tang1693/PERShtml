@@ -196,22 +196,81 @@ def update_module_2_issues():
     else:
         print(f"   ❌ 生成失败: {result.stderr}")
 
-def update_module_5_recent(df_research):
-    """更新模块5: Recent Articles"""
+def update_module_5_recent():
+    """
+    更新模块5: Recent Articles
+    从 ALL_articles_Update_cleaned.csv 提取最近6个月的所有文章
+    """
     print("\n📌 模块 5: Recent Articles")
     
-    if len(df_research) == 0:
-        print("   ⚠️  本月没有 Research Article，跳过")
+    from dateutil.relativedelta import relativedelta
+    
+    # 读取总库
+    all_csv = '6_IssuesArticles/ALL_articles_Update_cleaned.csv'
+    if not os.path.exists(all_csv):
+        print(f"   ⚠️  {all_csv} 不存在，跳过")
         return
     
+    df_all = pd.read_csv(all_csv)
+    
+    # 解析日期：优先从 IssueKey，否则从 URL 解析
+    def parse_issue_date(row):
+        """解析文章的发布日期"""
+        # 方法1: 从 IssueKey
+        if pd.notna(row.get('IssueKey')):
+            try:
+                issue_key_str = str(int(row['IssueKey']))
+                if len(issue_key_str) == 6:
+                    year = int(issue_key_str[:4])
+                    month = int(issue_key_str[4:])
+                    return datetime(year, month, 1)
+            except:
+                pass
+        
+        # 方法2: 从 Ingenta URL 解析
+        # 格式: .../pers/{year}/0000{volume}/0000{issue}/...
+        url = row.get('URL', '')
+        if 'ingentaconnect.com' in url:
+            import re
+            match = re.search(r'/pers/(\d{4})/\d+/(\d+)/', url)
+            if match:
+                year = int(match.group(1))
+                issue = int(match.group(2))  # 去掉前导0
+                return datetime(year, issue, 1)
+        
+        return None
+    
+    df_all['IssueDate'] = df_all.apply(parse_issue_date, axis=1)
+    
+    # 计算6个月前的日期
+    current_date = datetime.now()
+    six_months_ago = current_date - relativedelta(months=6)
+    
+    # 筛选最近6个月的文章（基于 IssueKey）
+    df_recent = df_all[df_all['IssueDate'].notna()].copy()
+    df_recent = df_recent[df_recent['IssueDate'] >= six_months_ago]
+    
+    # 按日期倒序排序
+    df_recent = df_recent.sort_values('IssueDate', ascending=False)
+    
+    # 补充 PubDate（如果没有）
+    for idx, row in df_recent.iterrows():
+        if pd.isna(row.get('PubDate')) and pd.notna(row['IssueDate']):
+            df_recent.loc[idx, 'PubDate'] = row['IssueDate'].strftime('%B %Y')
+    
+    # 保存到 CSV
     csv_path = '5_RecentArticles/filtered_articles_info_abs.csv'
-    df_research[['Title', 'Authors', 'Pages', 'Access', 'URL', 'Abstract', 'PubDate', 'IssueKey']].to_csv(
-        csv_path, index=False
-    )
-    print(f"   ✅ 已更新: {csv_path} ({len(df_research)} 篇)")
+    columns = ['Title', 'Authors', 'Pages', 'Access', 'URL', 'Abstract', 'PubDate', 'IssueKey']
+    df_recent[columns].to_csv(csv_path, index=False)
+    
+    print(f"   ✅ 已更新: {csv_path} ({len(df_recent)} 篇，最近6个月)")
+    
+    # 显示月份分布
+    month_counts = df_recent['IssueDate'].dt.strftime('%Y-%m').value_counts().sort_index(ascending=False)
+    for month, count in month_counts.head(6).items():
+        print(f"      {month}: {count} 篇")
     
     # 生成 HTML
-    import subprocess
     result = subprocess.run(['python3', '5_RecentArticles/recent_article_2generate_html.py'], capture_output=True, text=True)
     if result.returncode == 0:
         print(f"   ✅ 已生成: open_access_articles.html & member_only_articles.html")
@@ -320,8 +379,9 @@ def main():
     update_module_2_issues()  # 重新生成整个 issues.html
     
     if len(df_research) > 0:
-        update_module_5_recent(df_research)
         update_module_6_articles(df_research)
+    
+    update_module_5_recent()  # 总是更新（从总库提取最近6个月）
     
     print("\n" + "=" * 70)
     print("✅ 所有模块更新完成！")
