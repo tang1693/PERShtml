@@ -38,3 +38,4 @@ venv/
 *.swo
 *~
 .env
+processed.log
