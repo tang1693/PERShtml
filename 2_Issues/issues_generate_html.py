@@ -1,101 +1,98 @@
+import os
+import glob
 import requests
 from bs4 import BeautifulSoup
 from datetime import datetime
-
-def check_most_recent_issue(url):
-    """
-    Checks if the most recent issue is available by trying to access the URL.
-    Returns True if accessible, False otherwise.
-    """
-    try:
-        response = requests.get(url)
-        return response.status_code == 200
-    except Exception as e:
-        print(f"Error accessing {url}: {e}")
-        return False
-
-def check_access_status(url):
-    """
-    Checks if the most recent issue is fully accessible or partially accessible.
-    Returns "Full access" if fully accessible, otherwise "Partial Open Access content".
-    """
-    try:
-        response = requests.get(url)
-        if response.status_code == 200:
-            soup = BeautifulSoup(response.content, "html.parser")
-            access_icon = soup.find("span", class_="access-icon")
-            if access_icon and "Partial Open Access content" in access_icon.img.get("title", ""):
-                return "Partial Open Access content"
-            return "Full access"
-        else:
-            return None
-    except Exception as e:
-        print(f"Error accessing {url}: {e}")
-        return None
+from dateutil.relativedelta import relativedelta
 
 def calculate_volume(year):
-    """
-    Calculates the volume number based on the year.
-    Volume 90 corresponds to the year 2024, and it increments or decrements by 1 each year.
-    """
-    base_year = 2024
-    base_volume = 90
-    return base_volume + (year - base_year)
+    """计算卷号（基于年份）"""
+    return year - 1934
 
-def generate_issue_links(year, volume, start_issue=1, end_issue=12, check_latest_only=False):
+def is_full_access(year, issue_no):
     """
-    Generates a list of issues for a given year and volume.
-    Issues are listed from December to January.
+    判断是否为 Full access
+    规则：12个月之前的都是 Full access
+    
+    例如：当前 2026-03，则 2025-03 及之前的都是 Full access
     """
+    current_date = datetime.now()
+    twelve_months_ago = current_date - relativedelta(months=12)
+    
+    issue_date = datetime(year, issue_no, 1)
+    
+    return issue_date <= twelve_months_ago
+
+def generate_issue_links(year, volume, start_issue=1, end_issue=12):
+    """生成指定年份的所有 issue"""
     issues = []
-    for issue in range(end_issue, start_issue - 1, -1):  # Descending from Dec to Jan
-        url = f"https://www.ingentaconnect.com/content/asprs/pers/{year}/000000{volume}/000000{issue:02d}"
-        print(url)
-        if check_latest_only and issue == end_issue and year == datetime.now().year:
-            # Only check the most recent issue
-            if not check_most_recent_issue(url):
-                continue  # Skip if the most recent issue is not available
-            access_status = check_access_status(url)
-        else:
-            # Assume all other issues are available and set to full access by default
-            access_status = "Full access"
-
-        issues.append((url, f"No. {issue}, {datetime(year, issue, 1).strftime('%b %Y')}", access_status))
+    base_url = "https://tang1693.github.io/PERShtml/IssuesArticles/html"
+    
+    for issue in range(end_issue, start_issue - 1, -1):  # 从 12月到1月倒序
+        issue_key = f"{year}{issue:02d}"
+        issue_url = f"{base_url}/{issue_key}.html"
+        
+        # 月份缩写（Apr, Mar, Feb 等）
+        month_abbr = datetime(year, issue, 1).strftime('%b')
+        issue_name = f"No. {issue}, {month_abbr} {year}"
+        
+        # 判断 Full access
+        full_access = is_full_access(year, issue)
+        
+        issues.append((issue_url, issue_name, full_access))
     
     return issues
 
-
-
-
+def get_latest_issue():
+    """
+    扫描 IssuesArticles/html/ 目录，找出最新的期号
+    返回 (year, issue_no)
+    """
+    html_files = glob.glob('IssuesArticles/html/2*.html')
+    if not html_files:
+        # 如果没有文件，返回当前月份
+        now = datetime.now()
+        return now.year, now.month
+    
+    # 提取所有 YYYYMM
+    issue_keys = []
+    for f in html_files:
+        basename = os.path.basename(f).replace('.html', '')
+        if len(basename) == 6 and basename.isdigit():
+            year = int(basename[:4])
+            issue = int(basename[4:])
+            issue_keys.append((year, issue))
+    
+    if not issue_keys:
+        now = datetime.now()
+        return now.year, now.month
+    
+    # 返回最新的
+    return max(issue_keys)
 
 def generate_html():
-    """
-    Generates the HTML block for all issues from January 2003 to the current month.
-    """
+    """生成完整的 issues.html"""
     start_year = 2003
-    current_year = datetime.now().year
-    current_month = datetime.now().month
-    base_url = "https://tang1693.github.io/PERShtml/IssuesArticles/html"  # Base URL for the hosted HTML files
+    latest_year, latest_issue = get_latest_issue()
+    base_url = "https://tang1693.github.io/PERShtml/IssuesArticles/html"
 
-    # JavaScript for modal functionality (moved to the top)
+    # JavaScript for modal
     script_block = '''
     <script>
         function openCustomModal(url) {
             const modal = document.getElementById('customModal');
             const iframe = document.getElementById('customModalContent');
-            iframe.src = url;  // Set the iframe content to the provided URL
-            modal.style.display = 'block';  // Show the modal
+            iframe.src = url;
+            modal.style.display = 'block';
         }
 
         function closeCustomModal() {
             const modal = document.getElementById('customModal');
             const iframe = document.getElementById('customModalContent');
-            modal.style.display = 'none';  // Hide the modal
-            iframe.src = '';  // Clear the iframe content
+            modal.style.display = 'none';
+            iframe.src = '';
         }
         
-        // if user want to close the modal by clicking outside the modal
-        // remember this part of the code is actually not useful. it only works when the code is in html file. lol
         function closeCustomModalOnOutsideClick(event) {
             const modal = document.getElementById('customModal');
             if (event.target === modal) {
@@ -105,7 +102,7 @@ def generate_html():
     </script>
     '''
 
-    # Begin the HTML output
+    # HTML header
     html_output = f'''
     <!DOCTYPE html>
     <html lang="en">
@@ -113,31 +110,42 @@ def generate_html():
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>PE&RS Issues</title>
-        {script_block} <!-- Include the script block here -->
+        {script_block}
     </head>
     <body>
     <div style="margin: 40px;">
         <div style="display: flex; flex-wrap: wrap; gap: 20px;">
     '''
 
-    for year in range(current_year, start_year - 1, -1):
-        volume = calculate_volume(year)  # Calculate the volume based on the year
+    # 生成所有年份的 issues
+    for year in range(latest_year, start_year - 1, -1):
+        volume = calculate_volume(year)
         start_issue = 1
-        end_issue = 12 if year != current_year else current_month  # Only up to the current month for the current year
+        end_issue = 12 if year != latest_year else latest_issue
 
         issues = generate_issue_links(year, volume, start_issue, end_issue)
+        
         html_output += f'''
         <div style="flex: 1 1 calc(20% - 20px);">
             <ul class="bobby" style="padding: 0; list-style: none;">
                 <li class="issueVolume" style="font-size: 12px; font-weight: 700;">Volume {volume}</li>
         '''
         
-        for _, issue_name, access_status in issues:
-            # Construct the corresponding HTML file URL
-            issue_number = issue_name.split(",")[0].replace("No. ", "").strip()
-            issue_url = f"{base_url}/{year}{int(issue_number):02d}.html"
-
-            access_html = f' <strong style="color: green;">{access_status}</strong>'
+        for issue_url, issue_name, full_access in issues:
+            # 提取期号
+            issue_no = int(issue_name.split(",")[0].replace("No. ", "").strip())
+            
+            # 判断是否是最新一期
+            is_latest = (year == latest_year and issue_no == latest_issue)
+            
+            # 构建 HTML
+            if is_latest:
+                access_html = ' <strong style="color: red;">NEW</strong>'
+            elif full_access:
+                access_html = ' <strong style="color: green;">Full access</strong>'
+            else:
+                access_html = ''
+            
             html_output += f'''
                 <li>
                     <a href="javascript:void(0);" onclick="openCustomModal('{issue_url}');">{issue_name}</a>{access_html}
@@ -149,126 +157,34 @@ def generate_html():
         </div>
         '''
 
+    # HTML footer
     html_output += '''
         </div>
         <div style="text-align: center; margin-top: 20px;">
         </div>
     </div>
 
-    <!-- Modal structure for issue content -->
-    
-        <div id="customModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; text-align: center; padding-top: 50px;" onclick="closeCustomModalOnOutsideClick(event);">
-            <div style="position: relative; display: inline-block; width: 70%; height: 95%; background: #fff; border-radius: 10px; overflow: hidden;" onclick="event.stopPropagation();">
-                <div style="position: absolute; top: 10px; right: 10px; font-size: 18px; padding: 5px 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="closeCustomModal();">
-                    Close
-                </div>
-                <iframe id="customModalContent" src="" style="width: 100%; height: 100%; border: none;"></iframe>
+    <!-- Modal structure -->
+    <div id="customModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 1000; text-align: center; padding-top: 50px;" onclick="closeCustomModalOnOutsideClick(event);">
+        <div style="position: relative; display: inline-block; width: 70%; height: 95%; background: #fff; border-radius: 10px; overflow: hidden;" onclick="event.stopPropagation();">
+            <div style="position: absolute; top: 10px; right: 10px; font-size: 18px; padding: 5px 10px; background: red; color: white; border: none; border-radius: 5px; cursor: pointer;" onclick="closeCustomModal();">
+                Close
             </div>
+            <iframe id="customModalContent" src="" style="width: 100%; height: 100%; border: none;"></iframe>
         </div>
+    </div>
     </body>
     </html>
     '''
 
     return html_output
 
-
-
-
-
-
-
-
-
-
-# def generate_html():
-#     """
-#     Generates the HTML block for all issues from January 2023 to the current month.
-#     """
-#     start_year = 2003
-#     current_year = datetime.now().year
-#     current_month = datetime.now().month
-#     html_output = '<div style="margin: 40px;">\n'
-#     # html_output += '<strong style="font-size: 32px; display: block; margin-bottom: 20px;">All Issues</strong>\n'
-#     html_output += '<div style="display: flex; flex-wrap: wrap; gap: 20px;">\n'
-
-#     for year in range(current_year, start_year - 1, -1):
-#         volume = calculate_volume(year)  # Calculate the volume based on the year
-#         start_issue = 1
-#         end_issue = 12 if year != current_year else current_month  # Only up to the current month for the current year
-
-#         # Only check the most recent issue if we're in the current year
-#         check_latest_only = (year == current_year)
-        
-#         issues = generate_issue_links(year, volume, start_issue, end_issue, check_latest_only)
-#         html_output += '<div style="flex: 1 1 calc(20% - 20px);">\n'
-#         html_output += f'<ul class="bobby" style="padding: 0; list-style: none;">\n'
-#         html_output += f'    <li class="issueVolume" style="font-size: 12px; font-weight: 700;">Volume {volume}</li>\n'
-        
-#         for url, issue_name, access_status in issues:
-#             access_html = f' <strong style="color: green;">{access_status}</strong>'
-#             html_output += f'    <li><a href="{url}" rel="noreferrer" >{issue_name}</a>{access_html}</li>\n'
-
-                
-#         html_output += '</ul>\n</div>\n'
-
-#     html_output += '</div>\n'
-#     html_output += '<div style="text-align: center; margin-top: 20px;">\n'
-#     # html_output += '<a href="https://www.asprs.org/pers-archives-of-the-past" style="font-size: 16px; text-decoration: none; color: #1b5faa; padding: 10px 20px; background-color: #f1f1f1; border-radius: 5px;">More Issues</a>\n'
-#     html_output += '</div>\n</div>'
-
-#     return html_output
-
-
-
-def remove_recent_full_access(html_content, count=14):
-    """
-    Removes the most recent `count` occurrences of `<strong style="color: green;">Full access</strong>`
-    from the given HTML content.
-
-    Args:
-        html_content (str): The input HTML content.
-        count (int): The number of most recent occurrences to remove.
-
-    Returns:
-        str: The modified HTML content.
-    """
-    # Parse the HTML content
-    soup = BeautifulSoup(html_content, 'html.parser')
-
-    # Find all <strong> elements with the specific style (color: green)
-    full_access_elements = soup.find_all('strong', style='color: green;')
-
-    # # Remove the topmost `count` elements
-    # for element in full_access_elements[:count]:
-    #     element.decompose()
-
-    # Modify the last one
-    latest_element = full_access_elements[0] # the first one is the most recent one. has been changed to "NEW"
-    latest_element.string = "NEW"
-    latest_element['style'] = 'color: red;'
-
-    # If there are any such elements
-    if full_access_elements:
-        # Remove 
-        for element in full_access_elements[1:count]: # remove the rest of the full access elements except the most recent one.
-            element.decompose()
-
-
-
-    # Return the modified HTML content
-    return str(soup)
-
-
-
-
-# Generate the HTML
+# 生成 HTML
 html_content = generate_html()
 
-# remove the most recent 14 full access
-html_content_removed = remove_recent_full_access(html_content, count=13)
+# 保存（自动检测运行位置）
+output_path = '../issues.html' if os.path.basename(os.getcwd()) == '2_Issues' else 'issues.html'
+with open(output_path, 'w', encoding='utf-8') as f:
+    f.write(html_content)
 
-# Save the HTML output to a file
-with open('issues.html', 'w') as f:
-    f.write(html_content_removed)
-
-print("HTML file 'issues.html' has been generated.")
+print(f"✅ issues.html 已生成: {output_path}")

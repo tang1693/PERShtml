@@ -6,6 +6,7 @@
 """
 import sys
 import os
+import subprocess
 import pandas as pd
 import gdown
 import re
@@ -179,41 +180,21 @@ def update_module_1_inpress(df_inpress):
     else:
         print(f"   ❌ HTML 生成失败: {result.stderr}")
 
-def update_module_2_issues(year, issue_no, month_name):
-    """更新模块2: Issues"""
+def update_module_2_issues():
+    """更新模块2: Issues - 重新生成整个 issues.html"""
     print("\n📌 模块 2: Issues")
     
-    html_path = 'issues.html'
-    with open(html_path, 'r', encoding='utf-8') as f:
-        content = f.read()
+    # 运行 issues_generate_html.py 重新生成
+    result = subprocess.run(
+        ['python3', '2_Issues/issues_generate_html.py'],
+        capture_output=True,
+        text=True
+    )
     
-    issue_key = f"{year}{issue_no}"
-    volume = int(year) - 1934
-    
-    # 检查是否已存在
-    if f"No. {int(issue_no)}, {month_name} {year}" in content:
-        print(f"   ℹ️  {month_name} {year} 已存在，跳过")
-        return
-    
-    # 新条目
-    new_issue = f'''
-<li>
-<a href="javascript:void(0);" onclick="openCustomModal('https://tang1693.github.io/PERShtml/IssuesArticles/html/{issue_key}.html');">No. {int(issue_no)}, {month_name} {year}</a> <strong style="color: red;">NEW</strong>
-</li>'''
-    
-    # 移除旧的 NEW 标记
-    content = content.replace('<strong style="color: red;">NEW</strong>\n</li>', '</li>')
-    
-    # 插入新条目
-    vol_header = f'<li class="issueVolume" style="font-size: 12px; font-weight: 700;">Volume {volume}</li>'
-    content = content.replace(vol_header, vol_header + new_issue)
-    
-    # 保存
-    with open(html_path, 'w', encoding='utf-8') as f:
-        f.write(content)
-    
-    print(f"   ✅ 已更新: {html_path}")
-    print(f"      添加: No. {int(issue_no)}, {month_name} {year}")
+    if result.returncode == 0:
+        print(f"   ✅ issues.html 已重新生成")
+    else:
+        print(f"   ❌ 生成失败: {result.stderr}")
 
 def update_module_5_recent(df_research):
     """更新模块5: Recent Articles"""
@@ -336,9 +317,9 @@ def main():
     
     # 7. 更新各模块
     update_module_1_inpress(df_inpress)
+    update_module_2_issues()  # 重新生成整个 issues.html
     
     if len(df_research) > 0:
-        update_module_2_issues(year, issue_no, month_name)
         update_module_5_recent(df_research)
         update_module_6_articles(df_research)
     
