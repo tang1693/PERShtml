@@ -77,7 +77,7 @@ articles["Title"] = articles["Title"].astype(str).str.replace('"', "", regex=Fal
 
 # NEW: sort descending by available online date (Pages)
 # If parsing fails, it becomes NaT and goes to the bottom
-articles["_sort_date"] = pd.to_datetime(articles["Pages"], errors="coerce", infer_datetime_format=True)
+articles["_sort_date"] = pd.to_datetime(articles["Pages"], errors="coerce")
 articles = articles.sort_values("_sort_date", ascending=False, na_position="last").drop(columns=["_sort_date"]).reset_index(drop=True)
 
 # Start the combined HTML content

@@ -12,8 +12,14 @@ articles = articles[articles["Abstract"] != "No Abstract"]
 html_open_access = ""
 html_member_only = ""
 
-# Helper function to parse date from the URL
-def parse_date_from_url(url):
+# Helper function to get publication date
+def get_pub_date(row):
+    # Use PubDate column if available, otherwise try to parse from URL
+    if 'PubDate' in row and pd.notna(row['PubDate']):
+        return row['PubDate']
+    
+    # Fallback: parse from URL (old Ingenta format)
+    url = row["URL"]
     match = re.search(r'/(\d{4})/000000(\d+)/000000(\d+)', url)
     if match:
         year = match.group(1)
@@ -35,8 +41,8 @@ for index, row in articles.iterrows():
     # Set article border-top style except for the first article
     border_style = "border-top: 1px solid #000; padding: 15px;" if index > 0 else "padding: 15px;"
     
-    # Parse the publication date
-    pub_date = parse_date_from_url(row["URL"])
+    # Get the publication date
+    pub_date = get_pub_date(row)
     
     # Start the article section
     article_html = f'<article style="{border_style}">\n'

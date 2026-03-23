@@ -1,0 +1,39 @@
+# AWS Credentials
+.aws/
+*.pem
+*.key
+
+# Excel metadata files (从 S3 下载的原始文件)
+*_metadata.xlsx
+
+# 备份文件
+*.backup.*
+*.bak
+
+# 临时输出目录
+output/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# 临时 CSV 池文件（中间产物）
+5_RecentArticles/open_access_pool.csv
+5_RecentArticles/member_only_pool.csv
+
+# 日志
+*.log
+
+# MacOS
+.DS_Store
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
