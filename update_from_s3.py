@@ -277,6 +277,38 @@ def update_module_5_recent():
     else:
         print(f"   ❌ HTML 生成失败: {result.stderr}")
 
+def update_module_7_most_cited():
+    """更新模块7: Most Cited Articles（最近2年）"""
+    print("\n📌 模块 7: Most Cited Articles")
+    
+    # 运行脚本：提取数据 + 获取引用数
+    result = subprocess.run(
+        ['python3', '7_MostCited/fetch_citations.py'],
+        capture_output=True,
+        text=True
+    )
+    
+    if result.returncode != 0:
+        print(f"   ❌ 数据提取失败: {result.stderr}")
+        return
+    
+    # 显示输出
+    for line in result.stdout.split('\n'):
+        if line.strip():
+            print(f"   {line}")
+    
+    # 生成 HTML
+    result = subprocess.run(
+        ['python3', '7_MostCited/generate_html.py'],
+        capture_output=True,
+        text=True
+    )
+    
+    if result.returncode == 0:
+        print(f"   ✅ most_cited_articles.html 已生成")
+    else:
+        print(f"   ❌ HTML 生成失败: {result.stderr}")
+
 def update_module_6_articles(df_research):
     """更新模块6: IssuesArticles"""
     print("\n📌 模块 6: IssuesArticles")
@@ -382,6 +414,7 @@ def main():
         update_module_6_articles(df_research)
     
     update_module_5_recent()  # 总是更新（从总库提取最近6个月）
+    update_module_7_most_cited()  # 总是更新（从总库提取最近2年+引用数）
     
     print("\n" + "=" * 70)
     print("✅ 所有模块更新完成！")
@@ -393,6 +426,7 @@ def main():
         print("   - open_access_articles.html")
         print("   - member_only_articles.html")
         print(f"   - IssuesArticles/html/{year}{issue_no}.html")
+    print("   - most_cited_articles.html (最近2年，Top 50)")
     print("\n💡 下一步:")
     print(f"   1. 检查生成的 HTML 文件")
     print(f"   2. git add . && git commit -m 'Update {month_name} {year}'")
