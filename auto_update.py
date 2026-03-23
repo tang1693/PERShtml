@@ -34,18 +34,35 @@ def load_env_file():
                     os.environ[key.strip()] = value.strip()
 
 def get_processed_files():
-    """读取已处理的文件列表"""
+    """读取已处理的文件列表 - 返回 dict {filename: size}"""
     if not os.path.exists(LOG_FILE):
-        return set()
+        return {}
     
+    processed = {}
     with open(LOG_FILE, 'r') as f:
-        return set(line.strip() for line in f if line.strip())
+        for line in f:
+            line = line.strip()
+            if not line or line.startswith('#'):
+                continue
+            
+            # 格式: filename size_bytes # Processed at timestamp
+            parts = line.split()
+            if len(parts) >= 2:
+                filename = parts[0]
+                try:
+                    size_bytes = int(parts[1])
+                    processed[filename] = size_bytes
+                except ValueError:
+                    # 旧格式，没有大小信息
+                    processed[filename] = None
+    
+    return processed
 
-def mark_as_processed(filename):
+def mark_as_processed(filename, size_bytes):
     """标记文件为已处理"""
     with open(LOG_FILE, 'a') as f:
         timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        f.write(f"{filename} # Processed at {timestamp}\n")
+        f.write(f"{filename} {size_bytes} # Processed at {timestamp}\n")
 
 def list_s3_files():
     """列出 S3 bucket 中的所有 Excel 文件（使用 AWS CLI）"""
@@ -59,7 +76,7 @@ def list_s3_files():
             check=True
         )
         
-        # 解析输出
+        # 解析输出 - 返回 (filename, size_bytes) 元组
         excel_files = []
         for line in result.stdout.strip().split('\n'):
             if not line.strip():
@@ -68,9 +85,10 @@ def list_s3_files():
             # 格式: 2026-03-21 00:21:45      17998 26-04_April_metadata.xlsx
             parts = line.split()
             if len(parts) >= 4:
+                size_bytes = int(parts[2])
                 filename = parts[3]
                 if filename.endswith('.xlsx'):
-                    excel_files.append(filename)
+                    excel_files.append((filename, size_bytes))
         
         return excel_files
     
@@ -131,8 +149,12 @@ def main():
     print(f"\n📋 已处理的文件数: {len(processed)}")
     if processed:
         print("   最近处理:")
-        for f in list(processed)[-3:]:
-            print(f"   - {f.split('#')[0].strip()}")
+        for filename in list(processed.keys())[-3:]:
+            size = processed[filename]
+            if size:
+                print(f"   - {filename} ({size} bytes)")
+            else:
+                print(f"   - {filename}")
     
     # 3. 列出 S3 中的文件
     print(f"\n📡 扫描 S3 bucket: s3://{S3_BUCKET}/{S3_PREFIX}")
@@ -143,33 +165,42 @@ def main():
         return
     
     print(f"   找到 {len(s3_files)} 个 Excel 文件")
+    print("\n📊 S3 文件列表:")
+    for filename, size_bytes in s3_files:
+        size_kb = size_bytes / 1024
+        print(f"   - {filename}: {size_kb:.1f} KB")
     
-    # 4. 找出新文件
-    new_files = []
-    for f in s3_files:
-        # 检查是否已处理（log 中可能包含注释）
-        if not any(f in line for line in processed):
-            new_files.append(f)
+    # 4. 找出需要处理的文件（新文件 或 大小变化的文件）
+    files_to_process = []
+    for filename, size_bytes in s3_files:
+        if filename not in processed:
+            # 新文件
+            files_to_process.append((filename, size_bytes, "新文件"))
+        elif processed[filename] and processed[filename] != size_bytes:
+            # 文件大小变化
+            old_kb = processed[filename] / 1024
+            new_kb = size_bytes / 1024
+            files_to_process.append((filename, size_bytes, f"大小变化: {old_kb:.1f}KB → {new_kb:.1f}KB"))
     
-    if not new_files:
-        print("\n✅ 没有新文件需要处理")
-        print("   所有文件都已处理过")
+    if not files_to_process:
+        print("\n✅ 没有新文件或变化需要处理")
+        print("   所有文件都已是最新版本")
         print(f"\n💡 提示: 删除 {LOG_FILE} 可强制重新处理")
         return
     
-    print(f"\n📌 发现 {len(new_files)} 个新文件:")
-    for f in new_files:
-        print(f"   - {f}")
+    print(f"\n📌 发现 {len(files_to_process)} 个文件需要处理:")
+    for filename, size_bytes, reason in files_to_process:
+        print(f"   - {filename}: {reason}")
     
-    # 5. 处理每个新文件
+    # 5. 处理每个文件
     processed_count = 0
     failed_files = []
     
-    for filename in new_files:
+    for filename, size_bytes, reason in files_to_process:
         success = process_file(filename)
         
         if success:
-            mark_as_processed(filename)
+            mark_as_processed(filename, size_bytes)
             processed_count += 1
         else:
             failed_files.append(filename)
@@ -179,8 +210,17 @@ def main():
     print("📊 处理总结")
     print("=" * 70)
     print(f"✅ 成功处理: {processed_count} 个文件")
+    
+    # 列出成功处理的文件
+    if processed_count > 0:
+        print("\n已处理的文件:")
+        for filename, size_bytes, reason in files_to_process:
+            if filename not in failed_files:
+                size_kb = size_bytes / 1024
+                print(f"   - {filename} ({size_kb:.1f} KB): {reason}")
+    
     if failed_files:
-        print(f"❌ 失败: {len(failed_files)} 个文件")
+        print(f"\n❌ 失败: {len(failed_files)} 个文件")
         for f in failed_files:
             print(f"   - {f}")
     

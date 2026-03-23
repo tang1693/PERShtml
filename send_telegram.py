@@ -70,18 +70,55 @@ def format_daily_report(log_file=None):
         with open(log_file, 'r', encoding='utf-8') as f:
             log_content = f.read()
         
-        if '没有新文件需要处理' in log_content:
-            message += "\n✅ 状态: 无新文件"
-        elif 'Success' in log_content:
-            # 尝试提取处理的文件数
-            if '成功处理:' in log_content:
-                import re
-                match = re.search(r'成功处理: (\d+) 个文件', log_content)
-                if match:
-                    count = match.group(1)
-                    message += f"\n✅ 状态: 已处理 {count} 个新文件"
-                else:
-                    message += "\n✅ 状态: 已处理新文件"
+        import re
+        
+        # 提取 S3 文件列表
+        s3_files = []
+        in_s3_section = False
+        for line in log_content.split('\n'):
+            if '📊 S3 文件列表:' in line:
+                in_s3_section = True
+                continue
+            if in_s3_section:
+                if line.strip().startswith('-'):
+                    # 格式: - filename: XX.X KB
+                    s3_files.append(line.strip()[2:])  # 去掉 "- "
+                elif not line.strip() or '📌' in line:
+                    break
+        
+        if s3_files:
+            message += "\n📦 <b>S3 文件:</b>\n"
+            for f in s3_files:
+                message += f"  • {f}\n"
+        
+        # 提取处理结果
+        if '没有新文件或变化需要处理' in log_content:
+            message += "\n✅ 状态: 无新文件或变化"
+        elif '成功处理:' in log_content:
+            # 提取处理的文件数
+            match = re.search(r'成功处理: (\d+) 个文件', log_content)
+            if match:
+                count = match.group(1)
+                message += f"\n✅ 状态: 已处理 {count} 个文件"
+                
+                # 提取已处理的文件列表
+                processed_files = []
+                in_processed_section = False
+                for line in log_content.split('\n'):
+                    if '已处理的文件:' in line:
+                        in_processed_section = True
+                        continue
+                    if in_processed_section:
+                        if line.strip().startswith('-'):
+                            # 格式: - filename (XX.X KB): reason
+                            processed_files.append(line.strip()[2:])
+                        elif line.strip().startswith('❌') or not line.strip():
+                            break
+                
+                if processed_files:
+                    message += "\n\n📝 <b>处理详情:</b>\n"
+                    for f in processed_files:
+                        message += f"  • {f}\n"
             else:
                 message += "\n✅ 状态: 运行成功"
         else:
@@ -90,7 +127,6 @@ def format_daily_report(log_file=None):
         message += "\n✅ 状态: 运行完成"
     
     message += f"""
-
 🔗 <a href="https://github.com/tang1693/PERShtml">查看 GitHub</a>
 """
     
