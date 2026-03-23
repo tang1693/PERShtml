@@ -27,6 +27,7 @@ venv/
 
 # 日志
 *.log
+!processed.log
 
 # MacOS
 .DS_Store
@@ -38,4 +39,3 @@ venv/
 *.swo
 *~
 .env
-processed.log
