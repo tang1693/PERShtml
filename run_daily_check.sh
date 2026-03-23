@@ -49,6 +49,12 @@ fi
 echo "========================================" >> "$LOG_FILE"
 echo "" >> "$LOG_FILE"
 
+# 发送 Telegram 通知
+if [ -n "$TELEGRAM_BOT_TOKEN" ]; then
+    echo "📤 发送 Telegram 通知..." >> "$LOG_FILE"
+    python3 send_telegram.py >> "$LOG_FILE" 2>&1
+fi
+
 # 清理 7 天前的日志
 find logs/ -name "daily-check-*.log" -mtime +7 -delete
 
