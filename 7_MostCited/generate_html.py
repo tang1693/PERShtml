@@ -19,11 +19,11 @@ def generate_most_cited_html():
     # 只显示有引用的文章（或全部显示，按引用数排序）
     df_sorted = df.sort_values('Citations', ascending=False)
     
-    # 限制显示数量（例如 Top 50）
-    max_articles = 50
+    # 限制显示数量（Top 6）
+    max_articles = 6
     df_display = df_sorted.head(max_articles)
     
-    print(f"\n生成 Most Cited HTML: {len(df_display)} 篇文章")
+    print(f"\n生成 Top 6 Most Cited HTML: {len(df_display)} 篇文章")
     
     # HTML 模板
     html_content = '''<!DOCTYPE html>
@@ -106,7 +106,7 @@ def generate_most_cited_html():
 </head>
 <body>
     <h1>Most Cited Articles</h1>
-    <div class="subtitle">Top {count} articles from the last 2 years (based on Scopus citations)</div>
+    <div class="subtitle">Top 6 articles from the last 2 years (based on Scopus citations)</div>
 '''
     
     html_content = html_content.replace('{count}', str(len(df_display)))
@@ -154,8 +154,8 @@ def generate_most_cited_html():
 </html>
 '''
     
-    # 保存到项目根目录
-    output_path = 'most_cited_articles.html'
+    # 保存到项目根目录（覆盖原 top_6_articles.html）
+    output_path = 'top_6_articles.html'
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(html_content)
     

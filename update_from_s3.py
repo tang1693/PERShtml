@@ -305,7 +305,7 @@ def update_module_7_most_cited():
     )
     
     if result.returncode == 0:
-        print(f"   ✅ most_cited_articles.html 已生成")
+        print(f"   ✅ top_6_articles.html 已生成")
     else:
         print(f"   ❌ HTML 生成失败: {result.stderr}")
 
@@ -426,7 +426,7 @@ def main():
         print("   - open_access_articles.html")
         print("   - member_only_articles.html")
         print(f"   - IssuesArticles/html/{year}{issue_no}.html")
-    print("   - most_cited_articles.html (最近2年，Top 50)")
+    print("   - top_6_articles.html (最近2年，Top 6)")
     print("\n💡 下一步:")
     print(f"   1. 检查生成的 HTML 文件")
     print(f"   2. git add . && git commit -m 'Update {month_name} {year}'")

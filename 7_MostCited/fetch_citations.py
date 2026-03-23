@@ -116,8 +116,15 @@ def get_citation_count(doi=None, title=None):
     return 0
 
 def main():
+    # 配置：时间范围（天数）
+    DAYS_RANGE = 365 * 2  # 2年
+    
     print("=" * 70)
-    print("📊 Most Cited Articles - 提取最近2年论文并获取引用数")
+    if DAYS_RANGE:
+        years = DAYS_RANGE // 365
+        print(f"📊 Most Cited Articles - 提取最近{years}年论文并获取引用数")
+    else:
+        print(f"📊 Most Cited Articles - 提取所有论文并获取引用数")
     print("=" * 70)
     
     # 1. 读取总库
@@ -136,12 +143,17 @@ def main():
     # 2. 解析日期
     df_all['ParsedDate'] = df_all.apply(parse_article_date, axis=1)
     
-    # 3. 筛选最近2年
-    two_years_ago = datetime.now() - timedelta(days=730)
-    df_recent = df_all[df_all['ParsedDate'] >= two_years_ago].copy()
+    # 3. 筛选时间范围
+    if DAYS_RANGE:
+        cutoff_date = datetime.now() - timedelta(days=DAYS_RANGE)
+        df_recent = df_all[df_all['ParsedDate'] >= cutoff_date].copy()
+        print(f"✅ 最近{DAYS_RANGE//365}年论文: {len(df_recent)} 篇")
+    else:
+        df_recent = df_all[df_all['ParsedDate'].notna()].copy()
+        print(f"✅ 有日期的文章: {len(df_recent)} 篇")
     
-    print(f"✅ 最近2年论文: {len(df_recent)} 篇")
-    print(f"   日期范围: {df_recent['ParsedDate'].min().strftime('%Y-%m')} 到 {df_recent['ParsedDate'].max().strftime('%Y-%m')}")
+    if len(df_recent) > 0:
+        print(f"   日期范围: {df_recent['ParsedDate'].min().strftime('%Y-%m')} 到 {df_recent['ParsedDate'].max().strftime('%Y-%m')}")
     
     # 4. 提取 DOI
     df_recent['DOI'] = df_recent.apply(extract_doi, axis=1)
