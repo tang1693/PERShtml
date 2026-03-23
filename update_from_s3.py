@@ -99,61 +99,13 @@ def convert_to_csv_format(df_excel):
     
     return result_df
 
-def add_ga_paths(df, year, issue_no):
-    """为每篇文章添加 GA_Path（基于文件名前缀匹配）"""
-    ga_dir = f'IssuesArticles/html/img/{year}/{issue_no}'
-    
-    if not os.path.exists(ga_dir):
-        print(f"   ⚠️  GA 目录不存在: {ga_dir}")
-        return df
-    
-    base_url = f"https://raw.githubusercontent.com/tang1693/PERShtml/refs/heads/main/IssuesArticles/html/img/{year}/{issue_no}"
-    
-    # 获取目录中的所有文件
-    ga_files = os.listdir(ga_dir)
-    
-    for idx, row in df.iterrows():
-        title = row['Title']
-        
-        # 策略：使用标题的前几个单词生成前缀，与文件名匹配
-        # 1. 清理标题，转为下划线格式
-        title_clean = re.sub(r'[^\w\s-]', '', title)
-        title_clean = re.sub(r'\s+', '_', title_clean)
-        
-        # 2. 取前50个字符作为前缀
-        title_prefix = title_clean[:50].lower()
-        
-        # 3. 尝试匹配文件名（文件名也是下划线格式）
-        matched_file = None
-        best_match_len = 0
-        
-        for ga_file in ga_files:
-            ga_file_lower = ga_file.lower()
-            # 查找最长的公共前缀
-            common_len = 0
-            for i, (c1, c2) in enumerate(zip(title_prefix, ga_file_lower)):
-                if c1 == c2:
-                    common_len = i + 1
-                else:
-                    break
-            
-            # 如果匹配超过20个字符，且是当前最佳匹配
-            if common_len > 20 and common_len > best_match_len:
-                best_match_len = common_len
-                matched_file = ga_file
-        
-        if matched_file:
-            df.loc[idx, 'GA_Path'] = f"{base_url}/{matched_file}"
-            print(f"   ✅ GA: {title[:50]}... -> {matched_file[:50]}...")
-        else:
-            print(f"   ⚠️  未找到 GA: {title[:50]}...")
-    
-    return df
 
 def download_ga_images(df, year, issue_no):
-    """下载图形摘要图片"""
+    """下载图形摘要图片并在 DataFrame 中添加 GA_Path"""
     output_dir = f'IssuesArticles/html/img/{year}/{issue_no}'
     os.makedirs(output_dir, exist_ok=True)
+    
+    base_url = f"https://raw.githubusercontent.com/tang1693/PERShtml/refs/heads/main/IssuesArticles/html/img/{year}/{issue_no}"
     
     print(f"\n📥 下载 GA 图片到: {output_dir}")
     
@@ -166,33 +118,40 @@ def download_ga_images(df, year, issue_no):
             print(f"   ⚠️  无 GA 链接: {title[:50]}...")
             continue
         
-        # 生成安全文件名
+        # 生成安全文件名（根据标题）
         safe_title = re.sub(r'[^\w\s-]', '', title).strip()
         safe_title = re.sub(r'[\s]+', '_', safe_title)[:100]
+        filename = f"{safe_title}.png"
         
-        # 提取 Google Drive file ID
-        match = re.search(r'/d/([^/]+)/', ga_link)
-        if not match:
-            print(f"   ⚠️  无法解析链接: {title[:50]}...")
-            continue
+        output_path = os.path.join(output_dir, filename)
         
-        file_id = match.group(1)
-        output_path = os.path.join(output_dir, f"{safe_title}.png")
-        
-        # 如果文件已存在，跳过
+        # 如果文件已存在，跳过下载
         if os.path.exists(output_path):
-            print(f"   ⏭️  已存在: {safe_title[:60]}...")
+            print(f"   ⏭️  已存在: {title[:50]}...")
             success_count += 1
-            continue
+        else:
+            # 提取 Google Drive file ID
+            match = re.search(r'/d/([^/]+)/', ga_link)
+            if not match:
+                print(f"   ⚠️  无法解析链接: {title[:50]}...")
+                continue
+            
+            file_id = match.group(1)
+            
+            try:
+                print(f"   📥 下载: {title[:60]}...")
+                gdown.download(f"https://drive.google.com/uc?id={file_id}", output_path, quiet=True)
+                success_count += 1
+            except Exception as e:
+                print(f"   ❌ 失败: {str(e)}")
+                continue
         
-        try:
-            print(f"   📥 下载: {title[:60]}...")
-            gdown.download(f"https://drive.google.com/uc?id={file_id}", output_path, quiet=True)
-            success_count += 1
-        except Exception as e:
-            print(f"   ❌ 失败: {str(e)}")
+        # 在 DataFrame 中添加 GA_Path（GitHub raw URL）
+        df.loc[index, 'GA_Path'] = f"{base_url}/{filename}"
+        print(f"      GA_Path: .../{filename}")
     
     print(f"\n✅ GA 图片下载完成: {success_count}/{len(df)}")
+    return df
 
 def update_module_1_inpress(df_inpress):
     """更新模块1: InPress"""
@@ -368,10 +327,9 @@ def main():
     
     print(f"\n🎯 本次更新目标: {year} 年 {int(issue_no)} 月 ({month_name})")
     
-    # 6. 下载 GA 图片（仅 Research Article）
+    # 6. 下载 GA 图片（仅 Research Article），同时添加 GA_Path
     if len(df_research) > 0:
-        download_ga_images(df_research, year, issue_no)
-        df_research = add_ga_paths(df_research, year, issue_no)
+        df_research = download_ga_images(df_research, year, issue_no)
     
     # 7. 更新各模块
     update_module_1_inpress(df_inpress)
