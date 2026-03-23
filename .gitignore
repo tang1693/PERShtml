@@ -37,3 +37,4 @@ venv/
 *.swp
 *.swo
 *~
+.env
