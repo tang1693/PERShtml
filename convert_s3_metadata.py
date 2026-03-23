@@ -32,6 +32,16 @@ def convert_metadata_to_csv(excel_path, output_csv_path, module_type='inpress'):
     
     print(f"读取到 {len(df)} 条记录")
     
+    # 清理作者名中的数字
+    def clean_authors(authors):
+        import re
+        cleaned = re.sub(r'\s*\d+\s*[;,]', ';', str(authors))
+        cleaned = re.sub(r'\s*\d+\s*$', '', cleaned)
+        cleaned = re.sub(r';;+', ';', cleaned)
+        return cleaned.strip()
+    
+    df['Authors'] = df['Authors'].apply(clean_authors)
+    
     # 转换为目标格式
     result_df = pd.DataFrame()
     result_df['Title'] = df['Title']
@@ -42,8 +52,8 @@ def convert_metadata_to_csv(excel_path, output_csv_path, module_type='inpress'):
         # InPress 使用日期
         result_df['Pages'] = df['Date MMDDYY'].apply(format_date_as_pages)
     else:
-        # Issues/Recent/All 使用页码
-        result_df['Pages'] = df['Page Numbers']
+        # Issues/Recent/All 使用页码，添加 "pp. " 前缀
+        result_df['Pages'] = 'pp. ' + df['Page Numbers'].astype(str)
     
     # Access 字段
     result_df['Access'] = df['Access Status'].apply(convert_access_status)
@@ -53,6 +63,17 @@ def convert_metadata_to_csv(excel_path, output_csv_path, module_type='inpress'):
     
     # Abstract
     result_df['Abstract'] = df['Abstract']
+    
+    # 添加发布日期（用于 Recent Articles）
+    result_df['PubDate'] = df['Date MMDDYY'].dt.strftime('%B %Y')
+    
+    # 添加 IssueKey（用于分组）
+    year = df['Date MMDDYY'].dt.year.iloc[0]
+    issue = str(df['Issue Number'].iloc[0]).zfill(2)
+    result_df['IssueKey'] = f"{year}{issue}"
+    
+    # 添加 GA 链接
+    result_df['GA_Link'] = df['Graphical Abstract']
     
     # 保存 CSV
     result_df.to_csv(output_csv_path, index=False)
