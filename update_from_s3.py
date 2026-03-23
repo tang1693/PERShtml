@@ -101,7 +101,14 @@ def convert_to_csv_format(df_excel):
 
 
 def download_ga_images(df, year, issue_no):
-    """下载图形摘要图片并在 DataFrame 中添加 GA_Path"""
+    """下载图形摘要图片并在 DataFrame 中添加 GA_Path
+    
+    关键逻辑：
+    - Excel 每一行就是一条完整记录（包括 GA_Link）
+    - 下载后在**同一行**添加 GA_Path
+    - 文件名用 file_id（或任意唯一名），无需匹配
+    - 生成 HTML 时，同一行的数据自然对应
+    """
     output_dir = f'IssuesArticles/html/img/{year}/{issue_no}'
     os.makedirs(output_dir, exist_ok=True)
     
@@ -118,39 +125,35 @@ def download_ga_images(df, year, issue_no):
             print(f"   ⚠️  无 GA 链接: {title[:50]}...")
             continue
         
-        # 生成安全文件名（根据标题）
-        safe_title = re.sub(r'[^\w\s-]', '', title).strip()
-        safe_title = re.sub(r'[\s]+', '_', safe_title)[:100]
-        filename = f"{safe_title}.png"
+        # 提取 Google Drive file ID
+        match = re.search(r'/d/([^/]+)/', ga_link)
+        if not match:
+            print(f"   ⚠️  无法解析链接: {title[:50]}...")
+            continue
         
+        file_id = match.group(1)
+        # 文件名就用 file_id（唯一且简单）
+        filename = f"{file_id}.png"
         output_path = os.path.join(output_dir, filename)
         
-        # 如果文件已存在，跳过下载
+        # 下载（如果不存在）
         if os.path.exists(output_path):
-            print(f"   ⏭️  已存在: {title[:50]}...")
+            print(f"   ⏭️  {title[:50]}... (已存在)")
             success_count += 1
         else:
-            # 提取 Google Drive file ID
-            match = re.search(r'/d/([^/]+)/', ga_link)
-            if not match:
-                print(f"   ⚠️  无法解析链接: {title[:50]}...")
-                continue
-            
-            file_id = match.group(1)
-            
             try:
-                print(f"   📥 下载: {title[:60]}...")
+                print(f"   📥 {title[:50]}...")
                 gdown.download(f"https://drive.google.com/uc?id={file_id}", output_path, quiet=True)
                 success_count += 1
             except Exception as e:
-                print(f"   ❌ 失败: {str(e)}")
+                print(f"   ❌ 下载失败: {str(e)}")
                 continue
         
-        # 在 DataFrame 中添加 GA_Path（GitHub raw URL）
+        # 关键：在同一行添加 GA_Path
+        # HTML 生成时会读取同一行的所有数据，自然对应
         df.loc[index, 'GA_Path'] = f"{base_url}/{filename}"
-        print(f"      GA_Path: .../{filename}")
     
-    print(f"\n✅ GA 图片下载完成: {success_count}/{len(df)}")
+    print(f"\n✅ GA 下载: {success_count}/{len(df)}")
     return df
 
 def update_module_1_inpress(df_inpress):
