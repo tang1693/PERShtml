@@ -56,11 +56,12 @@ def send_telegram(message, chat_id=None, bot_token=None):
         return False
 
 def format_daily_report(log_file=None):
-    """格式化每日报告"""
+    """格式化每日报告（纯程序生成，无 AI 参与）"""
     
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     
     message = f"""🦞 <b>PERShtml 每日检查报告</b>
+<i>程序自动生成</i>
 
 📅 时间: {now}
 """
@@ -123,10 +124,52 @@ def format_daily_report(log_file=None):
                 message += "\n✅ 状态: 运行成功"
         else:
             message += "\n⚠️ 状态: 需要检查日志"
+        
+        # 提取更新的 HTML 文件
+        html_files = []
+        in_files_section = False
+        for line in log_content.split('\n'):
+            # 方法1: 从 "生成的文件:" 部分提取
+            if '生成的文件:' in line or '📋 生成的文件:' in line:
+                in_files_section = True
+                continue
+            
+            if in_files_section:
+                if line.strip().startswith('-'):
+                    # 格式: - filename.html
+                    filename = line.strip()[2:].strip()
+                    if filename.endswith('.html') and filename not in html_files:
+                        html_files.append(filename)
+                elif line.strip().startswith('💡') or line.strip().startswith('✅') or not line.strip():
+                    in_files_section = False
+            
+            # 方法2: 从 "已生成:" 行提取
+            if '已生成:' in line or '✅ 已生成:' in line:
+                parts = line.split('已生成:')
+                if len(parts) > 1:
+                    filename = parts[1].strip().split()[0]
+                    if filename.endswith('.html') and filename not in html_files:
+                        html_files.append(filename)
+        
+        if html_files:
+            message += "\n\n📄 <b>更新的 HTML:</b>\n"
+            for f in html_files:
+                message += f"  • {f}\n"
+        
+        # 提取 GitHub 推送状态
+        git_pushed = False
+        if '📤 Pushing to GitHub' in log_content:
+            if 'Successfully' in log_content or 'main -> main' in log_content:
+                git_pushed = True
+                message += "\n✅ <b>已推送到 GitHub</b>"
+            else:
+                message += "\n⚠️ <b>GitHub 推送失败</b>"
+        
     else:
         message += "\n✅ 状态: 运行完成"
     
     message += f"""
+
 🔗 <a href="https://github.com/tang1693/PERShtml">查看 GitHub</a>
 """
     
