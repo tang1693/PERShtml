@@ -65,9 +65,8 @@ def mark_as_processed(filename, size_bytes):
         f.write(f"{filename} {size_bytes} # Processed at {timestamp}\n")
 
 def list_s3_files():
-    """列出 S3 bucket 中的所有 Excel 文件（使用 AWS CLI）"""
+    """列出 S3 bucket 中的所有 Excel 文件（使用 AWS CLI），带上最后修改时间"""
     try:
-        # 使用 aws s3 ls 列出文件
         s3_path = f"s3://{S3_BUCKET}/{S3_PREFIX}"
         result = subprocess.run(
             ['aws', 's3', 'ls', s3_path],
@@ -76,22 +75,18 @@ def list_s3_files():
             check=True
         )
         
-        # 解析输出 - 返回 (filename, size_bytes) 元组
         excel_files = []
         for line in result.stdout.strip().split('\n'):
             if not line.strip():
                 continue
-            
-            # 格式: 2026-03-21 00:21:45      17998 26-04_April_metadata.xlsx
             parts = line.split()
             if len(parts) >= 4:
+                timestamp = datetime.strptime(f"{parts[0]} {parts[1]}", '%Y-%m-%d %H:%M:%S')
                 size_bytes = int(parts[2])
                 filename = parts[3]
                 if filename.endswith('.xlsx'):
-                    excel_files.append((filename, size_bytes))
-        
+                    excel_files.append((filename, size_bytes, timestamp))
         return excel_files
-    
     except subprocess.CalledProcessError as e:
         print(f"❌ AWS CLI 错误: {e.stderr if e.stderr else str(e)}")
         return []
@@ -166,21 +161,19 @@ def main():
     
     print(f"   找到 {len(s3_files)} 个 Excel 文件")
     print("\n📊 S3 文件列表:")
-    for filename, size_bytes in s3_files:
+    for filename, size_bytes, _ in s3_files:
         size_kb = size_bytes / 1024
         print(f"   - {filename}: {size_kb:.1f} KB")
     
     # 4. 找出需要处理的文件（新文件 或 大小变化的文件）
     files_to_process = []
-    for filename, size_bytes in s3_files:
+    for filename, size_bytes, timestamp in s3_files:
         if filename not in processed:
-            # 新文件
-            files_to_process.append((filename, size_bytes, "新文件"))
+            files_to_process.append((filename, size_bytes, "新文件", timestamp))
         elif processed[filename] and processed[filename] != size_bytes:
-            # 文件大小变化
             old_kb = processed[filename] / 1024
             new_kb = size_bytes / 1024
-            files_to_process.append((filename, size_bytes, f"大小变化: {old_kb:.1f}KB → {new_kb:.1f}KB"))
+            files_to_process.append((filename, size_bytes, f"大小变化: {old_kb:.1f}KB → {new_kb:.1f}KB", timestamp))
     
     if not files_to_process:
         print("\n✅ 没有新文件或变化需要处理")
@@ -189,7 +182,10 @@ def main():
         return
     
     print(f"\n📌 发现 {len(files_to_process)} 个文件需要处理:")
-    for filename, size_bytes, reason in files_to_process:
+    # 按最后修改时间排序，越新的越靠后（保证最新结果最后落地）
+    files_to_process.sort(key=lambda item: item[3])
+
+    for filename, size_bytes, reason, timestamp in files_to_process:
         print(f"   - {filename}: {reason}")
     
     # 5. 处理每个文件
@@ -197,13 +193,13 @@ def main():
     failed_files = []
     processed_success = []
     
-    for filename, size_bytes, reason in files_to_process:
+    for filename, size_bytes, reason, timestamp in files_to_process:
         success = process_file(filename)
         
         if success:
             mark_as_processed(filename, size_bytes)
             processed_count += 1
-            processed_success.append((filename, size_bytes, reason))
+            processed_success.append((filename, size_bytes, reason, timestamp))
         else:
             failed_files.append(filename)
     
@@ -216,7 +212,7 @@ def main():
     # 列出成功处理的文件
     if processed_count > 0:
         print("\n已处理的文件:")
-        for filename, size_bytes, reason in processed_success:
+        for filename, size_bytes, reason, timestamp in processed_success:
             size_kb = size_bytes / 1024
             print(f"   - {filename} ({size_kb:.1f} KB): {reason}")
     
@@ -235,7 +231,7 @@ def main():
                 # 有变化，提交
                 subprocess.run(['git', 'add', '.'], check=True)
                 
-                processed_names = [name for name, _size, _reason in processed_success]
+                processed_names = [name for name, *_ in processed_success]
                 if processed_names:
                     summary_names = ', '.join(processed_names[:3])
                     commit_msg = f"Auto update: {summary_names}"
