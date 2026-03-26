@@ -12,7 +12,7 @@
 |------------------------|---------------------|
 | `Title`                | 原样写入 `Title` |
 | `Authors`              | `clean_authors()` 去除脚注数字/多余分隔符 |
-| `Article Category`     | 判定 In-Press vs Research (`in[\s-]?press` 兼容 InPress / In-Press / In Press)。落入 `Category` 字段 |
+| `Article Category`     | 只要字段里不含 `Research` 就归为 In-Press（否则视为 Research）。结果写入 `Category` 字段 |
 | `Date MMDDYY`          | - In-Press：`Pages = "Month d, YYYY"`<br>- Research：`Pages = "pp. start–end"`<br>- `PubDate = Month YYYY`<br>- `Year`、`IssueKey = Year + IssueNumber`|
 | `Issue Number`, `Volume` | `Issue` 2 位字符串，组成 `IssueKey`、`IssuesArticles` 路径 |
 | `Page Numbers`         | 仅 Research 使用（自动加 `pp.` 前缀） |
@@ -55,7 +55,7 @@
 - `processed.log` 保存每次文件大小和时间戳，方便回溯；删除该文件可强制全量重算。
 - 日志中必须出现 `大小变化: <old> → <new>`，以便 Telegram 报告引用。
 - GA 下载失败、缺少 DOI、缺少 Access 时要打印 ⚠️ 以便排查。
-- In-Press 检测需兼容 `In-Press`、`InPress`、`In Press`（新代码 `INPRESS_PATTERN`）。
+- In-Press 检测规则：`Article Category` 中不含 “Research” 的一律当作 In-Press。
 - 任何失败（S3、Scopus、Git、GA）要在日志中标注，以便 `send_telegram.py` 捕捉并提示。
 
 ## 6. 期望行为（来自老汤）

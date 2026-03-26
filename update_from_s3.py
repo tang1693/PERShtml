@@ -12,14 +12,29 @@ import gdown
 import re
 from datetime import datetime
 
-INPRESS_PATTERN = re.compile(r'in[\s-]?press', re.IGNORECASE)
-
-
 def is_inpress_category(value):
-    """判断是否为 In-Press 类别（兼容 In-Press/InPress/In Press）"""
+    """只要 Article Category 不是 Research，就按 In-Press 处理"""
     if value is None or (isinstance(value, float) and pd.isna(value)):
-        return False
-    return bool(INPRESS_PATTERN.search(str(value)))
+        return True
+    text = str(value).strip()
+    if not text:
+        return True
+    return 'research' not in text.lower()
+
+
+def normalize_volume(value):
+    try:
+        return str(int(float(value)))
+    except (TypeError, ValueError):
+        return str(value).strip()
+
+
+def normalize_issue(value):
+    try:
+        return f"{int(float(value)):02d}"
+    except (TypeError, ValueError):
+        text = str(value).strip()
+        return text.zfill(2) if text.isdigit() else text
 
 
 INPRESS_PATTERN = re.compile(r'in[\s-]?press', re.IGNORECASE)
@@ -109,8 +124,8 @@ def convert_to_csv_format(df_excel):
     # 添加元数据
     result_df['PubDate'] = df_excel['Date MMDDYY'].dt.strftime('%B %Y')
     result_df['Year'] = df_excel['Date MMDDYY'].dt.year.astype(str)
-    result_df['Volume'] = df_excel['Volume'].astype(str)
-    result_df['Issue'] = df_excel['Issue Number'].astype(str).str.zfill(2)
+    result_df['Volume'] = df_excel['Volume'].apply(normalize_volume)
+    result_df['Issue'] = df_excel['Issue Number'].apply(normalize_issue)
     result_df['IssueKey'] = result_df['Year'] + result_df['Issue']
     result_df['GA_Link'] = df_excel['Graphical Abstract']
     result_df['Category'] = df_excel['Article Category']
@@ -393,10 +408,9 @@ def main():
     print("🦞 PERShtml 自动更新工具 - 基于 S3 元数据")
     print("=" * 70)
     
-    # 1. 下载 Excel
-    if not os.path.exists(excel_filename):
-        if not download_from_s3(excel_filename):
-            sys.exit(1)
+    # 1. 下载 Excel（每次都强制从 S3 获取，避免本地缓存过期）
+    if not download_from_s3(excel_filename):
+        sys.exit(1)
     
     # 2. 解析元数据
     df_excel = parse_excel_metadata(excel_filename)
@@ -418,9 +432,13 @@ def main():
     year = df['Year'].iloc[0]
     issue_no = df['Issue'].iloc[0]
     month_name = df['PubDate'].iloc[0].split()[0]
-    
-    print(f"\n🎯 本次更新目标: {year} 年 {int(issue_no)} 月 ({month_name})")
-    
+    try:
+        issue_display = int(str(issue_no).lstrip('0') or '0')
+    except ValueError:
+        issue_display = issue_no
+
+    print(f"\n🎯 本次更新目标: {year} 年 {issue_display} 月 ({month_name})")
+
     # 6. 下载 GA 图片（仅 Research Article），同时添加 GA_Path
     if len(df_research) > 0:
         df_research = download_ga_images(df_research, year, issue_no)
