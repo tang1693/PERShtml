@@ -192,18 +192,31 @@ def download_ga_images(df, year, issue_no):
 def update_module_1_inpress(df_inpress):
     """更新模块1: InPress"""
     print("\n📌 模块 1: InPress")
-    
+
+    csv_path = '1_InPress/filtered_InPress_articles_info_abs.csv'
+    prev_set = set()
+    if os.path.exists(csv_path):
+        try:
+            prev_df = pd.read_csv(csv_path)
+            prev_set = set(zip(prev_df.get('Title', []), prev_df.get('URL', [])))
+        except Exception:
+            prev_set = set()
+
+    columns = ['Title', 'Authors', 'Pages', 'Access', 'URL', 'Abstract']
     if len(df_inpress) == 0:
         print("   ℹ️  本月没有 In-Press 文章，生成空文件")
-        pd.DataFrame(columns=['Title', 'Authors', 'Pages', 'Access', 'URL', 'Abstract']).to_csv(
-            '1_InPress/filtered_InPress_articles_info_abs.csv', index=False
-        )
+        new_df = pd.DataFrame(columns=columns)
+        new_df.to_csv(csv_path, index=False)
     else:
-        df_inpress[['Title', 'Authors', 'Pages', 'Access', 'URL', 'Abstract']].to_csv(
-            '1_InPress/filtered_InPress_articles_info_abs.csv', index=False
-        )
-        print(f"   ✅ 已更新: 1_InPress/filtered_InPress_articles_info_abs.csv ({len(df_inpress)} 篇)")
-    
+        new_df = df_inpress[columns].copy()
+        new_df.to_csv(csv_path, index=False)
+        print(f"   ✅ 已更新: {csv_path} ({len(new_df)} 篇)")
+
+    new_set = set(zip(new_df.get('Title', []), new_df.get('URL', [])))
+    added = len(new_set - prev_set)
+    removed = len(prev_set - new_set)
+    print(f"   📊 In-Press 统计: +{added} / -{removed} / 当前 {len(new_df)} 篇")
+
     # 生成 HTML
     import subprocess
     result = subprocess.run(['python3', '1_InPress/3_csv_2_html.py'], capture_output=True, text=True)
@@ -344,55 +357,59 @@ def update_module_7_most_cited():
 def update_module_6_articles(df_research):
     """更新模块6: IssuesArticles"""
     print("\n📌 模块 6: IssuesArticles")
-    
+
     if len(df_research) == 0:
         print("   ⚠️  本月没有 Research Article，跳过")
         return
-    
-    # 追加到总库
+
+    issue_key = str(df_research['IssueKey'].iloc[0])
+    new_issue_set = set(zip(df_research.get('Title', []), df_research.get('URL', [])))
+
     all_csv_path = '6_IssuesArticles/ALL_articles_Update_cleaned.csv'
-    
+    prev_issue_set = set()
+
     if os.path.exists(all_csv_path):
         existing_df = pd.read_csv(all_csv_path)
-        
-        # 备份
-        backup_path = f'6_IssuesArticles/ALL_articles_Update_cleaned.backup.{datetime.now().strftime("%Y%m%d_%H%M%S")}.csv'
+
+        backup_path = f"6_IssuesArticles/ALL_articles_Update_cleaned.backup.{datetime.now().strftime('%Y%m%d_%H%M%S')}.csv"
         existing_df.to_csv(backup_path, index=False)
         print(f"   📦 已备份: {backup_path}")
-        
-        # 删除本次 IssueKey 的旧数据（避免重复）
-        issue_key = df_research['IssueKey'].iloc[0]
-        existing_df = existing_df[existing_df['IssueKey'].astype(str) != issue_key]
-        existing_df = existing_df[existing_df['IssueKey'].astype(str) != f"{issue_key}.0"]
-        
-        # 合并
+
+        issue_mask = existing_df['IssueKey'].astype(str) == issue_key
+        prev_issue_df = existing_df[issue_mask]
+        if not prev_issue_df.empty:
+            prev_issue_set = set(zip(prev_issue_df.get('Title', []), prev_issue_df.get('URL', [])))
+
+        existing_df = existing_df[~issue_mask]
+
         combined_df = pd.concat([existing_df, df_research], ignore_index=True)
         combined_df.drop_duplicates(subset=['Title', 'URL'], keep='last', inplace=True)
-        
         combined_df.to_csv(all_csv_path, index=False)
         print(f"   ✅ 已更新: {all_csv_path}")
         print(f"      原有: {len(existing_df)} 条 | 新增: {len(df_research)} 条 | 总计: {len(combined_df)} 条")
     else:
-        print(f"   ⚠️  未找到现有文件，创建新文件")
+        print("   ⚠️  未找到现有文件，创建新文件")
         df_research.to_csv(all_csv_path, index=False)
-    
+
+    added = len(new_issue_set - prev_issue_set)
+    removed = len(prev_issue_set - new_issue_set)
+    print(f"   📊 Issue {issue_key}: +{added} / -{removed} / 当前 {len(df_research)} 篇")
+
     # 清除 log 中的本期记录（强制重新生成）
     log_path = '6_IssuesArticles/processed_issues.log'
     if os.path.exists(log_path):
         with open(log_path, 'r') as f:
             lines = f.readlines()
-        issue_key = df_research['IssueKey'].iloc[0]
         with open(log_path, 'w') as f:
             for line in lines:
                 if issue_key not in line:
                     f.write(line)
-    
-    # 生成 HTML
+
     import subprocess
     result = subprocess.run(['python3', '6_IssuesArticles/generate_article_page_v3.py'], capture_output=True, text=True)
     if result.returncode == 0:
-        issue_key = df_research['IssueKey'].iloc[0]
-        print(f"   ✅ 已生成: IssuesArticles/html/{issue_key}.html")
+        issue_display = df_research['IssueKey'].iloc[0]
+        print(f"   ✅ 已生成: IssuesArticles/html/{issue_display}.html")
     else:
         print(f"   ❌ HTML 生成失败: {result.stderr}")
 

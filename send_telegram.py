@@ -161,6 +161,18 @@ def format_daily_report(log_file=None):
             for item in html_files:
                 message += f"  • {item}\n"
 
+        # 统计信息
+        stats_lines = []
+        for line in lines:
+            stripped = line.strip()
+            if stripped.startswith('📊 In-Press 统计:') or stripped.startswith('📊 Issue '):
+                stats_lines.append(stripped)
+
+        if stats_lines:
+            message += "\n\n📊 <b>变动统计:</b>\n"
+            for s in stats_lines:
+                message += f"  • {s}\n"
+
         # 📦 Git 状态
         git_notes = []
         if '✅ Git commit 完成' in section_text:
