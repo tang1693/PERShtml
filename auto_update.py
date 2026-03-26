@@ -195,6 +195,7 @@ def main():
     # 5. 处理每个文件
     processed_count = 0
     failed_files = []
+    processed_success = []
     
     for filename, size_bytes, reason in files_to_process:
         success = process_file(filename)
@@ -202,6 +203,7 @@ def main():
         if success:
             mark_as_processed(filename, size_bytes)
             processed_count += 1
+            processed_success.append((filename, size_bytes, reason))
         else:
             failed_files.append(filename)
     
@@ -214,10 +216,9 @@ def main():
     # 列出成功处理的文件
     if processed_count > 0:
         print("\n已处理的文件:")
-        for filename, size_bytes, reason in files_to_process:
-            if filename not in failed_files:
-                size_kb = size_bytes / 1024
-                print(f"   - {filename} ({size_kb:.1f} KB): {reason}")
+        for filename, size_bytes, reason in processed_success:
+            size_kb = size_bytes / 1024
+            print(f"   - {filename} ({size_kb:.1f} KB): {reason}")
     
     if failed_files:
         print(f"\n❌ 失败: {len(failed_files)} 个文件")
@@ -234,9 +235,14 @@ def main():
                 # 有变化，提交
                 subprocess.run(['git', 'add', '.'], check=True)
                 
-                commit_msg = f"Auto update: {', '.join(new_files[:3])}"
-                if len(new_files) > 3:
-                    commit_msg += f" and {len(new_files) - 3} more"
+                processed_names = [name for name, _size, _reason in processed_success]
+                if processed_names:
+                    summary_names = ', '.join(processed_names[:3])
+                    commit_msg = f"Auto update: {summary_names}"
+                    if len(processed_names) > 3:
+                        commit_msg += f" and {len(processed_names) - 3} more"
+                else:
+                    commit_msg = "Auto update"
                 
                 subprocess.run(['git', 'commit', '-m', commit_msg], check=True)
                 print("   ✅ Git commit 完成")

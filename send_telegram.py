@@ -156,15 +156,28 @@ def format_daily_report(log_file=None):
             for f in html_files:
                 message += f"  • {f}\n"
         
-        # 提取 GitHub 推送状态
-        git_pushed = False
+        # Git 提交/推送状态
+        git_notes = []
+        if '✅ Git commit 完成' in log_content:
+            git_notes.append('commit ✅ 已提交')
+        elif '⚠️  Git 操作失败' in log_content:
+            git_notes.append('commit ⚠️ 失败（详见日志）')
+        elif 'ℹ️  没有变化需要提交' in log_content:
+            git_notes.append('commit ℹ️ 无变化，跳过')
+
         if '📤 Pushing to GitHub' in log_content:
-            if 'Successfully' in log_content or 'main -> main' in log_content:
-                git_pushed = True
-                message += "\n✅ <b>已推送到 GitHub</b>"
+            if 'Successfully' in log_content or 'main ->' in log_content:
+                git_notes.append('push ✅ 已推送到 GitHub')
+            elif 'Everything up-to-date' in log_content:
+                git_notes.append('push ℹ️ 无新 commit（Everything up-to-date）')
             else:
-                message += "\n⚠️ <b>GitHub 推送失败</b>"
-        
+                git_notes.append('push ⚠️ 请检查日志')
+
+        if git_notes:
+            message += "\n\n📦 <b>Git 状态:</b>\n"
+            for note in git_notes:
+                message += f"  • {note}\n"
+
     else:
         message += "\n✅ 状态: 运行完成"
     
