@@ -57,118 +57,123 @@ def send_telegram(message, chat_id=None, bot_token=None):
 
 def format_daily_report(log_file=None):
     """格式化每日报告（纯程序生成，无 AI 参与）"""
-    
+
     now = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-    
+
     message = f"""🦞 <b>PERShtml 每日检查报告</b>
 <i>程序自动生成</i>
 
 📅 时间: {now}
 """
-    
-    # 如果提供了日志文件，解析结果
+
     if log_file and os.path.exists(log_file):
         with open(log_file, 'r', encoding='utf-8') as f:
             log_content = f.read()
-        
+
         import re
-        
-        # 提取 S3 文件列表
+
+        marker = '🦞 PERShtml 全自动更新'
+        if marker in log_content:
+            section_text = log_content[log_content.rfind(marker):]
+        else:
+            section_text = log_content
+        lines = section_text.split('\n')
+
+        # 📦 S3 文件列表（取最新一次）
         s3_files = []
         in_s3_section = False
-        for line in log_content.split('\n'):
+        current_s3 = []
+        for line in lines:
             if '📊 S3 文件列表:' in line:
                 in_s3_section = True
+                current_s3 = []
                 continue
             if in_s3_section:
-                if line.strip().startswith('-'):
-                    # 格式: - filename: XX.X KB
-                    s3_files.append(line.strip()[2:])  # 去掉 "- "
-                elif not line.strip() or '📌' in line:
-                    break
-        
+                stripped = line.strip()
+                if stripped.startswith('-'):
+                    current_s3.append(stripped[2:])
+                elif not stripped or '📌' in stripped:
+                    if current_s3:
+                        s3_files = current_s3
+                    in_s3_section = False
+        if in_s3_section and current_s3:
+            s3_files = current_s3
+
         if s3_files:
             message += "\n📦 <b>S3 文件:</b>\n"
-            for f in s3_files:
-                message += f"  • {f}\n"
-        
-        # 提取处理结果
-        if '没有新文件或变化需要处理' in log_content:
+            for item in s3_files:
+                message += f"  • {item}\n"
+
+        # ✅/⚠️ 状态
+        if '没有新文件或变化需要处理' in section_text:
             message += "\n✅ 状态: 无新文件或变化"
-        elif '成功处理:' in log_content:
-            # 提取处理的文件数
-            match = re.search(r'成功处理: (\d+) 个文件', log_content)
+        elif '成功处理:' in section_text:
+            match = re.search(r'成功处理: (\d+) 个文件', section_text)
             if match:
                 count = match.group(1)
                 message += f"\n✅ 状态: 已处理 {count} 个文件"
-                
-                # 提取已处理的文件列表
+
                 processed_files = []
-                in_processed_section = False
-                for line in log_content.split('\n'):
+                in_processed = False
+                for line in lines:
                     if '已处理的文件:' in line:
-                        in_processed_section = True
+                        in_processed = True
                         continue
-                    if in_processed_section:
-                        if line.strip().startswith('-'):
-                            # 格式: - filename (XX.X KB): reason
-                            processed_files.append(line.strip()[2:])
-                        elif line.strip().startswith('❌') or not line.strip():
-                            break
-                
+                    if in_processed:
+                        stripped = line.strip()
+                        if stripped.startswith('-'):
+                            processed_files.append(stripped[2:])
+                        elif stripped.startswith('❌') or not stripped:
+                            in_processed = False
                 if processed_files:
                     message += "\n\n📝 <b>处理详情:</b>\n"
-                    for f in processed_files:
-                        message += f"  • {f}\n"
+                    for item in processed_files:
+                        message += f"  • {item}\n"
             else:
                 message += "\n✅ 状态: 运行成功"
         else:
             message += "\n⚠️ 状态: 需要检查日志"
-        
-        # 提取更新的 HTML 文件
+
+        # 📄 HTML 更新
         html_files = []
-        in_files_section = False
-        for line in log_content.split('\n'):
-            # 方法1: 从 "生成的文件:" 部分提取
+        in_html_section = False
+        for line in lines:
+            stripped = line.strip()
             if '生成的文件:' in line or '📋 生成的文件:' in line:
-                in_files_section = True
+                in_html_section = True
                 continue
-            
-            if in_files_section:
-                if line.strip().startswith('-'):
-                    # 格式: - filename.html
-                    filename = line.strip()[2:].strip()
+            if in_html_section:
+                if stripped.startswith('-'):
+                    filename = stripped[2:].strip()
                     if filename.endswith('.html') and filename not in html_files:
                         html_files.append(filename)
-                elif line.strip().startswith('💡') or line.strip().startswith('✅') or not line.strip():
-                    in_files_section = False
-            
-            # 方法2: 从 "已生成:" 行提取
+                elif stripped.startswith('💡') or stripped.startswith('✅') or not stripped:
+                    in_html_section = False
             if '已生成:' in line or '✅ 已生成:' in line:
                 parts = line.split('已生成:')
                 if len(parts) > 1:
                     filename = parts[1].strip().split()[0]
                     if filename.endswith('.html') and filename not in html_files:
                         html_files.append(filename)
-        
+
         if html_files:
             message += "\n\n📄 <b>更新的 HTML:</b>\n"
-            for f in html_files:
-                message += f"  • {f}\n"
-        
-        # Git 提交/推送状态
+            for item in html_files:
+                message += f"  • {item}\n"
+
+        # 📦 Git 状态
         git_notes = []
-        if '✅ Git commit 完成' in log_content:
+        if '✅ Git commit 完成' in section_text:
             git_notes.append('commit ✅ 已提交')
-        elif '⚠️  Git 操作失败' in log_content:
+        elif '⚠️  Git 操作失败' in section_text:
             git_notes.append('commit ⚠️ 失败（详见日志）')
-        elif 'ℹ️  没有变化需要提交' in log_content:
+        elif 'ℹ️  没有变化需要提交' in section_text:
             git_notes.append('commit ℹ️ 无变化，跳过')
 
-        if '📤 Pushing to GitHub' in log_content:
-            if 'Successfully' in log_content or 'main ->' in log_content:
+        if '📤 Pushing to GitHub' in section_text:
+            if 'Successfully' in section_text or 'main ->' in section_text:
                 git_notes.append('push ✅ 已推送到 GitHub')
-            elif 'Everything up-to-date' in log_content:
+            elif 'Everything up-to-date' in section_text:
                 git_notes.append('push ℹ️ 无新 commit（Everything up-to-date）')
             else:
                 git_notes.append('push ⚠️ 请检查日志')
@@ -177,15 +182,14 @@ def format_daily_report(log_file=None):
             message += "\n\n📦 <b>Git 状态:</b>\n"
             for note in git_notes:
                 message += f"  • {note}\n"
-
     else:
         message += "\n✅ 状态: 运行完成"
-    
+
     message += f"""
 
-🔗 <a href="https://github.com/tang1693/PERShtml">查看 GitHub</a>
+🔗 <a href=\"https://github.com/tang1693/PERShtml\">查看 GitHub</a>
 """
-    
+
     return message
 
 if __name__ == '__main__':
