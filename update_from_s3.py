@@ -12,6 +12,26 @@ import gdown
 import re
 from datetime import datetime
 
+INPRESS_PATTERN = re.compile(r'in[\s-]?press', re.IGNORECASE)
+
+
+def is_inpress_category(value):
+    """判断是否为 In-Press 类别（兼容 In-Press/InPress/In Press）"""
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return False
+    return bool(INPRESS_PATTERN.search(str(value)))
+
+
+INPRESS_PATTERN = re.compile(r'in[\s-]?press', re.IGNORECASE)
+
+
+def is_inpress_category(value):
+    """判断是否为 In-Press 类别（兼容 In-Press/InPress/In Press）"""
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return False
+    return bool(INPRESS_PATTERN.search(str(value)))
+
+
 # AWS 配置（从环境变量读取，不要硬编码！）
 AWS_ACCESS_KEY = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
@@ -72,14 +92,11 @@ def convert_to_csv_format(df_excel):
     result_df['Title'] = df_excel['Title']
     result_df['Authors'] = df_excel['Authors']
     
-    # 根据 Article Category 判断
-    is_inpress = df_excel['Article Category'].str.contains('In-Press', case=False, na=False)
-    
     # Pages: In-Press 用日期，Research Article 用页码（加 pp. 前缀）
     result_df['Pages'] = df_excel.apply(
-        lambda row: row['Date MMDDYY'].strftime('%B %-d, %Y') 
-                    if 'In-Press' in str(row['Article Category']) 
-                    else f"pp. {row['Page Numbers']}", 
+        lambda row: row['Date MMDDYY'].strftime('%B %-d, %Y')
+        if is_inpress_category(row['Article Category'])
+        else f"pp. {row['Page Numbers']}",
         axis=1
     )
     
@@ -388,8 +405,10 @@ def main():
     df = convert_to_csv_format(df_excel)
     
     # 4. 分离 In-Press 和 Research Article
-    df_inpress = df[df['Category'].str.contains('In-Press', case=False, na=False)]
-    df_research = df[df['Category'].str.contains('Research', case=False, na=False)]
+    inpress_mask = df['Category'].apply(is_inpress_category)
+    research_mask = df['Category'].str.contains('Research', case=False, na=False)
+    df_inpress = df[inpress_mask]
+    df_research = df[research_mask & ~inpress_mask]
     
     print(f"\n📊 文章分类:")
     print(f"   In-Press: {len(df_inpress)} 篇")
