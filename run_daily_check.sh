@@ -29,11 +29,10 @@ EXIT_CODE=$?
 if [ $EXIT_CODE -eq 0 ]; then
     echo "✅ Success" >> "$LOG_FILE"
     
-    # 如果有新文件处理，自动推送到 GitHub
-    if git status --porcelain | grep -q .; then
+    # 如果有新 commit，自动推送到 GitHub
+    if git status -sb | grep -q '\[ahead'; then
         echo "📤 Pushing to GitHub..." >> "$LOG_FILE"
-        
-        # 使用 token 推送（从 .env 读取 GITHUB_TOKEN）
+
         if [ -n "$GITHUB_TOKEN" ]; then
             git remote set-url origin "https://${GITHUB_TOKEN}@github.com/tang1693/PERShtml.git" >> "$LOG_FILE" 2>&1
             git push origin main >> "$LOG_FILE" 2>&1
@@ -41,6 +40,8 @@ if [ $EXIT_CODE -eq 0 ]; then
         else
             echo "⚠️  GITHUB_TOKEN not set, skipping push" >> "$LOG_FILE"
         fi
+    else
+        echo "ℹ️  无需推送（没有新的 commit）" >> "$LOG_FILE"
     fi
 else
     echo "❌ Failed (exit code: $EXIT_CODE)" >> "$LOG_FILE"
