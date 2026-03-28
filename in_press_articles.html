@@ -1,5 +1,24 @@
 <article style="padding: 15px;">
     <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00191R3" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Enhanced Visual Relocalization: A Cross-Modal Scene Coordinate Regression Approach
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: March 26, 2026</div>
+    <div>Authors: Ma, Wei; Wang, Xinyu; Zhang, Yujie; Zhu, Chao; Dai, Hengming; Ge, Liang;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Visual relocalization finds application across a multitude of domains. Within this realm, scene coordinate regression methods are particularly noteworthy, as they bypass traditional intermediate steps and directly estimate camera pose by regressing 2D–3D point correspondences. However, the model is limited to relying solely on reprojection constraints and is challenged with the task of implicitly triangulating points. Without the guidance of a ground-truth 3D point cloud, the model’s ability to achieve high positioning accuracy is compromised. In this study, we address the challenge by incorporating the concept of cross-modal feature detection loss into our network architecture. We introduce cross-modal feature detection-based scene coordinate regression network (CFDN), a novel network that integrates a randomization technique to blend image-derived features with corresponding pixel positions, camera intrinsics, and ground-truth poses. This integration effectively mitigates correlated gradients, thereby significantly enhancing the efficiency of the training process. The network culminates in a regression layer that maps 2D pixel coordinates to their corresponding 3D scene coordinates with high precision. Notably, we have engineered a novel cross-modal feature detection loss by introducing explicit 3D geometric constraints based on the idea of contrastive learning on top of the 2D reprojection loss to refine the accuracy of scene regression. Empirical results demonstrate that our method achieves state-of-the-art performance. Specifically, CFDN achieves a relocalization accuracy of 97.2% and 99.9% on the indoor 7Scenes and 12Scenes data sets, respectively. In the outdoor Cambridge landmarks data set, it reduces the average median pose error to 17 cm/0.2°, outperforming existing baselines while maintaining a compact model footprint without requiring 3D models or depth maps for supervision.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
         <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
     </div>
     <h3 style="margin: 5px 0;">
@@ -155,25 +174,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00188R3" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Dynamic Frequency Iterative Stereo Matching Network for High-Resolution Remote Sensing Image Stereo Matching
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: March 3, 2026</div>
-    <div>Authors: Zhu, Ying; Zhang, Xin; Liao, Xiangjun;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Stereo matching of remote sensing images is a crucial step for generating digital surface models in the fields of photogrammetry and remote sensing. Currently, deep learning–based stereo matching methods demonstrate significant advantages in both matching accuracy and efficiency compared to traditional methods. However, high-accuracy matching faces considerable challenges due to temporal inconsistencies in remote sensing stereo image pairs, along with severe occlusions caused by high-rise buildings and large textureless areas commonly found in urban environments. To address these challenges and improve disparity estimation accuracy, this paper proposes an end-to-end dynamic frequency iterative stereo matching network that integrates multi-frequency information and a self-attention mechanism for disparity estimation from high-resolution satellite stereo images. We designed a high- and low-frequency iterative optimization module to capture low-frequency information from large textureless regions and high-frequency information from object edges. This module helps preserve disparity consistency in textureless areas and disparity discontinuity at object edges, thereby maintaining more complete structural details. Furthermore, a self-attention layer is introduced to propagate relevant information from surrounding areas to occluded regions via the self-attention mechanism, mitigating severe occlusion problems caused by tall buildings. The proposed network was evaluated on the US3D and WHU-Stereo remote sensing data sets. Experimental results demonstrate that our network achieves higher accuracy compared to existing state-of-the-art methods. It performs well in textureless and occluded areas, effectively reduces edge blurring, and recovers finer object details.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00159R3" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
             MFOR: A Benchmark for Multi-scene Military Fine-Grained Object Recognition
         </a>
@@ -193,17 +193,17 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00146R2" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Localized Brightness–Shape–Moisture Soil Parameterization for Improved PROSAIL-5 Canopy Simulation
+        <a href="https://doi.org/10.14358/PERS.25-00188R3" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Dynamic Frequency Iterative Stereo Matching Network for High-Resolution Remote Sensing Image Stereo Matching
         </a>
     </h3>
-    <div style="font-style: italic;">Avaliable online: March 2, 2026</div>
-    <div>Authors: Bonnet, Wessel; Cho, Moses Azong; Chirwa, Paxie W.; Masemola, Cecilia;</div>
+    <div style="font-style: italic;">Avaliable online: March 3, 2026</div>
+    <div>Authors: Zhu, Ying; Zhang, Xin; Liao, Xiangjun;</div>
     <div>
         Abstract:
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
-            The mapping and modeling of canopies is important for the understanding, monitoring, and management of vegetation systems. To effectively model or simulate canopy spectra at the hyperspectral level, background soil spectra must first be simulated accurately. Spectrometer data simulation such as this will become increasingly relevant as newer imaging spectroscopy missions such as PRISMA and AVIRIS-NG start to produce more data sets. In this study, the brightness–shape–moisture (BSM) radiative transfer model (RTM) with localized parameter distributions was used in conjunction with the PROSAIL-5 RTM to simulate canopy spectra for different biomes in the semiarid regions of Southern Africa as captured with PRISMA or AVIRIS-NG sensors. It is hypothesized that a PROSAIL-5 RTM with biome-specific BSM parameters can more accurately simulate PRISMA and AVIRIS-NG spectra than a PROSAIL-5 model simulated with the default soil spectrum, as represented by lower relative root mean square error (RRMSE) values against actual spectra. It is demonstrated that the PRISMA and AVIRIS-NG canopy spectra are more effectively simulated using their respective biome-specific BSM parameter regimes, with RRMSE improvements from 14.56% to 13.91% and from 13.64% to 10.71% for two tested images captured with these sensors.
+            Stereo matching of remote sensing images is a crucial step for generating digital surface models in the fields of photogrammetry and remote sensing. Currently, deep learning–based stereo matching methods demonstrate significant advantages in both matching accuracy and efficiency compared to traditional methods. However, high-accuracy matching faces considerable challenges due to temporal inconsistencies in remote sensing stereo image pairs, along with severe occlusions caused by high-rise buildings and large textureless areas commonly found in urban environments. To address these challenges and improve disparity estimation accuracy, this paper proposes an end-to-end dynamic frequency iterative stereo matching network that integrates multi-frequency information and a self-attention mechanism for disparity estimation from high-resolution satellite stereo images. We designed a high- and low-frequency iterative optimization module to capture low-frequency information from large textureless regions and high-frequency information from object edges. This module helps preserve disparity consistency in textureless areas and disparity discontinuity at object edges, thereby maintaining more complete structural details. Furthermore, a self-attention layer is introduced to propagate relevant information from surrounding areas to occluded regions via the self-attention mechanism, mitigating severe occlusion problems caused by tall buildings. The proposed network was evaluated on the US3D and WHU-Stereo remote sensing data sets. Experimental results demonstrate that our network achieves higher accuracy compared to existing state-of-the-art methods. It performs well in textureless and occluded areas, effectively reduces edge blurring, and recovers finer object details.
         </details>
     </div>
 </article>
@@ -223,6 +223,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Remote sensing images serve as indispensable and pivotal carriers in diverse fields, including natural resource management, ecological environment protection, and urban–rural construction planning. Acquiring high-quality remote sensing images is particularly critical for practical applications. However, limitations such as adverse weather conditions and equipment constraints often hinder the acquisition of high-quality data. To tackle this challenge, this paper proposes a U-shaped Transformer network architecture—incorporating locally enhanced windows and denoted as ULTNet—for restoring low-quality remote sensing images to high-quality ones. The network leverages a locally enhanced transformer (LT) block, equipped with locally enhanced windows, for attention extraction. This block applies a local self-attention mechanism within nonoverlapping spatial windows, effectively reducing computational complexity while capturing richer global dependencies to enable end-to-end remote sensing image restoration. Both quantitative and qualitative analyses demonstrate that the proposed method exhibits superior restoration performance and strong generalization capabilities.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00146R2" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Localized Brightness–Shape–Moisture Soil Parameterization for Improved PROSAIL-5 Canopy Simulation
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: March 2, 2026</div>
+    <div>Authors: Bonnet, Wessel; Cho, Moses Azong; Chirwa, Paxie W.; Masemola, Cecilia;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            The mapping and modeling of canopies is important for the understanding, monitoring, and management of vegetation systems. To effectively model or simulate canopy spectra at the hyperspectral level, background soil spectra must first be simulated accurately. Spectrometer data simulation such as this will become increasingly relevant as newer imaging spectroscopy missions such as PRISMA and AVIRIS-NG start to produce more data sets. In this study, the brightness–shape–moisture (BSM) radiative transfer model (RTM) with localized parameter distributions was used in conjunction with the PROSAIL-5 RTM to simulate canopy spectra for different biomes in the semiarid regions of Southern Africa as captured with PRISMA or AVIRIS-NG sensors. It is hypothesized that a PROSAIL-5 RTM with biome-specific BSM parameters can more accurately simulate PRISMA and AVIRIS-NG spectra than a PROSAIL-5 model simulated with the default soil spectrum, as represented by lower relative root mean square error (RRMSE) values against actual spectra. It is demonstrated that the PRISMA and AVIRIS-NG canopy spectra are more effectively simulated using their respective biome-specific BSM parameter regimes, with RRMSE improvements from 14.56% to 13.91% and from 13.64% to 10.71% for two tested images captured with these sensors.
         </details>
     </div>
 </article>
