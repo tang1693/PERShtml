@@ -27,7 +27,7 @@
 #     # --- Title and link (only if Title is valid) ---
 #     if pd.notna(row['Title']) and row['Title'] != 'N/A':
 #         article_html += f'''    <h3 style="margin: 5px 0;">
-#         <a href="{row["URL"]}" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+#         <a href="{row["URL"]}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
 #             {row["Title"]}
 #         </a>
 #     </h3>\n'''
@@ -95,7 +95,7 @@ for index, row in articles.iterrows():
 
     if pd.notna(row["Title"]) and row["Title"] != "N/A" and str(row["Title"]).strip() != "":
         article_html += f'''    <h3 style="margin: 5px 0;">
-        <a href="{row["URL"]}" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">
+        <a href="{row["URL"]}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             {row["Title"]}
         </a>
     </h3>\n'''

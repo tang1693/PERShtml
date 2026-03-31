@@ -179,7 +179,7 @@ def generate_top_articles_html(csv_filename, output_filename, top_n=6):
         
         # Add the title and link
         article_html += f'    <h3 style="margin: 5px 0;">\n'
-        article_html += f'        <a href="{row["URL"]}" rel="noreferrer" style="text-decoration: none; color: #1b5faa;">\n'
+        article_html += f'        <a href="{row["URL"]}" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">\n'
         article_html += f'            {row["Item Title"]}\n'
         article_html += f'        </a>\n'
         article_html += f'    </h3>\n'
@@ -213,11 +213,12 @@ def generate_top_articles_html(csv_filename, output_filename, top_n=6):
 
 
 # Example usage
-csv_filename = 'MostDownload/2024dec.csv'  # Input CSV file with 'DOI' column
-csv_filename_sorted = 'MostDownload/2024dec_sorted.csv'  
-output_filename = 'most_download_articles.html'
+if __name__ == '__main__':
+    csv_filename = 'MostDownload/2024dec.csv'  # Input CSV file with 'DOI' column
+    csv_filename_sorted = 'MostDownload/2024dec_sorted.csv'  
+    output_filename = 'most_download_articles.html'
 
-sort_csv(csv_filename, csv_filename_sorted, sorted_column='Total Downloads')
-load_data_from_doi(csv_filename_sorted) 
-csv_clean(csv_filename_sorted, csv_filename_sorted)
-generate_top_articles_html(csv_filename_sorted, output_filename)
+    sort_csv(csv_filename, csv_filename_sorted, sorted_column='Total Downloads')
+    load_data_from_doi(csv_filename_sorted) 
+    csv_clean(csv_filename_sorted, csv_filename_sorted)
+    generate_top_articles_html(csv_filename_sorted, output_filename)
