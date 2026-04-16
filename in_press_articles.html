@@ -3,6 +3,25 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00183R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Three-dimensional Drainage Infrastructure Modeling for Flood Vulnerability in Southeast Texas
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: April 15, 2026</div>
+    <div>Authors: Ibironke, Ademola; Dhakal, Uddav; Bhusal, Shishir; Wu, Xing; Kim, Yong Je; Lai, Feilin;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Urban flooding poses escalating risks to transportation infrastructure in low-lying, flood-prone regions, underscoring the need for scalable, elevation-aware assessment frameworks. This study evaluates the flood vulnerability of drainage infrastructure in Southeast Texas by developing an automated 3D modeling framework that integrates digital elevation models, airborne lidar data, and water surface elevation scenarios through a fully automated pipeline incorporating large-language-model–assisted data standardization, Python/ArcPy geometry generation, and attribute-driven computer-generated architecture procedural modeling. Using ArcGIS Pro and CityEngine, 842 culverts and 223 bridges were modeled following quality-control filtering, and flood exposure was quantified using an elevation-differencing metric for 100- and 500-year flood events. The results indicate that fewer than 2% of culverts remain above water during a 100-year flood, while fewer than 1% remain accessible under a 500-year event, with median inundation depths of approximately 0.54 and 0.90 m, respectively. The proposed workflow reduces manual processing time by approximately 80% while preserving vertical consistency, providing a transferable and uncertainty-aware framework to support regional flood-resilience planning and future integration with hydrodynamic models. The code and supporting materials associated with this study are publicly available via GitHub at: aibironke/3D-Drainage-Flood-Vulnerability
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00147R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Fine 3D Modeling of Tunnel Surrounding Rock and Extraction of Rock Mass Structure Features Based on RGB-D Camera
         </a>
@@ -136,25 +155,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00207R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            AE-SAM: An Adaptive Enhanced Segment Anything Model Framework for Automated Land Cover Classification in Natural and Semi-Natural Environments
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: March 16, 2026</div>
-    <div>Authors: Kui, Luchao; Yu, Xianwen; Ma, Dehao;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Land cover classification in high-resolution remote sensing imagery of natural and semi-natural scenes typically requires extensive manual annotation. Although the Segment Anything Model (SAM) exhibits powerful zero-shot segmentation capability, its class-agnostic nature and heavy reliance on manual prompts hinder fully automated semantic classification in complex natural scenes. This study introduces an adaptive enhanced Segment Anything Model framework (AE-SAM) that achieves fully automated land cover classification using only noisy, low-resolution global land cover products as priors. The framework incorporates a noise-resilient semantic alignment mechanism that reconstructs high-fidelity point prompts from low-resolution global land cover products through adaptive covariance-guided outlier filtering, multi-modal feature clustering, and spatial homogeneity constraints. These optimized prompts drive SAM to produce multiple hypothesis masks that are subsequently fused into a coherent classification map via adaptive optimization of model confidence and spatial consistency. Validated on 15 data sets with various resolutions (3 to 60 cm), AE-SAM achieved an average overall accuracy (OA) of 96.52%, a Kappa coefficient of 0.907, and a mean intersection over union (mIoU) of 0.855. Notably, our method outperforms the zero-shot SAM Automatic Mask Generator by 7.79 percentage points in OA, 0.162 in Kappa coefficient, and 0.138 in mIoU. It also surpasses few-shot segmentation approaches such as RSAM-Seg and traditional classifiers like Random Forest when all methods are evaluated under the few-shot setting. The results demonstrate that AE-SAM enables fully automated, high-accuracy land cover classification in natural and semi-natural environments using only coarse, noisy global priors—offering a practical solution for large-scale mapping in which manual annotation is infeasible. The source code is publicly available at https://github.com/sophie1987/AE-SAM/blob/main/sam_update.py.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00111R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             An Improved Manifold Learning Algorithm for Dimension Reduction of Fusion Data for Multispectral and Synthetic Aperture Radar Images
         </a>
@@ -166,6 +166,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             In the application of remote sensing data, the data obtained by a single sensor often cannot meet the actual needs, because the information contained in these data is often limited. Data fusion can improve the availability of these data, but it also brings the problem of information redundancy. In this paper, a whole set of multi-source remote sensing image-processing frameworks was constructed first and aimed at the problem of neighborhood selection in an isometric mapping (ISOMAP) algorithm; an improved ISOMAP algorithm based on the L1 norm (a sparse optimization technique that minimizes absolute value sums) was proposed to mine the inherent low-dimensional structure of multi-source remote sensing data and reduce the dimension of the data. In this paper, the traditional manifold learning algorithm is improved by developing a version of ISOMAP based on the L1 norm (L1-ISOMAP) for dimensionality reduction tasks. After dimensionality reduction, the support vector machine (SVM) and random forest (RF) are used to classify the dimensionality reduction data. The experimental results demonstrate that compared with other dimensionality reduction methods such as Pairwise Controlled Manifold Approximation Projection (PaCMAP), Uniform Manifold Approximation and Projection (UMAP), traditional ISOMAP, and other improved ISOMAP variants (achieving 96.90% overall accuracy with SVM and 98.69% with RF, with kappa coefficients of 0.96 and 0.98, respectively), our L1-ISOMAP achieves superior overall classification accuracy and exhibits stronger robustness in processing multi-source remote sensing data.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00207R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            AE-SAM: An Adaptive Enhanced Segment Anything Model Framework for Automated Land Cover Classification in Natural and Semi-Natural Environments
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: March 16, 2026</div>
+    <div>Authors: Kui, Luchao; Yu, Xianwen; Ma, Dehao;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Land cover classification in high-resolution remote sensing imagery of natural and semi-natural scenes typically requires extensive manual annotation. Although the Segment Anything Model (SAM) exhibits powerful zero-shot segmentation capability, its class-agnostic nature and heavy reliance on manual prompts hinder fully automated semantic classification in complex natural scenes. This study introduces an adaptive enhanced Segment Anything Model framework (AE-SAM) that achieves fully automated land cover classification using only noisy, low-resolution global land cover products as priors. The framework incorporates a noise-resilient semantic alignment mechanism that reconstructs high-fidelity point prompts from low-resolution global land cover products through adaptive covariance-guided outlier filtering, multi-modal feature clustering, and spatial homogeneity constraints. These optimized prompts drive SAM to produce multiple hypothesis masks that are subsequently fused into a coherent classification map via adaptive optimization of model confidence and spatial consistency. Validated on 15 data sets with various resolutions (3 to 60 cm), AE-SAM achieved an average overall accuracy (OA) of 96.52%, a Kappa coefficient of 0.907, and a mean intersection over union (mIoU) of 0.855. Notably, our method outperforms the zero-shot SAM Automatic Mask Generator by 7.79 percentage points in OA, 0.162 in Kappa coefficient, and 0.138 in mIoU. It also surpasses few-shot segmentation approaches such as RSAM-Seg and traditional classifiers like Random Forest when all methods are evaluated under the few-shot setting. The results demonstrate that AE-SAM enables fully automated, high-accuracy land cover classification in natural and semi-natural environments using only coarse, noisy global priors—offering a practical solution for large-scale mapping in which manual annotation is infeasible. The source code is publicly available at https://github.com/sophie1987/AE-SAM/blob/main/sam_update.py.
         </details>
     </div>
 </article>
@@ -307,25 +326,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00146R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Localized Brightness–Shape–Moisture Soil Parameterization for Improved PROSAIL-5 Canopy Simulation
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: March 2, 2026</div>
-    <div>Authors: Bonnet, Wessel; Cho, Moses Azong; Chirwa, Paxie W.; Masemola, Cecilia;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            The mapping and modeling of canopies is important for the understanding, monitoring, and management of vegetation systems. To effectively model or simulate canopy spectra at the hyperspectral level, background soil spectra must first be simulated accurately. Spectrometer data simulation such as this will become increasingly relevant as newer imaging spectroscopy missions such as PRISMA and AVIRIS-NG start to produce more data sets. In this study, the brightness–shape–moisture (BSM) radiative transfer model (RTM) with localized parameter distributions was used in conjunction with the PROSAIL-5 RTM to simulate canopy spectra for different biomes in the semiarid regions of Southern Africa as captured with PRISMA or AVIRIS-NG sensors. It is hypothesized that a PROSAIL-5 RTM with biome-specific BSM parameters can more accurately simulate PRISMA and AVIRIS-NG spectra than a PROSAIL-5 model simulated with the default soil spectrum, as represented by lower relative root mean square error (RRMSE) values against actual spectra. It is demonstrated that the PRISMA and AVIRIS-NG canopy spectra are more effectively simulated using their respective biome-specific BSM parameter regimes, with RRMSE improvements from 14.56% to 13.91% and from 13.64% to 10.71% for two tested images captured with these sensors.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00142R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Remote Sensing Image Denoising Network Based on Locally Enhanced Window Transformer
         </a>
@@ -337,6 +337,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Remote sensing images serve as indispensable and pivotal carriers in diverse fields, including natural resource management, ecological environment protection, and urban–rural construction planning. Acquiring high-quality remote sensing images is particularly critical for practical applications. However, limitations such as adverse weather conditions and equipment constraints often hinder the acquisition of high-quality data. To tackle this challenge, this paper proposes a U-shaped Transformer network architecture—incorporating locally enhanced windows and denoted as ULTNet—for restoring low-quality remote sensing images to high-quality ones. The network leverages a locally enhanced transformer (LT) block, equipped with locally enhanced windows, for attention extraction. This block applies a local self-attention mechanism within nonoverlapping spatial windows, effectively reducing computational complexity while capturing richer global dependencies to enable end-to-end remote sensing image restoration. Both quantitative and qualitative analyses demonstrate that the proposed method exhibits superior restoration performance and strong generalization capabilities.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00146R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Localized Brightness–Shape–Moisture Soil Parameterization for Improved PROSAIL-5 Canopy Simulation
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: March 2, 2026</div>
+    <div>Authors: Bonnet, Wessel; Cho, Moses Azong; Chirwa, Paxie W.; Masemola, Cecilia;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            The mapping and modeling of canopies is important for the understanding, monitoring, and management of vegetation systems. To effectively model or simulate canopy spectra at the hyperspectral level, background soil spectra must first be simulated accurately. Spectrometer data simulation such as this will become increasingly relevant as newer imaging spectroscopy missions such as PRISMA and AVIRIS-NG start to produce more data sets. In this study, the brightness–shape–moisture (BSM) radiative transfer model (RTM) with localized parameter distributions was used in conjunction with the PROSAIL-5 RTM to simulate canopy spectra for different biomes in the semiarid regions of Southern Africa as captured with PRISMA or AVIRIS-NG sensors. It is hypothesized that a PROSAIL-5 RTM with biome-specific BSM parameters can more accurately simulate PRISMA and AVIRIS-NG spectra than a PROSAIL-5 model simulated with the default soil spectrum, as represented by lower relative root mean square error (RRMSE) values against actual spectra. It is demonstrated that the PRISMA and AVIRIS-NG canopy spectra are more effectively simulated using their respective biome-specific BSM parameter regimes, with RRMSE improvements from 14.56% to 13.91% and from 13.64% to 10.71% for two tested images captured with these sensors.
         </details>
     </div>
 </article>
@@ -421,25 +440,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00152R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Quantifying the Net Thermal Effects and Inequalities of Spatiotemporal Evolution of Building–Greenspace Coupling
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: February 5, 2026</div>
-    <div>Authors: Lin, Yongpeng; Zhong, Liang; He, Yuanrong; Wang, Xinjian; Yu, Peng; Xie, Zhiying; Yang, Peng; Liu, Xiaosheng;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            The cooling ecosystem services provided by urban greening are fundamental to climate adaptation, yet they are compromised by urbanization that alters the spatial configuration between vegetation and buildings. The spatiotemporal dynamics linking this evolving building–greenspace coupling to thermal environment and equity remain poorly understood. This research develops a novel remote sensing–based analytical framework integrating a new building–greenspace coupling index (BGCI) within a modified difference-in-differences model to quantify the net effect of urban form evolution on land surface temperature (LST) in the Xiamen–Zhangzhou–Quanzhou (XZQ) metropolitan area (2012 to 2023). Results reveal a near-linear positive association (R² = 0.93) between the BGCI and LST, amplified in densely populated areas. Quantitatively, a 0.1-unit increase in the BGCI corresponds to an approximate 0.28 °C rise in mean LST. Furthermore, LST inequality analysis indicates disparities across urban functional zones are the primary source of thermal heterogeneity. An increase of 0.09 in the BGCI is associated with a 0.39 rise in the inequality index of LST changes. This study offers a quantitative methodology for assessing the thermal performance and equity implications of urban spatial transformations. The findings provide geospatial evidence to optimize land use for mitigating urban heat and enhancing thermal equity.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00153R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Toward Detailed and Accurate Forest Inventory with Multi-Source Lidar Data
         </a>
@@ -451,6 +451,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Accurate forest inventories are crucial for ecological research and resource management. A novel workflow is introduced to fuse lidar point clouds from terrestrial, mobile, and unmanned aerial vehicle systems, significantly improving the characterization of forest structure. The proposed method uses a robust coarse-to-fine registration and a quantitative voxel-based metric to evaluate the scanning completeness of single and fused data sets to derive accurate individual tree segmentation and forest parameter results. The work is validated using a unique data set (released on paper acceptance), and it demonstrates that fusing multi-source lidar data provides a more complete and accurate representation of forest ecosystems, underscoring its potential for more effective ecological monitoring and sustainable forest management.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00152R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Quantifying the Net Thermal Effects and Inequalities of Spatiotemporal Evolution of Building–Greenspace Coupling
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: February 5, 2026</div>
+    <div>Authors: Lin, Yongpeng; Zhong, Liang; He, Yuanrong; Wang, Xinjian; Yu, Peng; Xie, Zhiying; Yang, Peng; Liu, Xiaosheng;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            The cooling ecosystem services provided by urban greening are fundamental to climate adaptation, yet they are compromised by urbanization that alters the spatial configuration between vegetation and buildings. The spatiotemporal dynamics linking this evolving building–greenspace coupling to thermal environment and equity remain poorly understood. This research develops a novel remote sensing–based analytical framework integrating a new building–greenspace coupling index (BGCI) within a modified difference-in-differences model to quantify the net effect of urban form evolution on land surface temperature (LST) in the Xiamen–Zhangzhou–Quanzhou (XZQ) metropolitan area (2012 to 2023). Results reveal a near-linear positive association (R² = 0.93) between the BGCI and LST, amplified in densely populated areas. Quantitatively, a 0.1-unit increase in the BGCI corresponds to an approximate 0.28 °C rise in mean LST. Furthermore, LST inequality analysis indicates disparities across urban functional zones are the primary source of thermal heterogeneity. An increase of 0.09 in the BGCI is associated with a 0.39 rise in the inequality index of LST changes. This study offers a quantitative methodology for assessing the thermal performance and equity implications of urban spatial transformations. The findings provide geospatial evidence to optimize land use for mitigating urban heat and enhancing thermal equity.
         </details>
     </div>
 </article>
