@@ -3,7 +3,7 @@
 # 每天早上 10:00 运行
 
 # 切换到项目目录
-cd /root/.openclaw/workspace/PERShtml-project
+cd /root/workspace/PERShtml-project
 
 # 加载环境变量
 if [ -f .env ]; then
