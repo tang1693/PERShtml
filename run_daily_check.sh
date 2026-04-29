@@ -34,9 +34,16 @@ if [ $EXIT_CODE -eq 0 ]; then
         echo "📤 Pushing to GitHub..." >> "$LOG_FILE"
 
         if [ -n "$GITHUB_TOKEN" ]; then
-            git remote set-url origin "https://${GITHUB_TOKEN}@github.com/tang1693/PERShtml.git" >> "$LOG_FILE" 2>&1
-            git push origin main >> "$LOG_FILE" 2>&1
-            git remote set-url origin "https://github.com/tang1693/PERShtml.git" >> "$LOG_FILE" 2>&1
+            ORIGINAL_REMOTE=$(git remote get-url origin)
+            AUTH_REMOTE="https://x-access-token:${GITHUB_TOKEN}@github.com/tang1693/PERShtml.git"
+
+            git remote set-url origin "$AUTH_REMOTE" >> "$LOG_FILE" 2>&1
+            if git push origin main >> "$LOG_FILE" 2>&1; then
+                echo "✅ GitHub push 成功" >> "$LOG_FILE"
+            else
+                echo "❌ GitHub push 失败，请检查 token 权限或有效期" >> "$LOG_FILE"
+            fi
+            git remote set-url origin "$ORIGINAL_REMOTE" >> "$LOG_FILE" 2>&1
         else
             echo "⚠️  GITHUB_TOKEN not set, skipping push" >> "$LOG_FILE"
         fi

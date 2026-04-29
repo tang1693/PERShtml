@@ -183,10 +183,12 @@ def format_daily_report(log_file=None):
             git_notes.append('commit ℹ️ 无变化，跳过')
 
         if '📤 Pushing to GitHub' in section_text:
-            if 'Successfully' in section_text or 'main ->' in section_text:
+            if 'Successfully' in section_text or 'main ->' in section_text or '✅ GitHub push 成功' in section_text:
                 git_notes.append('push ✅ 已推送到 GitHub')
             elif 'Everything up-to-date' in section_text:
                 git_notes.append('push ℹ️ 无新 commit（Everything up-to-date）')
+            elif '❌ GitHub push 失败' in section_text or 'fatal:' in section_text:
+                git_notes.append('push ❌ 失败（请检查 token/权限）')
             else:
                 git_notes.append('push ⚠️ 请检查日志')
 
