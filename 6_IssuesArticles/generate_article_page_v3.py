@@ -88,6 +88,19 @@ print(f"📊 涉及 {articles['_issue_key'].nunique()} 个期刊号")
 grouped_articles = articles.groupby('_issue_key')
 link_attrs = 'target="_blank" rel="noopener noreferrer"'
 
+EDITOR_CHOICE_TITLES = {
+    normalize_title('CGMSANet: Hyperspectral Image Classification through Channel-Grouped Multi-Scale Feature Fusion and Attention Mechanisms'),
+    normalize_title('Toward Detailed and Accurate Forest Inventory with Multi-Source Lidar Data'),
+}
+
+
+def is_editor_choice(title: str) -> bool:
+    return normalize_title(str(title)) in EDITOR_CHOICE_TITLES
+
+
+EDITOR_CHOICE_BADGE = '<span style="background-color: gold; color: black; font-weight: bold; padding: 3px 8px; border-radius: 5px; font-size: 12px; margin-left: 0px;">\n                Editor’s Choice\n            </span>'
+
+
 for issue, issue_articles in grouped_articles:
     if not issue or issue in processed_issues:
         print(f"⏭️  跳过期刊 {issue} (已处理或无效)")
@@ -196,6 +209,7 @@ for issue, issue_articles in grouped_articles:
 
         oa_badge = '<span style="color: rgb(0, 191, 255);">Open Access</span>' if is_open_access(row, access_overrides) else ''
         title_text = row.get('Title', 'Untitled') or 'Untitled'
+        editor_choice_badge = EDITOR_CHOICE_BADGE if is_editor_choice(title_text) else ''
         url = row.get('URL')
         url = url if isinstance(url, str) and url.strip() else '#'
 
@@ -211,6 +225,7 @@ for issue, issue_articles in grouped_articles:
             <div style=\"display: flex; justify-content: space-between; align-items: center;\">
                 <div style=\"font-weight: bold; color: gray;\">Research Articles {oa_badge}</div>
             </div>
+            {editor_choice_badge}
             <h3><a href=\"{url}\" {link_attrs}>{title_text}</a></h3>
             <div style=\"font-style: italic;\">Pages: {pages_text}</div>
             <div>Authors: {authors_text}</div>

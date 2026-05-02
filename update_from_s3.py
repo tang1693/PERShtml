@@ -12,6 +12,18 @@ import gdown
 import re
 from datetime import datetime
 
+DOI_PREFIX_PATTERN = re.compile(r'^(?:https?://(?:dx\.)?doi\.org/|doi\.org/|doi:)\s*', re.IGNORECASE)
+
+
+def normalize_doi(value):
+    """Excel DOI may already include doi.org; store one clean doi.org URL only."""
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return ''
+    text = str(value).strip()
+    text = DOI_PREFIX_PATTERN.sub('', text).strip()
+    return text.rstrip('/')
+
+
 def is_inpress_category(value):
     """只要 Article Category 不是 Research，就按 In-Press 处理"""
     if value is None or (isinstance(value, float) and pd.isna(value)):
@@ -118,7 +130,7 @@ def convert_to_csv_format(df_excel):
     result_df['Access'] = df_excel['Access Status'].apply(
         lambda x: "Open Access content" if x == "OA" else "Subscribed content"
     )
-    result_df['URL'] = df_excel['DOI'].apply(lambda x: f"https://doi.org/{x}")
+    result_df['URL'] = df_excel['DOI'].apply(lambda x: f"https://doi.org/{normalize_doi(x)}" if normalize_doi(x) else '')
     result_df['Abstract'] = df_excel['Abstract']
     
     # 添加元数据
