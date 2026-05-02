@@ -12,6 +12,56 @@ import gdown
 import re
 from datetime import datetime
 
+DOI_PREFIX_PATTERN = re.compile(r'^(?:https?://(?:dx\.)?doi\.org/|doi\.org/|doi:)\s*', re.IGNORECASE)
+
+
+def normalize_doi(value):
+    """Normalize DOI values so URL generation never becomes doi.org/doi.org/..."""
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return ''
+    text = str(value).strip()
+    text = DOI_PREFIX_PATTERN.sub('', text).strip()
+    return text.rstrip('/')
+
+
+def normalize_issue_key(value):
+    """Normalize IssueKey values like 2026.005 / 202605.0 -> 202605."""
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return None
+    text = str(value).strip()
+    if not text:
+        return None
+
+    # Old CSVs may contain the accidental float-like form: YYYY.0MM / YYYY.00M
+    match = re.match(r'^(\d{4})\.0*(\d{1,2})$', text)
+    if match:
+        year = int(match.group(1))
+        month = int(match.group(2))
+        if 1 <= month <= 12:
+            return f"{year}{month:02d}"
+
+    try:
+        as_int = int(float(text))
+        text = str(as_int)
+    except (TypeError, ValueError):
+        text = re.sub(r'\D', '', text)
+
+    if len(text) == 6:
+        year = int(text[:4])
+        month = int(text[4:])
+        if 1 <= month <= 12:
+            return f"{year}{month:02d}"
+    return None
+
+
+def month_name_from_issue(issue_no):
+    try:
+        month = int(float(issue_no))
+        return datetime(2000, month, 1).strftime('%B')
+    except (TypeError, ValueError):
+        return str(issue_no)
+
+
 def is_inpress_category(value):
     """只要 Article Category 不是 Research，就按 In-Press 处理"""
     if value is None or (isinstance(value, float) and pd.isna(value)):
@@ -118,15 +168,17 @@ def convert_to_csv_format(df_excel):
     result_df['Access'] = df_excel['Access Status'].apply(
         lambda x: "Open Access content" if x == "OA" else "Subscribed content"
     )
-    result_df['URL'] = df_excel['DOI'].apply(lambda x: f"https://doi.org/{x}")
+    normalized_doi = df_excel['DOI'].apply(normalize_doi)
+    result_df['URL'] = normalized_doi.apply(lambda x: f"https://doi.org/{x}" if x else '')
     result_df['Abstract'] = df_excel['Abstract']
     
     # 添加元数据
     result_df['PubDate'] = df_excel['Date MMDDYY'].dt.strftime('%B %Y')
-    result_df['Year'] = df_excel['Date MMDDYY'].dt.year.astype(str)
+    result_df['Year'] = df_excel['Date MMDDYY'].dt.year.apply(lambda x: str(int(x)) if pd.notna(x) else '')
     result_df['Volume'] = df_excel['Volume'].apply(normalize_volume)
     result_df['Issue'] = df_excel['Issue Number'].apply(normalize_issue)
     result_df['IssueKey'] = result_df['Year'] + result_df['Issue']
+    result_df.loc[df_excel['Issue Number'].isna(), 'IssueKey'] = ''
     result_df['GA_Link'] = df_excel['Graphical Abstract']
     result_df['Category'] = df_excel['Article Category']
     
@@ -241,12 +293,52 @@ def update_module_2_issues():
     else:
         print(f"   ❌ 生成失败: {result.stderr}")
 
+def repair_issue_key_columns():
+    """Repair old accidental float-like IssueKey/Year/Issue values in CSV outputs."""
+    targets = [
+        '6_IssuesArticles/ALL_articles_Update_cleaned.csv',
+        '5_RecentArticles/filtered_articles_info_abs.csv',
+        '7_MostCited/most_cited_articles.csv',
+    ]
+    for path in targets:
+        if not os.path.exists(path):
+            continue
+        try:
+            df = pd.read_csv(path)
+        except Exception as exc:
+            print(f"   ⚠️  无法规范化 {path}: {exc}")
+            continue
+        changed = False
+        if 'IssueKey' in df.columns:
+            normalized = df['IssueKey'].apply(normalize_issue_key).fillna('').astype(str)
+            old_values = df['IssueKey'].fillna('').astype(str)
+            if not old_values.equals(normalized):
+                df['IssueKey'] = normalized
+                changed = True
+        if 'IssueKey' in df.columns:
+            issue_keys = df['IssueKey'].apply(normalize_issue_key).fillna('').astype(str)
+            if 'Year' in df.columns:
+                years = issue_keys.apply(lambda x: x[:4] if x else '')
+                if not df['Year'].fillna('').astype(str).equals(years.astype(str)):
+                    df['Year'] = years
+                    changed = True
+            if 'Issue' in df.columns:
+                issues = issue_keys.apply(lambda x: x[4:] if x else '')
+                if not df['Issue'].fillna('').astype(str).equals(issues.astype(str)):
+                    df['Issue'] = issues
+                    changed = True
+        if changed:
+            df.to_csv(path, index=False)
+            print(f"   🧹 已规范化 IssueKey: {path}")
+
+
 def update_module_5_recent():
     """
     更新模块5: Recent Articles
     从 ALL_articles_Update_cleaned.csv 提取最近6个月的所有文章
     """
     print("\n📌 模块 5: Recent Articles")
+    repair_issue_key_columns()
     
     from dateutil.relativedelta import relativedelta
     
@@ -264,8 +356,8 @@ def update_module_5_recent():
         # 方法1: 从 IssueKey
         if pd.notna(row.get('IssueKey')):
             try:
-                issue_key_str = str(int(row['IssueKey']))
-                if len(issue_key_str) == 6:
+                issue_key_str = normalize_issue_key(row['IssueKey'])
+                if issue_key_str:
                     year = int(issue_key_str[:4])
                     month = int(issue_key_str[4:])
                     return datetime(year, month, 1)
@@ -357,12 +449,13 @@ def update_module_7_most_cited():
 def update_module_6_articles(df_research):
     """更新模块6: IssuesArticles"""
     print("\n📌 模块 6: IssuesArticles")
+    repair_issue_key_columns()
 
     if len(df_research) == 0:
         print("   ⚠️  本月没有 Research Article，跳过")
         return
 
-    issue_key = str(df_research['IssueKey'].iloc[0])
+    issue_key = normalize_issue_key(df_research['IssueKey'].iloc[0])
     new_issue_set = set(zip(df_research.get('Title', []), df_research.get('URL', [])))
 
     all_csv_path = '6_IssuesArticles/ALL_articles_Update_cleaned.csv'
@@ -375,7 +468,7 @@ def update_module_6_articles(df_research):
         existing_df.to_csv(backup_path, index=False)
         print(f"   📦 已备份: {backup_path}")
 
-        issue_mask = existing_df['IssueKey'].astype(str) == issue_key
+        issue_mask = existing_df['IssueKey'].apply(normalize_issue_key) == issue_key
         prev_issue_df = existing_df[issue_mask]
         if not prev_issue_df.empty:
             prev_issue_set = set(zip(prev_issue_df.get('Title', []), prev_issue_df.get('URL', [])))
@@ -408,7 +501,7 @@ def update_module_6_articles(df_research):
     import subprocess
     result = subprocess.run(['python3', '6_IssuesArticles/generate_article_page_v3.py'], capture_output=True, text=True)
     if result.returncode == 0:
-        issue_display = df_research['IssueKey'].iloc[0]
+        issue_display = normalize_issue_key(df_research['IssueKey'].iloc[0])
         print(f"   ✅ 已生成: IssuesArticles/html/{issue_display}.html")
     else:
         print(f"   ❌ HTML 生成失败: {result.stderr}")
@@ -445,15 +538,17 @@ def main():
     print(f"   In-Press: {len(df_inpress)} 篇")
     print(f"   Research Article: {len(df_research)} 篇")
     
-    # 5. 提取期刊信息
-    year = df['Year'].iloc[0]
-    issue_no = df['Issue'].iloc[0]
-    month_name = df['PubDate'].iloc[0].split()[0]
+    # 5. 提取期刊信息：用正式 Research Article 的 Issue Number，而不是文章上线日期月份
+    issue_source_df = df_research if len(df_research) > 0 else df
+    year = str(issue_source_df['Year'].iloc[0])
+    issue_no = issue_source_df['Issue'].iloc[0]
+    month_name = month_name_from_issue(issue_no)
     try:
         issue_display = int(str(issue_no).lstrip('0') or '0')
     except ValueError:
         issue_display = issue_no
 
+    issue_key = f"{year}{issue_no}"
     print(f"\n🎯 本次更新目标: {year} 年 {issue_display} 月 ({month_name})")
 
     # 6. 下载 GA 图片（仅 Research Article），同时添加 GA_Path
@@ -479,7 +574,7 @@ def main():
         print("   - issues.html")
         print("   - open_access_articles.html")
         print("   - member_only_articles.html")
-        print(f"   - IssuesArticles/html/{year}{issue_no}.html")
+        print(f"   - IssuesArticles/html/{issue_key}.html")
     print("   - top_6_articles.html (最近2年，Top 6)")
     print("\n💡 下一步:")
     print(f"   1. 检查生成的 HTML 文件")

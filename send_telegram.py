@@ -11,6 +11,11 @@ import urllib.request
 import urllib.parse
 from datetime import datetime
 
+
+def html_escape(text):
+    return str(text).replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
+
+
 def send_telegram(message, chat_id=None, bot_token=None):
     """发送 Telegram 消息"""
     
@@ -153,10 +158,23 @@ def format_daily_report(log_file=None):
                 parts = line.split('已生成:')
                 if len(parts) > 1:
                     filename = parts[1].strip().split()[0]
-                    if filename.endswith('.html') and filename not in html_files:
-                        html_files.append(filename)
+                    # Older logs may contain the accidental float-like issue key.
+                    filename = re.sub(r'IssuesArticles/html/(\d{4})\.0*(\d{1,2})\.html', lambda m: f"IssuesArticles/html/{m.group(1)}{int(m.group(2)):02d}.html", filename)
+                    if filename.endswith('.html'):
+                        if filename.startswith('IssuesArticles/html/'):
+                            html_files = [item for item in html_files if item != filename]
+                        if filename not in html_files:
+                            html_files.append(filename)
 
         if html_files:
+            normalized_html_files = []
+            seen_html_files = set()
+            for item in html_files:
+                item = re.sub(r'IssuesArticles/html/(\d{4})\.0*(\d{1,2})\.html', lambda m: f"IssuesArticles/html/{m.group(1)}{int(m.group(2)):02d}.html", item)
+                if item not in seen_html_files:
+                    normalized_html_files.append(item)
+                    seen_html_files.add(item)
+            html_files = normalized_html_files
             message += "\n\n📄 <b>更新的 HTML:</b>\n"
             for item in html_files:
                 message += f"  • {item}\n"
@@ -166,12 +184,39 @@ def format_daily_report(log_file=None):
         for line in lines:
             stripped = line.strip()
             if stripped.startswith('📊 In-Press 统计:') or stripped.startswith('📊 Issue '):
+                stripped = re.sub(r'Issue (\d{4})\.0*(\d{1,2}):', lambda m: f"Issue {m.group(1)}{int(m.group(2)):02d}:", stripped)
                 stats_lines.append(stripped)
 
         if stats_lines:
             message += "\n\n📊 <b>变动统计:</b>\n"
             for s in stats_lines:
                 message += f"  • {s}\n"
+
+        # ⚠️ 缺失/异常项
+        issue_notes = []
+        missing_ga = []
+        for line in lines:
+            stripped = line.strip()
+            if '⚠️' in stripped and ('无 GA 链接:' in stripped or '无法解析链接:' in stripped or '下载失败:' in stripped):
+                title = stripped.split(':', 1)[1].strip().rstrip('.') if ':' in stripped else stripped
+                missing_ga.append(title)
+            elif stripped.startswith('❌') or ('⚠️' in stripped and 'GitHub push 失败' not in stripped):
+                if '无 GA 链接:' not in stripped and '无法解析链接:' not in stripped and '下载失败:' not in stripped:
+                    issue_notes.append(stripped)
+
+        if missing_ga:
+            message += "\n\n⚠️ <b>缺失 GA / 图片:</b>\n"
+            for item in missing_ga[:10]:
+                message += f"  • {html_escape(item)}\n"
+            if len(missing_ga) > 10:
+                message += f"  • ……另 {len(missing_ga) - 10} 条\n"
+
+        if issue_notes:
+            message += "\n\n⚠️ <b>其他异常:</b>\n"
+            for item in issue_notes[:10]:
+                message += f"  • {html_escape(item)}\n"
+            if len(issue_notes) > 10:
+                message += f"  • ……另 {len(issue_notes) - 10} 条\n"
 
         # 📦 Git 状态
         git_notes = []
