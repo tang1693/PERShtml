@@ -474,10 +474,12 @@ def main():
     
     # 7. 更新各模块
     update_module_1_inpress(df_inpress)
-    update_module_2_issues()  # 重新生成整个 issues.html
     
     if len(df_research) > 0:
         update_module_6_articles(df_research)
+    
+    # Issues 索引依赖 IssuesArticles/html/YYYYMM.html 扫描最新期号，必须在文章页生成后刷新
+    update_module_2_issues()  # 重新生成整个 issues.html
     
     update_module_5_recent()  # 总是更新（从总库提取最近6个月）
     update_module_7_most_cited()  # 总是更新（从总库提取最近2年+引用数）
