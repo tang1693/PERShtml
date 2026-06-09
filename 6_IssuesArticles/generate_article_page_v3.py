@@ -53,8 +53,19 @@ def is_open_access(row, overrides) -> bool:
 def get_issue_key(row):
     """从行中获取期刊key (格式: YYYYMM)"""
     if 'IssueKey' in row.index and pd.notna(row['IssueKey']):
-        key = str(row['IssueKey']).replace('.0', '')
-        return key if len(key) == 6 else None
+        text = str(row['IssueKey']).strip()
+        if re.fullmatch(r'\d{6}', text):
+            return text
+
+        match = re.fullmatch(r'(\d{6})\.0+', text)
+        if match:
+            return match.group(1)
+
+        # Historical bug: pandas float year + issue produced values like 2026.006.
+        match = re.fullmatch(r'(\d{4})\.(\d{1,3})', text)
+        if match:
+            year, issue = match.groups()
+            return f"{year}{int(issue):02d}"
 
     url = row['URL']
     match = re.search(r'/(\d{4})/000000(\d+)/000000(\d+)', url)

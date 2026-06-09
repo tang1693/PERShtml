@@ -42,11 +42,55 @@ def normalize_volume(value):
 
 
 def normalize_issue(value):
+    if value is None or pd.isna(value):
+        return ''
     try:
         return f"{int(float(value)):02d}"
     except (TypeError, ValueError):
         text = str(value).strip()
         return text.zfill(2) if text.isdigit() else text
+
+
+def normalize_year(value):
+    if value is None or pd.isna(value):
+        return ''
+    if hasattr(value, 'year'):
+        return str(int(value.year))
+    try:
+        return str(int(float(value)))
+    except (TypeError, ValueError):
+        text = str(value).strip()
+        return text[:-2] if text.endswith('.0') else text
+
+
+def canonical_issue_key(value):
+    """Normalize historical IssueKey variants to strict YYYYMM."""
+    if value is None or pd.isna(value):
+        return ''
+    text = str(value).strip()
+    if re.fullmatch(r'\d{6}', text):
+        return text
+
+    match = re.fullmatch(r'(\d{6})\.0+', text)
+    if match:
+        return match.group(1)
+
+    # Historical bug: pandas float year + issue produced values like 2026.006.
+    match = re.fullmatch(r'(\d{4})\.(\d{1,3})', text)
+    if match:
+        year, issue = match.groups()
+        return f"{year}{int(issue):02d}"
+
+    try:
+        number = float(text)
+        if number.is_integer():
+            as_int = str(int(number))
+            if re.fullmatch(r'\d{6}', as_int):
+                return as_int
+    except (TypeError, ValueError):
+        pass
+
+    return text
 
 
 INPRESS_PATTERN = re.compile(r'in[\s-]?press', re.IGNORECASE)
@@ -135,10 +179,12 @@ def convert_to_csv_format(df_excel):
     
     # 添加元数据
     result_df['PubDate'] = df_excel['Date MMDDYY'].dt.strftime('%B %Y')
-    result_df['Year'] = df_excel['Date MMDDYY'].dt.year.astype(str)
+    years = df_excel['Date MMDDYY'].apply(normalize_year)
+    issues = df_excel['Issue Number'].apply(normalize_issue)
+    result_df['Year'] = years
     result_df['Volume'] = df_excel['Volume'].apply(normalize_volume)
-    result_df['Issue'] = df_excel['Issue Number'].apply(normalize_issue)
-    result_df['IssueKey'] = result_df['Year'] + result_df['Issue']
+    result_df['Issue'] = issues
+    result_df['IssueKey'] = [f"{year}{issue}" if year and issue else '' for year, issue in zip(years, issues)]
     result_df['GA_Link'] = df_excel['Graphical Abstract']
     result_df['Category'] = df_excel['Article Category']
     
@@ -275,20 +321,16 @@ def update_module_5_recent():
         """解析文章的发布日期"""
         # 方法1: 从 IssueKey
         if pd.notna(row.get('IssueKey')):
-            try:
-                issue_key_str = str(int(row['IssueKey']))
-                if len(issue_key_str) == 6:
-                    year = int(issue_key_str[:4])
-                    month = int(issue_key_str[4:])
-                    return datetime(year, month, 1)
-            except:
-                pass
+            issue_key = canonical_issue_key(row.get('IssueKey'))
+            if re.fullmatch(r'\d{6}', issue_key):
+                year = int(issue_key[:4])
+                month = int(issue_key[4:])
+                return datetime(year, month, 1)
         
         # 方法2: 从 Ingenta URL 解析
         # 格式: .../pers/{year}/0000{volume}/0000{issue}/...
         url = row.get('URL', '')
         if 'ingentaconnect.com' in url:
-            import re
             match = re.search(r'/pers/(\d{4})/\d+/(\d+)/', url)
             if match:
                 year = int(match.group(1))
@@ -374,7 +416,7 @@ def update_module_6_articles(df_research):
         print("   ⚠️  本月没有 Research Article，跳过")
         return
 
-    issue_key = str(df_research['IssueKey'].iloc[0])
+    issue_key = canonical_issue_key(df_research['IssueKey'].iloc[0])
     new_issue_set = set(zip(df_research.get('Title', []), df_research.get('URL', [])))
 
     all_csv_path = '6_IssuesArticles/ALL_articles_Update_cleaned.csv'
@@ -387,7 +429,7 @@ def update_module_6_articles(df_research):
         existing_df.to_csv(backup_path, index=False)
         print(f"   📦 已备份: {backup_path}")
 
-        issue_mask = existing_df['IssueKey'].astype(str) == issue_key
+        issue_mask = existing_df['IssueKey'].apply(canonical_issue_key) == issue_key
         prev_issue_df = existing_df[issue_mask]
         if not prev_issue_df.empty:
             prev_issue_set = set(zip(prev_issue_df.get('Title', []), prev_issue_df.get('URL', [])))
@@ -493,7 +535,8 @@ def main():
         print("   - issues.html")
         print("   - open_access_articles.html")
         print("   - member_only_articles.html")
-        print(f"   - IssuesArticles/html/{year}{issue_no}.html")
+        print(f"   - IssuesArticles/html/{issue_key}.html")
+
     print("   - top_6_articles.html (最近2年，Top 6)")
     print("\n💡 下一步:")
     print(f"   1. 检查生成的 HTML 文件")
