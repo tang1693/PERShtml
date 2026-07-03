@@ -3,17 +3,55 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00214R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            IT-Seg: Morphology-Constrained and Spatially Guided Individual Tree Segmentation from Terrestrial and Mobile Point Clouds
+        <a href="https://doi.org/10.14358/PERS.25-00177R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Hierarchical Integration of Multi-Source Lidar for Forest Volume Estimation across Individual Trees and Plot Scales
         </a>
     </h3>
-    <div style="font-style: italic;">Avaliable online: May 28, 2026</div>
-    <div>Authors: Chen, Maolin; Yin, Hanwen; Zhang, Zhiqing; Zhang, Huan; Bo, Liming;</div>
+    <div style="font-style: italic;">Avaliable online: July 2, 2026</div>
+    <div>Authors: Gu, Denuo; Pang, Yong; Du, Liming; Kong, Dan;</div>
     <div>
         Abstract:
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
-            Individual trees are essential components of forest ecosystems, and accurate tree-level segmentation provides a crucial foundation for forest ecosystem modeling and biodiversity assessment. We propose a novel point cloud-based individual tree segmentation method guided by morphological prior constraints and single-tree canopy radiative effective extent (SCREE), a metric used to define the canopy boundary for each tree, computed from high-dimensional features output by a network. First, the original point cloud is divided into a central point set and a buffer point set based on morphological prior constraints. On this basis, different strategies are applied for trunk extraction from the central and buffer points: trunks in the central point set are extracted through adaptive density-based filtering, while trunks in the buffer point set are extracted using a semantic segmentation network. Finally, canopy points are assigned to individual trunks to obtain complete tree structures. This assignment is guided by the proposed SCREE, inferred using a diameter at breast height–height generative model to generate a constrained space. Validated on six forest scenes from three public data sets, the proposed method achieves an average instance-level accuracy of 84.71% and an average point-level accuracy of 81.85%, demonstrating strong robustness across diverse forest environments. Moreover, compared with existing methods, our method exhibits higher stability when handling variations in samples and the presence of small trees across different types of scanners.
+            Accurate stem volume estimation remains contingent on an analytical tree (i.e., tree felled and sectionally measured to obtain reference stem volume) as the calibration benchmark for remote sensing and allometric equation, thereby limiting scalability and operational efficiency in large-scale forest carbon assessment. To overcome this bottleneck, we propose a hierarchical integration framework for multi-source lidar-based stem volume estimation, termed “hierarchical integration of volume estimation” (HIVE), which establishes a lidar-driven estimation chain linking individual trees to plot-level assessments. Specifically, we first establish a volumetric benchmark from terrestrial laser scanning (TLS) by reconstructing stems with the quantitative structure model (QSM), which serves as a surrogate for analytical trees. We then transfer this benchmark to airborne laser scanning (ALS) by mapping the lidar biomass index (LBI) and tree height to TLS-derived reference volume, effectively coupling nondestructive TLS-based volumetric calibration with broad spatial coverage. Cross-scale calibration and validation then enforce tree-plot consistency, enabling accurate upscaling without reliance on traditional field calibration based on the manual diameter at breast height and tree height measurements. For 41 Japanese larch (Larix kaempferi) trees, TLS-based TreeQSM yielded stem volume estimates consistent with analytical-tree measurements (R2 = 0.97, relative root mean square error [rRMSE] = 12.90%) and outperformed traditional allometric equations (R2 = 0.96, rRMSE = 14.34%). Furthermore, using k-fold cross-validation on 81 TLS-ALS paired trees, the tree-level LBI model showed consistent predictive performance (R2 = 0.81, rRMSE = 27.62%). When transferred to the plot level, stem volume estimates across 67 plots agreed well with field survey references (R2 = 0.72, rRMSE = 23.53%). This approach provides an innovative solution for efficient large-scale forest volume estimation by substantially reducing reliance on traditional field surveys for model calibration and opens new possibilities for carbon stock assessment and sustainable forest management.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00022R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Edge-ANN: Storage-Efficient Edge-Based Remote Sensing Feature Retrieval
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: June 26, 2026</div>
+    <div>Authors: Lv, Xianwei; Tang, Debin; Shi, Zhecheng; Wang, Wang; Zheng, Yujiao; Zhu, Xiatian;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Meeting strict latency budgets for high-performance approximate nearest neighbor (ANN) search remains a critical challenge in remote sensing edge devices, including microsatellites and UAVs, because of stringent limitations in both primary (RAM) and secondary (disk) storage. To address this challenge, we propose Edge-ANN, an efficient ANN framework specifically engineered for storage-efficient edge retrieval. Instead of explicitly storing high-dimensional partitioning hyperplanes, Edge-ANN uses pairs of in-data-set points, termed anchors, together with a scalar offset to define partitions implicitly. To ensure that these implicit partitions remain balanced and effective, we introduce a binary anchor optimization algorithm. Rigorous experiments on four multi-source and multi-modal data sets, Million-AID, High-resolution Urban Complex, GlobalUrbanNet, and BigEarthNet, demonstrated that under simulated edge environments with dual storage constraints, Edge-ANN achieves a 30% to 40% reduction in secondary storage compared with an unconstrained Annoy baseline, at the cost of only a 3% to 9% reduction in Recall@10. Furthermore, within constrained memory budgets, Edge-ANN delivers superior retrieval performance to other mainstream ANN methods under the adopted near-real-time latency budget. Collectively, these results establish Edge-ANN as a practical solution for enabling large-scale, high-performance remote sensing feature retrieval on edge devices with exceptionally constrained storage. The codes of Edge-ANN are available at https://github.com/huaijiao666/Edge-ANN
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00026R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Interferometric Synthetic Aperture Radar Deformation Datum Unification with a Fixed Line-of-Sight Direction: A Bayesian Inference and the Markov Random Field Model Integration
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: June 6, 2026</div>
+    <div>Authors: Bian, Weiwei; Liang, Hongyu; Zhang, Lei; Wu, Jicang; Motagh, Mahdi;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Monitoring large-scale surface deformation using satellite radar data is crucial for advancing regional and continental-scale geodynamic observations. However, challenges arise when unifying deformation data from different tracks of the same satellite, primarily due to inconsistencies in reference baselines and variations in radar viewing angles. This study proposes an interferometric synthetic aperture radar (InSAR) deformation datum connection method with a fixed line-of-sight (LOS) direction. The method combines Bayesian inference with a Markov random field model and integrates InSAR and global navigation satellite system deformation measurements to unify deformation datums across multi-track SAR interferometric results using only a single orbit direction (ascending-only or descending-only), without requiring both ascending and descending data sets. In the simulation experiments, the root mean square error (RMSE) of the LOS displacement rate difference in the overlapping regions of adjacent-track SAR images decreased by 99%. Applying the developed methodology for InSAR observations of the 2023 Mw 7.8 Kahramanmaraş earthquake in Türkiye, the RMSE of displacement differences in the overlapping regions of adjacent tracks was reduced from 98 to 34 mm, demonstrating the effectiveness of the proposed unified datum approach. 
         </details>
     </div>
 </article>
@@ -33,6 +71,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             The extraction of building footprints based on high-resolution remote sensing images is widely used in many fields such as land survey and urban planning, and high resolution also brings complex background information. In order to improve the effectiveness of building footprint extraction, this paper proposes a RefineSegFormer that combines a hierarchical transformer encoder and a cross-level feedback Refine feature pyramid network implemented through deformable convolution. RefineSegFormer achieved an F1 score of 96.55% and an IoU of 93.33% on the widely recognized WHU building data set, an F1 of 93.19% and an IoU of 87.25% on the 0.3-m Mandalay City data set, and an F1 of 90.53% and an IoU of 82.70% on 2-m Dingri County data set, all of which achieved the best results, proving the effectiveness and practical application value of the proposed model in this paper. The improved lightweight model for building footprint extraction has better performance than the unimproved medium model. In submeter remote sensing image building footprint extraction, the parameters are only 20% of the medium model, which can achieve more than 98% of the performance of the improved medium model, balancing extraction accuracy and inference speed. In the extraction of building footprints from meter remote sensing images with a small number of buildings and high similarity between buildings and the background, it is more recommended to use the improved medium model. Compared with the unimproved medium model, F1 has increased by 6.71%, and IoU has increased by 10.55%. The model and code of RefineSegFormer can be available at: https://github.com/amanforinteresting/RefineSegFormer.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00214R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            IT-Seg: Morphology-Constrained and Spatially Guided Individual Tree Segmentation from Terrestrial and Mobile Point Clouds
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: May 28, 2026</div>
+    <div>Authors: Chen, Maolin; Yin, Hanwen; Zhang, Zhiqing; Zhang, Huan; Bo, Liming;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Individual trees are essential components of forest ecosystems, and accurate tree-level segmentation provides a crucial foundation for forest ecosystem modeling and biodiversity assessment. We propose a novel point cloud-based individual tree segmentation method guided by morphological prior constraints and single-tree canopy radiative effective extent (SCREE), a metric used to define the canopy boundary for each tree, computed from high-dimensional features output by a network. First, the original point cloud is divided into a central point set and a buffer point set based on morphological prior constraints. On this basis, different strategies are applied for trunk extraction from the central and buffer points: trunks in the central point set are extracted through adaptive density-based filtering, while trunks in the buffer point set are extracted using a semantic segmentation network. Finally, canopy points are assigned to individual trunks to obtain complete tree structures. This assignment is guided by the proposed SCREE, inferred using a diameter at breast height–height generative model to generate a constrained space. Validated on six forest scenes from three public data sets, the proposed method achieves an average instance-level accuracy of 84.71% and an average point-level accuracy of 81.85%, demonstrating strong robustness across diverse forest environments. Moreover, compared with existing methods, our method exhibits higher stability when handling variations in samples and the presence of small trees across different types of scanners.
         </details>
     </div>
 </article>
@@ -269,25 +326,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00174R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Lidar-based Simultaneous Localization and Mapping with Connecting Traverse Constraints for Underground Mine Mapping
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: April 12, 2026</div>
-    <div>Authors: Xu, Zhihua; Li, Yuanyuan; Xu, Ershuai; Wu, Jing; Lin, Jiaxuan; Zhang, Yuansheng; Yang, Bisheng; Peng, Suping;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Underground 3D mapping plays a vital role in mineral resource exploration and development. Lidar-based simultaneous localization and mapping (SLAM) has become a key technology in this domain, offering autonomous navigation and real-time mapping capabilities. However, in narrow and geometrically repetitive underground mine corridors—characterized by long passages and a lack of loop closures—conventional lidar-SLAM systems suffer from significant error accumulation, leading to degraded mapping accuracy. To overcome these limitations, we propose a novel lidar-SLAM method incorporating connecting traverse constraints. First, edge and planar features are extracted from lidar scans via a segmentation strategy and refined using least-squares fitting. These features are then integrated into a factor graph framework to optimize pose estimation and construct a consistent point cloud map. Furthermore, we introduce an external traverse connection mechanism to impose additional constraints in the pose graph, effectively correcting trajectory drift and 3D point coordinates. Our approach mitigates the effect of noise and error accumulation commonly encountered in traditional lidar-SLAM techniques. Evaluation on a self-collected data set and two public benchmarks demonstrates that the proposed method consistently outperforms four state-of-the-art systems: LOAM, LeGO-LOAM, S-LOAM, and F-LOAM. In our self-collected data set, the trajectory root mean square error (RMSE) values for LOAM, LeGO-LOAM, S-LOAM, F-LOAM, and the proposed method are 0.693, 0.506, 4.062, 2.542, and 0.467 m, respectively. Compared to these baseline methods, our approach achieves error reductions of 32.6%, 7.7%, 88.5%, and 81.6%, respectively. On the two public data sets, the trajectory RMSE values for the same methods are 1.132, 0.351, 5.848, 8.850, and 0.084 m and 0.612, 0.590, 3.671, 9.279, and 0.558 m. This corresponds to relative error reductions of 88.6%, 67.2%, 97.5%, and 98.5% and of 8.8%, 5.4%, 84.8%, and 94.0%, respectively, confirming its robustness and accuracy in challenging underground environments.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00005R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Terrain Variation Aware Surface Height Estimation Network for High-Precision Multi-view Satellite Stereo
         </a>
@@ -375,25 +413,6 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             The classification of a hyperspectral image (HSI) plays a critical role and serves as the foundation for many related applications. The combination of convolutional neural networks (CNNs) and transformers has shown promising performance in HSI classification by using the advantages of the two networks. However, existing hybrid models often offer limited feature interaction and fusion between the two branches. Here, a novel interactive convolution and transformer network (ICTNet) for HSI classification is proposed. Specifically, raw HSI is first fed into a multi-scale feature-enhancement module, where convolution operations with varying kernel sizes are used to extract multi-scale features, and shuffle attention is used to further enhance feature representation. Enhanced features are then processed by a dual-branch CNN and transformer fusion module to leverage local information and long-range dependencies. Additionally, the feature interaction and fusion module is proposed to facilitate dynamic interaction and fusion of features during extraction and propagation between the two branches, enhancing the diversity and interactivity of the features. Extensive experimental results on three real HSI data sets demonstrate that the proposed ICTNet outperforms state-of-the-art HSI classification methods.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00133R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Toward Automatic Vector Extraction from Scanned Historical Aerial Photo Indexes
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: March 9, 2026</div>
-    <div>Authors: Malek, Salim; Farella, Elisa Mariarosaria; Perda, Giulio; Cantoro, Gianluca; Remondino, Fabio;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            National archives worldwide have recently dedicated significant efforts to preserve fragile historical collections (e.g., maps, documents, photographs) through scanning and digitization. Advancements in digital technologies have opened new opportunities for processing and accessing these materials; however, as these collections grow, significant challenges arise in efficiently managing, linking, and using vast volumes of digital data. This paper addresses the challenge imposed by the digital transformation of vast archive collections, with a focus on scanned materials preserved in historical photographic and mapping archives and intended for the creation of digital databases and online catalogues. This study targets the semi-automatic vectorization of aerial photo indexes (APIs), often referred to as finding aids for aerial reconnaissance sorties (i.e., maps on which aerial photo footprints [each corresponding to a historical aerial photo] from different surveying flight missions were manually drawn onto base topographic maps). Aerial images were captured during the 20th century for military, reconnaissance, and mapping purposes, and their footprints were then manually transposed onto reference maps. Currently, archives and mapping institutions managing creating digital databases and catalogues are manually addressing a demanding and time-consuming vectorization task, and automated solutions are highly needed. This contribution proposes a novel and comprehensive semi-automatic vectorization pipeline that leverages and integrates computer vision techniques and uses deep learning and computational geometry for detecting, isolating, and polygonizing aerial image footprints in APIs. The methodology is applied to a large collection of APIs scanned by the Italian National Historical AirPhoto Archive at the Italian National Institute for Cataloguing and Documentation of the Ministry of Culture and will be added to the online database and WebGIS catalogue recently set up to disseminate copies of historical aerial photographs.
         </details>
     </div>
 </article>
@@ -497,44 +516,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00206R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Reserve Identification Model for Oil Tank Based on Satellite Image Analysis under Complex Observation Angles
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: March 1, 2026</div>
-    <div>Authors: Li, Yang; Yang, Jin-Rong; Liu, Ke-Hang; Chen, Hong-Wei;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            The reserve volume of oil tanks can be obtained through in-depth analysis of satellite images. This approach addresses the urgent demand for precise and rapid acquisition of global oil tank reserves. A novel method for extracting oil tank shadows based on projection characteristics of a cylinder was proposed that extracts the shadows obscured by the oil tank’s side wall under complex observation angles. A preprocessed satellite image was used to extract the oil tank shadow via arc feature extraction, Hough transform, and an edge detection algorithm. Subsequently, a reserve identification model for oil tanks based on geometric projection and shadow boundary extraction was constructed. This model used the parallel projection characteristics of satellite imaging and combined the geometric structure of the oil tank to infer the shadow length by the geometric relationship between the extreme points of the shadow boundary and the tank centers. The oil tank height was then accurately determined, and finally, the reserve was identified using height difference and tank radius. The proposed method was validated through the establishment of a tank experimental system and the application of an oil tank case study from the United Arab Emirates. The research results show that the method exhibited high accuracy and reliability. Through multiple sets of tank experiments, the proposed method yielded a relative error range of 0.49% to 2.14% in identifying the reserve of the tank model. To further verify its accuracy, the method was applied to the 18# oil tank at Jebel Dhanna Port, yielding a relative error of 0.44% in volume identification.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00156R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Evaluating U.S. Geological Survey Three-dimensional Elevation Program Lidar Data as a Source for Building Height
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: February 27, 2026</div>
-    <div>Authors: Liu, Jung-kuan; Shavers, Ethan; Arundel, Samantha T.; Qin, Rongjun;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Accurate building height information is used for numerous urban applications, including infrastructure modeling, disaster risk assessment, and energy demand estimation. The U.S. Geological Survey collects airborne lidar data to support the three-dimensional elevation program (3DEP). The high point density and vertical accuracy of the lidar point clouds are optimal for 3D mapping. Few studies have systematically evaluated building height extraction from 3DEP lidar point clouds in urban areas. This study assesses the accuracy and consistency of building height estimates from two publicly available data sets by comparing them to the 3DEP lidar data. The public building height data sets are USA Structures and Microsoft Global Building Footprints (GBF), and they are evaluated across two contrasting urban sites. Building heights from USA Structures are also lidar-derived, whereas GBF estimates are based on stereo matching of optical imagery. Building heights from 3DEP were extracted by classifying lidar points using a deep learning model, isolating roof and ground returns, and computing the height as the median elevation difference between the roof and surrounding ground points. For both sites, 3DEP lidar-derived heights show strong agreement with USA Structures (R² = 0.87 and 0.86; MAE = 1.8 and 2.2 m), confirming the internal consistency and reliability of lidar-derived measurements. In contrast, comparisons with GBF height estimates reveal significantly lower correlations (R² = 0.54 and 0.60; MAE = 2.5 and 3.1 m), highlighting the limitations of imagery-based height reconstruction, particularly in dense or heterogeneous urban environments. These findings indicate that lidar can be used as an accurate source for vertical structure characterization and underscore the benefits of improved integration and bias correction when using imagery-derived building heights. The results provide support for hybrid approaches that combine the broad spatial coverage of optical data sets with the accuracy of lidar for scalable 3D urban mapping.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00114R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Incorporating Directional Relationship Modelling for Building Change Detection from Very-High-Resolution Satellite Images
         </a>
@@ -573,25 +554,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00112R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Semantic Change Detection with Constrained Dual-Head Convolutional Neural Network Architecture for Oil/Gas Well Site Monitoring
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: December 1, 2025</div>
-    <div>Authors: Xu, Hongzhang; He, Hongjie; Zhang, Ying; Zhang, Dedong; Li, Jonathan;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            High-resolution mapping of land disturbance and reclamation is important for assessing the cumulative environmental effects of oil/gas production. The growing availability of high-resolution satellite imagery, combined with recent advances in deep learning, offers a desirable solution for detecting land surface changes on disturbed land. In this study, we constructed the Alberta oil/gas wells semantic change detection (SCD) data set in Alberta, Canada, based on high-resolution satellite imagery from WorldView-2 and SPOT-6. The data set consists of 328 pairs of bitemporal images (512 × 512 pixels at 1.5-m resolution), along with corresponding semantic change maps, binary change maps, and land cover maps. In addition, we proposed a constrained dual-head convolutional neural network (CNN) framework that jointly learns semantic change and binary change tasks. Specifically, two segmentation heads are designed—one for semantic changes and one for binary changes—and are explicitly connected through a cosine similarity loss that enforces consistency between the two tasks. Taking High-Resolution Net (HRNet)-v2 as the backbone, our model was pretrained on the large-scale SEmantic Change detectiON Data Set (SECOND) and fine-tuned on our developed data set. Comparative experiments with BiSRNet, HGINet, and SCanNet demonstrate that our approach achieves superior performance, with the highest mean intersection over union (mIoU) (79.47%) and separated Kappa (SeK) (28.40%) after fine-tuning. Incorporating land cover maps as additional supervision further boosts results, with our approach reaching an mIoU of 80.05% and a SeK of 29.71%. These findings highlight the effectiveness of the proposed constrained dual-head CNN architecture and the benefit of leveraging land cover information for advancing SCD in remote sensing.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00091R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             RSIDetNet: An Efficient Oriented Small Object Detection Model for Remote Sensing Images Based on Cross-Scale Feature Fusion and Large Kernel Decomposition
         </a>
@@ -603,25 +565,6 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Small object detection in remote sensing images is crucial for maximizing data utility, but small objects face challenges due to their limited pixel coverage, low resolution, and susceptibility to background noise. This paper proposes an orientated small object detection model for remote sensing images based on cross-scale feature fusion and large kernel decomposition. The model consists of four main components: the image feature extraction module, the multi-scale feature fusion module, the cross-fusion region proposal network for generating candidate regions, and the dual detection head for predicting target categories and rotating bounding boxes. Experiments are conducted on two datasets, SODA-A and HRSC-2016, and the results show that the proposed model improves the mean average precision (mAP) by at least 6.3% over classical 1-stage models and by at least 2.6% over classical 2-stage model. In particular, when detecting very small objects (area less than 144 pixels), the mAP value is as high as 17.2%, which is a significant improvement compared with other models, indicating that it is very effective in dealing with the difficult task of small object detection.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00079R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Scale-adaptive Knowledge Distillation with Superpixel for Hyperspectral Image Classification
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: September 26, 2025</div>
-    <div>Authors: Dong, Shuang; Li, Ying; Xie, Ming; Han, Tingting;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Hyperspectral image (HSI) classification is a critical area in remote sensing with broad applications in geoscience. While deep learning methods have gained popularity for HSI classification, their potential remains underexplored due to limited labeled data. To address this, we propose a scale-adaptive knowledge distillation with superpixel framework that trains deep neural networks using unlabeled samples. The proposed framework incorporates three core components: (1) scale-adaptive superpixel knowledge distillation, (2) bilateral spatial–spectral attention mechanisms, and (3) three-dimensional (3D) hyperspectral data transformation. The distillation module implements self-supervised learning through dynamically generated soft labels based on cross-dimensional similarity metrics. The workflow proceeds through three stages: Initially, spatial–spectral joint distance metrics evaluate the affinity between unlabeled superpixels and target classes. Subsequently, these measurements inform probabilistic soft label assignments for each superpixel cluster. Finally, an end-to-end trainable dense convolutional network with dual attention pathways is refined by optimizing the divergence between the adaptive label distributions and network predictions. Additionally, 3D transformations, including spectral and spatial rotations of the HSI cube, are applied to maximize the utility of labeled data. Experiments on three public HSI data sets demonstrate that the proposed method achieves competitive accuracy and efficiency compared to existing approaches. The implementation code is available at https://github.com/San-dow/Awnsome-SAKDS_HSI.
         </details>
     </div>
 </article>
@@ -649,17 +592,17 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.26-00026R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Interferometric Synthetic Aperture Radar Deformation Datum Unification with a Fixed Line-of-Sight Direction: A Bayesian Inference and the Markov Random Field Model Integration
+        <a href="https://doi.org/10.14358/PERS.25-00079R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Scale-adaptive Knowledge Distillation with Superpixel for Hyperspectral Image Classification
         </a>
     </h3>
-    <div style="font-style: italic;">Avaliable online: June 6, 2005</div>
-    <div>Authors: Bian, Weiwei; Liang, Hongyu; Zhang, Lei; Wu, Jicang; Motagh, Mahdi;</div>
+    <div style="font-style: italic;">Avaliable online: September 26, 2025</div>
+    <div>Authors: Dong, Shuang; Li, Ying; Xie, Ming; Han, Tingting;</div>
     <div>
         Abstract:
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
-            Monitoring large-scale surface deformation using satellite radar data is crucial for advancing regional and continental-scale geodynamic observations. However, challenges arise when unifying deformation data from different tracks of the same satellite, primarily due to inconsistencies in reference baselines and variations in radar viewing angles. This study proposes an interferometric synthetic aperture radar (InSAR) deformation datum connection method with a fixed line-of-sight (LOS) direction. The method combines Bayesian inference with a Markov random field model and integrates InSAR and global navigation satellite system deformation measurements to unify deformation datums across multi-track SAR interferometric results using only a single orbit direction (ascending-only or descending-only), without requiring both ascending and descending data sets. In the simulation experiments, the root mean square error (RMSE) of the LOS displacement rate difference in the overlapping regions of adjacent-track SAR images decreased by 99%. Applying the developed methodology for InSAR observations of the 2023 Mw 7.8 Kahramanmaraş earthquake in Türkiye, the RMSE of displacement differences in the overlapping regions of adjacent tracks was reduced from 98 to 34 mm, demonstrating the effectiveness of the proposed unified datum approach. 
+            Hyperspectral image (HSI) classification is a critical area in remote sensing with broad applications in geoscience. While deep learning methods have gained popularity for HSI classification, their potential remains underexplored due to limited labeled data. To address this, we propose a scale-adaptive knowledge distillation with superpixel framework that trains deep neural networks using unlabeled samples. The proposed framework incorporates three core components: (1) scale-adaptive superpixel knowledge distillation, (2) bilateral spatial–spectral attention mechanisms, and (3) three-dimensional (3D) hyperspectral data transformation. The distillation module implements self-supervised learning through dynamically generated soft labels based on cross-dimensional similarity metrics. The workflow proceeds through three stages: Initially, spatial–spectral joint distance metrics evaluate the affinity between unlabeled superpixels and target classes. Subsequently, these measurements inform probabilistic soft label assignments for each superpixel cluster. Finally, an end-to-end trainable dense convolutional network with dual attention pathways is refined by optimizing the divergence between the adaptive label distributions and network predictions. Additionally, 3D transformations, including spectral and spatial rotations of the HSI cube, are applied to maximize the utility of labeled data. Experiments on three public HSI data sets demonstrate that the proposed method achieves competitive accuracy and efficiency compared to existing approaches. The implementation code is available at https://github.com/San-dow/Awnsome-SAKDS_HSI.
         </details>
     </div>
 </article>

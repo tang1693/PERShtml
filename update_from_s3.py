@@ -535,7 +535,7 @@ def main():
         print("   - issues.html")
         print("   - open_access_articles.html")
         print("   - member_only_articles.html")
-        print(f"   - IssuesArticles/html/{issue_key}.html")
+        print(f"   - IssuesArticles/html/{canonical_issue_key(df_research['IssueKey'].iloc[0])}.html")
 
     print("   - top_6_articles.html (最近2年，Top 6)")
     print("\n💡 下一步:")
