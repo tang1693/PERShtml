@@ -11,6 +11,7 @@ import pandas as pd
 import gdown
 import re
 from datetime import datetime
+from PIL import Image, UnidentifiedImageError
 
 DOI_PREFIX_PATTERN = re.compile(r'^(?:https?://(?:dx\.)?doi\.org/|doi\.org/|doi:)\s*', re.IGNORECASE)
 
@@ -191,6 +192,105 @@ def convert_to_csv_format(df_excel):
     return result_df
 
 
+def ensure_browser_safe_png(path):
+    """Ensure a downloaded graphical abstract is a real browser-safe PNG.
+
+    Google Drive links do not guarantee the underlying file format.  The old
+    flow saved every download as ``.png`` even when the bytes were TIFF/JPEG,
+    which can produce broken images in browsers.  Keep the stable file_id.png
+    naming, but convert the bytes to an actual PNG before publishing.
+    """
+    try:
+        with Image.open(path) as image:
+            original_format = image.format or 'UNKNOWN'
+            image.load()
+
+            if original_format == 'PNG':
+                return True, original_format, False
+
+            if image.mode in ('RGBA', 'LA') or 'transparency' in image.info:
+                converted = image.convert('RGBA')
+            else:
+                converted = image.convert('RGB')
+
+            tmp_path = f"{path}.tmp.png"
+            converted.save(tmp_path, format='PNG', optimize=True)
+            os.replace(tmp_path, path)
+            return True, original_format, True
+    except (UnidentifiedImageError, OSError, ValueError) as exc:
+        return False, str(exc), False
+
+
+def validate_browser_image_file(path):
+    """Strict local validation for images referenced by generated HTML."""
+    try:
+        with Image.open(path) as image:
+            image.load()
+            actual_format = image.format
+    except (UnidentifiedImageError, OSError, ValueError) as exc:
+        return False, f"cannot decode image: {exc}"
+
+    suffix = os.path.splitext(path)[1].lower()
+    expected = {
+        '.png': 'PNG',
+        '.jpg': 'JPEG',
+        '.jpeg': 'JPEG',
+        '.gif': 'GIF',
+        '.webp': 'WEBP',
+    }.get(suffix)
+
+    if expected and actual_format != expected:
+        return False, f"extension {suffix} but actual format is {actual_format}"
+
+    if actual_format not in {'PNG', 'JPEG', 'GIF', 'WEBP'}:
+        return False, f"unsupported browser image format: {actual_format}"
+
+    return True, actual_format
+
+
+def validate_issue_html_images(issue_key):
+    """Fail the update if generated issue HTML references broken/mismatched images."""
+    html_path = f'IssuesArticles/html/{issue_key}.html'
+    if not os.path.exists(html_path):
+        raise RuntimeError(f"Generated issue HTML not found: {html_path}")
+
+    with open(html_path, 'r', encoding='utf-8') as file:
+        html = file.read()
+
+    image_urls = re.findall(r'<img[^>]+src=["\']([^"\']+)["\']', html, flags=re.IGNORECASE)
+    checked = 0
+    failures = []
+
+    raw_prefix = 'https://raw.githubusercontent.com/tang1693/PERShtml/refs/heads/main/'
+    pages_prefix = 'https://tang1693.github.io/PERShtml/'
+
+    for src in image_urls:
+        if src.startswith(raw_prefix):
+            local_path = src[len(raw_prefix):]
+        elif src.startswith(pages_prefix):
+            local_path = src[len(pages_prefix):]
+        elif src.startswith(('http://', 'https://', 'data:')):
+            # External non-repo image; not expected for GA, but do not guess a local path.
+            continue
+        else:
+            local_path = os.path.normpath(os.path.join(os.path.dirname(html_path), src))
+
+        checked += 1
+        if not os.path.exists(local_path):
+            failures.append(f"missing file for {src} -> {local_path}")
+            continue
+
+        ok, reason = validate_browser_image_file(local_path)
+        if not ok:
+            failures.append(f"{local_path}: {reason}")
+
+    if failures:
+        details = '\n      - '.join(failures)
+        raise RuntimeError(f"Image validation failed for {issue_key}:\n      - {details}")
+
+    print(f"   ✅ 图片体检通过: {checked} 张")
+
+
 def download_ga_images(df, year, issue_no):
     """下载图形摘要图片并在 DataFrame 中添加 GA_Path
     
@@ -198,16 +298,18 @@ def download_ga_images(df, year, issue_no):
     - Excel 每一行就是一条完整记录（包括 GA_Link）
     - 下载后在**同一行**添加 GA_Path
     - 文件名用 file_id（或任意唯一名），无需匹配
-    - 生成 HTML 时，同一行的数据自然对应
+    - 下载后强制校验/转换为真正 PNG，避免 TIFF/JPEG 伪装成 .png 导致网页坏图
+    - 生成 HTML 时使用相对路径，避免 raw.githubusercontent.com 429 影响网页图片
     """
     output_dir = f'IssuesArticles/html/img/{year}/{issue_no}'
     os.makedirs(output_dir, exist_ok=True)
     
-    base_url = f"https://raw.githubusercontent.com/tang1693/PERShtml/refs/heads/main/IssuesArticles/html/img/{year}/{issue_no}"
+    base_url = f"img/{year}/{issue_no}"
     
     print(f"\n📥 下载 GA 图片到: {output_dir}")
     
     success_count = 0
+    failures = []
     for index, row in df.iterrows():
         title = row['Title']
         ga_link = row['GA_Link']
@@ -219,32 +321,61 @@ def download_ga_images(df, year, issue_no):
         # 提取 Google Drive file ID
         match = re.search(r'/d/([^/]+)/', ga_link)
         if not match:
-            print(f"   ⚠️  无法解析链接: {title[:50]}...")
+            message = f"无法解析 GA 链接: {title[:50]}..."
+            print(f"   ⚠️  {message}")
+            failures.append(message)
             continue
         
         file_id = match.group(1)
-        # 文件名就用 file_id（唯一且简单）
+        # 文件名稳定使用 file_id，但内容必须转换成真正 PNG
         filename = f"{file_id}.png"
         output_path = os.path.join(output_dir, filename)
         
         # 下载（如果不存在）
         if os.path.exists(output_path):
-            print(f"   ⏭️  {title[:50]}... (已存在)")
-            success_count += 1
+            print(f"   ⏭️  {title[:50]}... (已存在，执行格式体检)")
         else:
             try:
                 print(f"   📥 {title[:50]}...")
-                gdown.download(f"https://drive.google.com/uc?id={file_id}", output_path, quiet=True)
-                success_count += 1
+                tmp_download_path = f"{output_path}.download"
+                if os.path.exists(tmp_download_path):
+                    os.remove(tmp_download_path)
+                downloaded = gdown.download(f"https://drive.google.com/uc?id={file_id}", tmp_download_path, quiet=True)
+                if not downloaded or not os.path.exists(tmp_download_path) or os.path.getsize(tmp_download_path) == 0:
+                    message = f"下载失败或空文件: {title[:50]}..."
+                    print(f"   ❌ {message}")
+                    failures.append(message)
+                    continue
+                os.replace(tmp_download_path, output_path)
             except Exception as e:
-                print(f"   ❌ 下载失败: {str(e)}")
+                message = f"下载失败: {title[:50]}... ({e})"
+                print(f"   ❌ {message}")
+                failures.append(message)
                 continue
+
+        ok, original_format, converted = ensure_browser_safe_png(output_path)
+        if not ok:
+            message = f"图片格式无效: {title[:50]}... ({original_format})"
+            print(f"   ❌ {message}")
+            failures.append(message)
+            continue
+
+        if converted:
+            print(f"   🔁 已转换为 PNG: {title[:50]}... ({original_format} -> PNG)")
+        else:
+            print(f"   ✅ PNG 体检通过: {title[:50]}...")
+
+        success_count += 1
         
         # 关键：在同一行添加 GA_Path
         # HTML 生成时会读取同一行的所有数据，自然对应
         df.loc[index, 'GA_Path'] = f"{base_url}/{filename}"
     
-    print(f"\n✅ GA 下载: {success_count}/{len(df)}")
+    if failures:
+        details = '\n      - '.join(failures)
+        raise RuntimeError(f"GA image processing failed:\n      - {details}")
+
+    print(f"\n✅ GA 下载/体检: {success_count}/{len(df)}")
     return df
 
 def update_module_1_inpress(df_inpress):
@@ -462,10 +593,12 @@ def update_module_6_articles(df_research):
     import subprocess
     result = subprocess.run(['python3', '6_IssuesArticles/generate_article_page_v3.py'], capture_output=True, text=True)
     if result.returncode == 0:
-        issue_display = df_research['IssueKey'].iloc[0]
+        issue_display = canonical_issue_key(df_research['IssueKey'].iloc[0])
         print(f"   ✅ 已生成: IssuesArticles/html/{issue_display}.html")
+        validate_issue_html_images(issue_display)
     else:
         print(f"   ❌ HTML 生成失败: {result.stderr}")
+        raise RuntimeError(f"HTML generation failed for issue {issue_key}")
 
 def main():
     if len(sys.argv) < 2:
