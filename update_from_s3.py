@@ -64,6 +64,27 @@ def normalize_year(value):
         return text[:-2] if text.endswith('.0') else text
 
 
+def format_date(value, fmt, fallback=''):
+    """Format a pandas date-like value without crashing on blank Excel cells."""
+    if value is None or pd.isna(value):
+        return fallback
+    if hasattr(value, 'strftime'):
+        return value.strftime(fmt)
+    parsed = pd.to_datetime(value, errors='coerce')
+    if pd.isna(parsed):
+        return fallback
+    return parsed.strftime(fmt)
+
+
+def format_inpress_pages(row):
+    """In-Press rows normally show a date; undated rows stay publishable."""
+    return format_date(row.get('Date MMDDYY'), '%B %-d, %Y', fallback='In Press')
+
+
+def format_pub_date(value):
+    return format_date(value, '%B %Y', fallback='In Press')
+
+
 def canonical_issue_key(value):
     """Normalize historical IssueKey variants to strict YYYYMM."""
     if value is None or pd.isna(value):
@@ -166,7 +187,7 @@ def convert_to_csv_format(df_excel):
     
     # Pages: In-Press 用日期，Research Article 用页码（加 pp. 前缀）
     result_df['Pages'] = df_excel.apply(
-        lambda row: row['Date MMDDYY'].strftime('%B %-d, %Y')
+        lambda row: format_inpress_pages(row)
         if is_inpress_category(row['Article Category'])
         else f"pp. {row['Page Numbers']}",
         axis=1
@@ -179,7 +200,7 @@ def convert_to_csv_format(df_excel):
     result_df['Abstract'] = df_excel['Abstract']
     
     # 添加元数据
-    result_df['PubDate'] = df_excel['Date MMDDYY'].dt.strftime('%B %Y')
+    result_df['PubDate'] = df_excel['Date MMDDYY'].apply(format_pub_date)
     years = df_excel['Date MMDDYY'].apply(normalize_year)
     issues = df_excel['Issue Number'].apply(normalize_issue)
     result_df['Year'] = years

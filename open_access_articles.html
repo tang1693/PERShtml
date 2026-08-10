@@ -4,37 +4,17 @@
         
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00112R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Semantic Change Detection with Constrained Dual-Head Convolutional Neural Network Architecture for Oil/Gas Well Site Monitoring
+        <a href="https://doi.org/10.14358/PERS.25-00146R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Localized Brightness–Shape–Moisture Soil Parameterization for Improved PROSAIL-5 Canopy Simulation
         </a>
     </h3>
-    <div style="font-style: italic;">July 2026, pp. 647-658</div>
-    <div>Authors: Xu, Hongzhang; He, Hongjie; Zhang, Ying; Zhang, Dedong; Li, Jonathan;</div>
+    <div style="font-style: italic;">August 2026, pp. 739–745</div>
+    <div>Authors: Bonnet, Wessel; Cho, Moses Azong; Chirwa, Paxie W.; Masemola, Cecilia;</div>
     <div>
         Abstract: 
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
-            High-resolution mapping of land disturbance and reclamation is important for assessing the cumulative environmental effects of oil/gas production. The growing availability of high-resolution satellite imagery, combined with recent advances in deep learning, offers a desirable solution for detecting land surface changes on disturbed land. In this study, we constructed the Alberta oil/gas wells semantic change detection (SCD) data set in Alberta, Canada, based on high-resolution satellite imagery from WorldView-2 and SPOT-6. The data set consists of 328 pairs of bitemporal images (512 × 512 pixels at 1.5-m resolution), along with corresponding semantic change maps, binary change maps, and land cover maps. In addition, we proposed a constrained dual-head convolutional neural network (CNN) framework that jointly learns semantic change and binary change tasks. Specifically, two segmentation heads are designed—one for semantic changes and one for binary changes—and are explicitly connected through a cosine similarity loss that enforces consistency between the two tasks. Taking High-Resolution Net (HRNet)-v2 as the backbone, our model was pretrained on the large-scale SEmantic Change detectiON Data Set (SECOND) and fine-tuned on our developed data set. Comparative experiments with BiSRNet, HGINet, and SCanNet demonstrate that our approach achieves superior performance, with the highest mean intersection over union (mIoU) (79.47%) and separated Kappa (SeK) (28.40%) after fine-tuning. Incorporating land cover maps as additional supervision further boosts results, with our approach reaching an mIoU of 80.05% and a SeK of 29.71%. These findings highlight the effectiveness of the proposed constrained dual-head CNN architecture and the benefit of leveraging land cover information for advancing SCD in remote sensing.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-        
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00133R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Toward Automatic Vector Extraction from Scanned Historical Aerial Photo Indexes
-        </a>
-    </h3>
-    <div style="font-style: italic;">July 2026, pp. 621-635</div>
-    <div>Authors: Malek, Salim; Farella, Elisa Mariarosaria; Perda, Giulio; Cantoro, Gianluca; Remondino, Fabio;</div>
-    <div>
-        Abstract: 
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            National archives worldwide have recently dedicated significant efforts to preserve fragile historical collections (e.g., maps, documents, photographs) through scanning and digitization. Advancements in digital technologies have opened new opportunities for processing and accessing these materials; however, as these collections grow, significant challenges arise in efficiently managing, linking, and using vast volumes of digital data. This paper addresses the challenge imposed by the digital transformation of vast archive collections, with a focus on scanned materials preserved in historical photographic and mapping archives and intended for the creation of digital databases and online catalogues. This study targets the semi-automatic vectorization of aerial photo indexes (APIs), often referred to as finding aids for aerial reconnaissance sorties (i.e., maps on which aerial photo footprints [each corresponding to a historical aerial photo] from different surveying flight missions were manually drawn onto base topographic maps). Aerial images were captured during the 20th century for military, reconnaissance, and mapping purposes, and their footprints were then manually transposed onto reference maps. Currently, archives and mapping institutions managing creating digital databases and catalogues are manually addressing a demanding and time-consuming vectorization task, and automated solutions are highly needed. This contribution proposes a novel and comprehensive semi-automatic vectorization pipeline that leverages and integrates computer vision techniques and uses deep learning and computational geometry for detecting, isolating, and polygonizing aerial image footprints in APIs. The methodology is applied to a large collection of APIs scanned by the Italian National Historical AirPhoto Archive at the Italian National Institute for Cataloguing and Documentation of the Ministry of Culture and will be added to the online database and WebGIS catalogue recently set up to disseminate copies of historical aerial photographs.
+            The mapping and modeling of canopies is important for the understanding, monitoring, and management of vegetation systems. To effectively model or simulate canopy spectra at the hyperspectral level, background soil spectra must first be simulated accurately. Spectrometer data simulation such as this will become increasingly relevant as newer imaging spectroscopy missions such as PRISMA and AVIRIS-NG start to produce more data sets. In this study, the brightness–shape–moisture (BSM) radiative transfer model (RTM) with localized parameter distributions was used in conjunction with the PROSAIL-5 RTM to simulate canopy spectra for different biomes in the semiarid regions of Southern Africa as captured with PRISMA or AVIRIS-NG sensors. It is hypothesized that a PROSAIL-5 RTM with biome-specific BSM parameters can more accurately simulate PRISMA and AVIRIS-NG spectra than a PROSAIL-5 model simulated with the default soil spectrum, as represented by lower relative root mean square error (RRMSE) values against actual spectra. It is demonstrated that the PRISMA and AVIRIS-NG canopy spectra are more effectively simulated using their respective biome-specific BSM parameter regimes, with RRMSE improvements from 14.56% to 13.91% and from 13.64% to 10.71% for two tested images captured with these sensors.
         </details>
     </div>
 </article>
@@ -75,6 +55,66 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Accurate building height information is used for numerous urban applications, including infrastructure modeling, disaster risk assessment, and energy demand estimation. The U.S. Geological Survey collects airborne lidar data to support the three-dimensional elevation program (3DEP). The high point density and vertical accuracy of the lidar point clouds are optimal for 3D mapping. Few studies have systematically evaluated building height extraction from 3DEP lidar point clouds in urban areas. This study assesses the accuracy and consistency of building height estimates from two publicly available data sets by comparing them to the 3DEP lidar data. The public building height data sets are USA Structures and Microsoft Global Building Footprints (GBF), and they are evaluated across two contrasting urban sites. Building heights from USA Structures are also lidar-derived, whereas GBF estimates are based on stereo matching of optical imagery. Building heights from 3DEP were extracted by classifying lidar points using a deep learning model, isolating roof and ground returns, and computing the height as the median elevation difference between the roof and surrounding ground points. For both sites, 3DEP lidar-derived heights show strong agreement with USA Structures (R² = 0.87 and 0.86; MAE = 1.8 and 2.2 m), confirming the internal consistency and reliability of lidar-derived measurements. In contrast, comparisons with GBF height estimates reveal significantly lower correlations (R² = 0.54 and 0.60; MAE = 2.5 and 3.1 m), highlighting the limitations of imagery-based height reconstruction, particularly in dense or heterogeneous urban environments. These findings indicate that lidar can be used as an accurate source for vertical structure characterization and underscore the benefits of improved integration and bias correction when using imagery-derived building heights. The results provide support for hybrid approaches that combine the broad spatial coverage of optical data sets with the accuracy of lidar for scalable 3D urban mapping.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00133R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Toward Automatic Vector Extraction from Scanned Historical Aerial Photo Indexes
+        </a>
+    </h3>
+    <div style="font-style: italic;">July 2026, pp. 621-635</div>
+    <div>Authors: Malek, Salim; Farella, Elisa Mariarosaria; Perda, Giulio; Cantoro, Gianluca; Remondino, Fabio;</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            National archives worldwide have recently dedicated significant efforts to preserve fragile historical collections (e.g., maps, documents, photographs) through scanning and digitization. Advancements in digital technologies have opened new opportunities for processing and accessing these materials; however, as these collections grow, significant challenges arise in efficiently managing, linking, and using vast volumes of digital data. This paper addresses the challenge imposed by the digital transformation of vast archive collections, with a focus on scanned materials preserved in historical photographic and mapping archives and intended for the creation of digital databases and online catalogues. This study targets the semi-automatic vectorization of aerial photo indexes (APIs), often referred to as finding aids for aerial reconnaissance sorties (i.e., maps on which aerial photo footprints [each corresponding to a historical aerial photo] from different surveying flight missions were manually drawn onto base topographic maps). Aerial images were captured during the 20th century for military, reconnaissance, and mapping purposes, and their footprints were then manually transposed onto reference maps. Currently, archives and mapping institutions managing creating digital databases and catalogues are manually addressing a demanding and time-consuming vectorization task, and automated solutions are highly needed. This contribution proposes a novel and comprehensive semi-automatic vectorization pipeline that leverages and integrates computer vision techniques and uses deep learning and computational geometry for detecting, isolating, and polygonizing aerial image footprints in APIs. The methodology is applied to a large collection of APIs scanned by the Italian National Historical AirPhoto Archive at the Italian National Institute for Cataloguing and Documentation of the Ministry of Culture and will be added to the online database and WebGIS catalogue recently set up to disseminate copies of historical aerial photographs.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00112R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Semantic Change Detection with Constrained Dual-Head Convolutional Neural Network Architecture for Oil/Gas Well Site Monitoring
+        </a>
+    </h3>
+    <div style="font-style: italic;">July 2026, pp. 647-658</div>
+    <div>Authors: Xu, Hongzhang; He, Hongjie; Zhang, Ying; Zhang, Dedong; Li, Jonathan;</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            High-resolution mapping of land disturbance and reclamation is important for assessing the cumulative environmental effects of oil/gas production. The growing availability of high-resolution satellite imagery, combined with recent advances in deep learning, offers a desirable solution for detecting land surface changes on disturbed land. In this study, we constructed the Alberta oil/gas wells semantic change detection (SCD) data set in Alberta, Canada, based on high-resolution satellite imagery from WorldView-2 and SPOT-6. The data set consists of 328 pairs of bitemporal images (512 × 512 pixels at 1.5-m resolution), along with corresponding semantic change maps, binary change maps, and land cover maps. In addition, we proposed a constrained dual-head convolutional neural network (CNN) framework that jointly learns semantic change and binary change tasks. Specifically, two segmentation heads are designed—one for semantic changes and one for binary changes—and are explicitly connected through a cosine similarity loss that enforces consistency between the two tasks. Taking High-Resolution Net (HRNet)-v2 as the backbone, our model was pretrained on the large-scale SEmantic Change detectiON Data Set (SECOND) and fine-tuned on our developed data set. Comparative experiments with BiSRNet, HGINet, and SCanNet demonstrate that our approach achieves superior performance, with the highest mean intersection over union (mIoU) (79.47%) and separated Kappa (SeK) (28.40%) after fine-tuning. Incorporating land cover maps as additional supervision further boosts results, with our approach reaching an mIoU of 80.05% and a SeK of 29.71%. These findings highlight the effectiveness of the proposed constrained dual-head CNN architecture and the benefit of leveraging land cover information for advancing SCD in remote sensing.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00124R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            A Lightweight Universal Reranking-based Optimizer for Robust Lidar Place Recognition
+        </a>
+    </h3>
+    <div style="font-style: italic;">June 2026, pp. 511-520</div>
+    <div>Authors: Zhang, Dingyin; Zhang, Zhenghua; Xu, Zhihua; Liu, Hu; Dong, Jiaqi; Shu, Mingcong; Chen, Guoliang</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Lidar place recognition (LPR) is a cornerstone of robust localization for autonomous systems. However, existing methods relying on fixed-length global descriptors are vulnerable to challenging conditions like rotational shifts and long-term environmental changes. While reranking-based optimizers have been introduced to refine initial localization candidates, they are fundamentally constrained by operating on small, fixed-size candidate pools. This design becomes a critical bottleneck when the correct match is initially ranked too low by the descriptor to be included in this limited pool, rendering the reranking process ineffective. To address this bottleneck, we propose LPR-Mate, a lightweight and universal reranking-based optimizer. LPR-Mate introduces two key innovations. First, a dynamic trigger mechanism proactively restructures the candidate pool by using rapid geometric evaluation to identify and promote high-quality candidates from a wider search space, thus preventing the premature exclusion of true matches. Second, a dedicated reranking network uses a gated fusion mechanism to adaptively weigh and combine multi-level information—including local features, global descriptors, and spatial compatibility scores—for precise verification. Extensive experiments demonstrate that LPR-Mate boosts the average Recall@1 of baseline methods by 39.56% under perturbations and verifies the ground-truth match with over 97% recall, effectively correcting their initial localization errors. As a universal plug-and-play module, LPR-Mate seamlessly enhances diverse LPR architectures without retraining, ensuring both efficiency and robustness.
         </details>
     </div>
 </article>
@@ -164,26 +204,6 @@
         
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00124R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            A Lightweight Universal Reranking-based Optimizer for Robust Lidar Place Recognition
-        </a>
-    </h3>
-    <div style="font-style: italic;">June 2026, pp. 511-520</div>
-    <div>Authors: Zhang, Dingyin; Zhang, Zhenghua; Xu, Zhihua; Liu, Hu; Dong, Jiaqi; Shu, Mingcong; Chen, Guoliang</div>
-    <div>
-        Abstract: 
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Lidar place recognition (LPR) is a cornerstone of robust localization for autonomous systems. However, existing methods relying on fixed-length global descriptors are vulnerable to challenging conditions like rotational shifts and long-term environmental changes. While reranking-based optimizers have been introduced to refine initial localization candidates, they are fundamentally constrained by operating on small, fixed-size candidate pools. This design becomes a critical bottleneck when the correct match is initially ranked too low by the descriptor to be included in this limited pool, rendering the reranking process ineffective. To address this bottleneck, we propose LPR-Mate, a lightweight and universal reranking-based optimizer. LPR-Mate introduces two key innovations. First, a dynamic trigger mechanism proactively restructures the candidate pool by using rapid geometric evaluation to identify and promote high-quality candidates from a wider search space, thus preventing the premature exclusion of true matches. Second, a dedicated reranking network uses a gated fusion mechanism to adaptively weigh and combine multi-level information—including local features, global descriptors, and spatial compatibility scores—for precise verification. Extensive experiments demonstrate that LPR-Mate boosts the average Recall@1 of baseline methods by 39.56% under perturbations and verifies the ground-truth match with over 97% recall, effectively correcting their initial localization errors. As a universal plug-and-play module, LPR-Mate seamlessly enhances diverse LPR architectures without retraining, ensuring both efficiency and robustness.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-        
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00116R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Momentum-Based Perturbation Decomposition for Transferable Three-Dimensional Point-Cloud Attacks
         </a>
@@ -244,26 +264,6 @@
         
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2026/00000092/00000003/art00017;jsessionid=qf5ojetiaami.x-ic-live-03" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Urban Heat Island Studies Using Satellite Imagery Coupled with Field Measurements: A Case Study from Chattanooga, TN
-        </a>
-    </h3>
-    <div style="font-style: italic;">March 2026, pp. 247-256(10)</div>
-    <div>Authors: Hossain, Azad; Wu, Emma; Anzalone, Braxton; Hart, Jacob; Mies, Jonathan</div>
-    <div>
-        Abstract: 
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Urban and suburban areas experience elevated temperatures compared to their surrounding rural areas. This is well known as the urban heat island (UHI) effect, which is a common and an important effect of urbanization. The UHI effect is well known for the large cities around the world, and most of the recent studies were conducted there. UHI effects are less intense or less frequent in smaller urban areas compared to larger urban areas. However, this is not well understood since there is a significant lack of UHI effect studies on smaller cities. The city of Chattanooga, TN, is one of the fastest-growing cities in Tennessee. As urbanization continues in the greater Chattanooga area, it is very important to understand the possible UHI effect on sustainable development efforts in this area. Remote sensing technology has been used successfully to study the UHI effect for many large cities in the United States and the rest of the world. Using thermal images acquired by NASA’s Landsat‐8 satellite during the summers of 2018 and 2019, a recent study conducted in the Geological and Environmental Remote Sensing Laboratory at the University of Tennessee at Chattanooga found that the city of Chattanooga behaves like an UHI, and its effect is significant. Recently, we installed eight temperature-measuring stations across the city of Chattanooga, TN, to acquire air temperature at a 2‐m height from the ground. We have been acquiring temperature data every 10 min since March 2023. This study incorporated ground measured air temperature with the ongoing remote sensing-based study to better understand the UHI effect. The obtained results confirmed that the city of Chattanooga, TN, indeed behaves like an UHI. Both satellite-derived land surface temperature and direct air temperature measurements clearly captured the UHI effect, and their UHI profiles were comparable, with root mean square error values ranging from 5.0 to 7.5°F for different dates and 2.2 to 7.7°F for each station. While thermal images are particularly useful for mapping the spatial variation of UHI effects, air temperature measurements provide the advantage of capturing temporal variations throughout the day.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-        
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2026/00000092/00000003/art00015;jsessionid=qf5ojetiaami.x-ic-live-03" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Detecting Altimetric Changes in Arctic Landscapes Using Historical Aerial Imagery-Derived Digital Elevation Models (hDEMs): Case Study of the Black Mountain Alluvial Fan Complex, Canada
         </a>
@@ -304,6 +304,26 @@
         
     </div>
     <h3 style="margin: 5px 0;">
+        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2026/00000092/00000003/art00017;jsessionid=qf5ojetiaami.x-ic-live-03" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Urban Heat Island Studies Using Satellite Imagery Coupled with Field Measurements: A Case Study from Chattanooga, TN
+        </a>
+    </h3>
+    <div style="font-style: italic;">March 2026, pp. 247-256(10)</div>
+    <div>Authors: Hossain, Azad; Wu, Emma; Anzalone, Braxton; Hart, Jacob; Mies, Jonathan</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Urban and suburban areas experience elevated temperatures compared to their surrounding rural areas. This is well known as the urban heat island (UHI) effect, which is a common and an important effect of urbanization. The UHI effect is well known for the large cities around the world, and most of the recent studies were conducted there. UHI effects are less intense or less frequent in smaller urban areas compared to larger urban areas. However, this is not well understood since there is a significant lack of UHI effect studies on smaller cities. The city of Chattanooga, TN, is one of the fastest-growing cities in Tennessee. As urbanization continues in the greater Chattanooga area, it is very important to understand the possible UHI effect on sustainable development efforts in this area. Remote sensing technology has been used successfully to study the UHI effect for many large cities in the United States and the rest of the world. Using thermal images acquired by NASA’s Landsat‐8 satellite during the summers of 2018 and 2019, a recent study conducted in the Geological and Environmental Remote Sensing Laboratory at the University of Tennessee at Chattanooga found that the city of Chattanooga behaves like an UHI, and its effect is significant. Recently, we installed eight temperature-measuring stations across the city of Chattanooga, TN, to acquire air temperature at a 2‐m height from the ground. We have been acquiring temperature data every 10 min since March 2023. This study incorporated ground measured air temperature with the ongoing remote sensing-based study to better understand the UHI effect. The obtained results confirmed that the city of Chattanooga, TN, indeed behaves like an UHI. Both satellite-derived land surface temperature and direct air temperature measurements clearly captured the UHI effect, and their UHI profiles were comparable, with root mean square error values ranging from 5.0 to 7.5°F for different dates and 2.2 to 7.7°F for each station. While thermal images are particularly useful for mapping the spatial variation of UHI effects, air temperature measurements provide the advantage of capturing temporal variations throughout the day.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
         <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2026/00000092/00000003/art00009;jsessionid=qf5ojetiaami.x-ic-live-03" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Integration of Near-Proximal and Proximal Lidar Sensing for Fine-Resolution Forest Inventory
         </a>
@@ -315,46 +335,6 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Near-proximal and proximal light detection and ranging (lidar) systems are increasingly used for high-resolution forest inventory. Near-proximal lidar systems, such as those onboard uncrewed aerial vehicles (UAVs), offer high absolute positional accuracy due to continuous global navigation satellite system (GNSS) signal accessibility. Proximal lidar systems, such as backpack-based mobile mapping, excel at capturing detailed under-canopy information, including forest floor, tree trunks, and debris. However, each system has limitations when used alone. UAV lidar encounters challenges in under-canopy data collection due to occlusions and longer sensor-to-object distance, while proximal lidar faces GNSS signal outages and incomplete top canopy scanning in dense forest areas. This study proposes an approach to integrate near-proximal (UAV) and proximal (backpack) lidar data for fine-resolution forest inventory. Specifically, a framework is presented for integrating both data sources to improve the trajectory of the backpack system and establish an inventory pipeline for individual tree detection/localization, height, and diameter at breast height (DBH) estimation. The experimental results show great potential in generating high-quality, georeferenced point clouds across northern red oak plantation and coniferous forest scenarios. For northern red oak plantation inventory, the proposed pipeline achieved a 100% F1 score in tree detection and stem mapping using integrated lidar data, with root mean square errors (RMSE s) of 3 cm and 2 m for DBH and tree height estimation, respectively, when compared to field measurements. For the mixed coniferous forest inventory, due to the lack of field reference, the integrated UAV and backpack data set have been used to manually count the trees and establish their heights. The pipeline results are compared with those derived manually. The results show that UAV data have the lowest tree-detection accuracy, with an 81.06% F1 score, while proximal and integrated data excel in stem mapping, with a 91.92% F1 score. For the estimated height results, the near-proximal and integrated data have an RMSE value of almost 1.8 m, while the backpack has an RMSE value of 2.25 m. These results demonstrate the advantage of near-proximal/proximal data integration for best evaluation of tree detection, localization, and DBH/height estimation.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-        
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2026/00000092/00000002/art00017;jsessionid=a3wsiwb38p4q.x-ic-live-01" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Accuracy Evaluation of Airborne and Terrestrial Point Cloud Registration
-        </a>
-    </h3>
-    <div style="font-style: italic;">February 2026, pp. 155-166(12)</div>
-    <div>Authors: Arastounia, Mostafa</div>
-    <div>
-        Abstract: 
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Terrestrial laser scanners (TLS) and drones have revolutionized mapping in recent years. However, neither can fully cover large sites since scanners miss objects’ topmost parts and drones fail to capture objects’ vertical elements. Therefore, there is a need to integrate their data to provide complete coverage of sites. This study aims to inspect the accuracy of combining such terrestrial and airborne point clouds. To this end, data of three sites were collected using a TLS and a drone and processed separately. Airborne data were georeferenced using ground control points, but terrestrial data were not georeferenced intentionally so that it could be scaled, shifted, and rotated freely in 3D space to fit the airborne data more closely. Then, nonlinear least squares adjustment was applied for this coordinate transformation, and the results were assessed both visually and quantitatively. No major gap or misalignment between two data types could be visually identified after integration. For quantitative analysis, the root mean square error (RMSE), the change in flatness and orientation of some areas after data integration were computed. The results indicate the maximum RMSE, flatness, and orientation change were 0.037 m, 0.01 m, and 37 arcminutes, respectively, suggesting that integration error was within the allowable tolerance. Statistical significance testing was also applied to the obtained results indicating, with a 99% significance level, that the average flatness did not change after data integration, and the average orientation change was less than 15 arcminutes for all test areas.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-        
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://www.ingentaconnect.com/contentone/asprs/pers/2026/00000092/00000002/art00002;jsessionid=a3wsiwb38p4q.x-ic-live-01" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Mapping the Future: Critical Geospatial Trends for 2026
-        </a>
-    </h3>
-    <div style="font-style: italic;">February 2026, pp. 87-90(4)</div>
-    <div>Authors: Abdullah, Qassim</div>
-    <div>
-        Abstract: 
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            The geospatial mapping sector is experiencing a period of significant technological evolution, propelled by breakthroughs in advanced sensors, sophisticated processing software, increased automation, and the widespread integration of artificial intelligence. And what’s most interesting is that the biggest breakthroughs are not loud revolutions ‐ they’re quiet, steady advances reshaping how we map, measure, and understand the world.
         </details>
     </div>
 </article>
