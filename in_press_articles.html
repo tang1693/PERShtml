@@ -3,6 +3,39 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00064R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            SSSG-YOLO: Spatial–Spectral Synergistic and Sparse Global-Aware Network for Remote Sensing Object Detection
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 20, 2026</div>
+    <div>Authors: Chen, Yan; Wang, Jinhong; Wang, Xiaofeng; Xu, Hao; Zhang, Chen; Xu, Lixiang</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Remote sensing object detection (RSOD) remains highly challenging due to large variations in object scale, dense distributions of tiny targets, spectral similarity between targets and complex land-cover backgrounds, cross-domain heterogeneous noise interference, and blurred object boundaries. To address these issues, this paper proposes spatial–spectral synergistic and sparse global-aware (SSSG)–YOLO, a novel RSOD framework built upon spatio-spectral collaboration and sparse global perception. Specifically, a four-scale detection head is constructed to retain high-resolution shallow features, thereby alleviating the loss of tiny-object information during downsampling. To mitigate aliasing in feature fusion, an adaptive spatio-spectral synergizer is designed to dynamically align the spatial and spectral information of multi-scale features via frequency-domain decoupling. Furthermore, to compensate for insufficient deep semantic modeling, a sparse global context module, namely C3TR–blockwise random sparse attention, is introduced to capture long-range dependencies while reducing computational redundancy. In addition, a hierarchical dual-path attention (HDPA) module is deployed at the end of the neck, immediately preceding the detection head, to refine the fused multi-scale features. Through cascaded enhancement, HDPA improves the saliency of low-contrast targets and suppresses background noise, providing the detection head with high signal-to-noise ratio input features. Extensive experiments on three public data sets, namely RSOD, DIOR, and VisDrone-DET2019, demonstrate the effectiveness of the proposed method. SSSG-YOLO achieves mean average precision scores of 96.1%, 89.8%, and 39.0% on the RSOD, DIOR, and VisDrone-DET2019 data sets, respectively.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <div style="font-style: italic;">Avaliable online: August 19, 2026</div>
+    <div>Authors: Song, Shuang; Kim, Jiyong; Qin, Rongjun</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            High-resolution satellite imagery demands three-dimensional (3D) reconstruction methods that deliver both speed and geometric accuracy. Recent adaptations of 3D Gaussian splatting (3DGS) to satellite imagery demonstrate strong efficiency, but reconstruction quality often degrades under diverse illumination across multi-date, high-altitude acquisitions (with small intersection angles), limiting applicability to remote sensing and vision tasks. We present SatSplat, the first framework to adapt 2D Gaussian splatting (2DGS) to satellite photogrammetry, with online camera adjustment. We approximated satellite cameras with an affine model and learned a minimal delta parameterization for in-splat camera refinement from dense observations. The formulation was implemented with a 2DGS scene representation. To handle time-varying shadows and illumination changes, we integrated geometric shadow mapping and per-camera color correction during training. Across the evaluated DFC2019 and IARPA2016 benchmark sites, SatSplat achieved strong geometric accuracy while significantly outperforming prior 3DGS-based baselines. On our processed DFC2019 benchmark, SatSplat reduced mean absolute error by 11.93% and peak video memory by 31% relative to the previous state of the art. Our approach enabled large-scale digital surface modeling with practical computational efficiency. The project page is available at https://gdaosu.github.io/satsplat.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00048R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Neighborhood Geometry–Guided Prototype Contrastive Adaptation for Cross-Domain Remote Sensing Scene Classification
         </a>
@@ -79,25 +112,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00202R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            FastPro-Gaussian: Accelerated True Digital Orthophoto Map Generation with Progressive Densification and Spherical-to-Ellipsoidal Gaussian Transformation
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: August 3, 2026</div>
-    <div>Authors: Cui, Yichen; Shen, Hong; Lam, Chan-Tong;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            True digital orthophoto maps (TDOMs) serve as foundational geospatial products for applications in land surveying, urban planning, and emergency management. Conventional TDOM generation relies on differential correction, often resulting in cartographic artifacts such as geometric discontinuities, radiometric inconsistencies, and linear feature misalignments. Although recent methods leverage 3D Gaussian splatting to bypass differential correction, their computational demands hinder real-world deployment. To address these limitations, we propose FastPro-Gaussian, a novel framework enabling rapid high-quality TDOM generation on consumer-grade GPUs. Our contributions are threefold: block-based processing ensuring scalability for large-scale scenes; progressive densification stabilizing model optimization and reducing training iterations; and spherical-to-ellipsoidal Gaussian transformation, accelerating early-stage optimization of structural features (e.g., building edges). Experiments demonstrate that FastPro-Gaussian surpasses commercial solutions (ContextCapture, Metashape, and Pix4Dmapper) in rendering quality for building facades, edges, and roads. Compared to state-of-the-art methods, it achieves comparable TDOM fidelity with over two-fold acceleration in training time (notably more than two times faster than Tortho-GS). These gains in efficiency and efficacy confirm its strong potential for practical deployment in geospatial production pipelines.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00163R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             ELFFNet: An Efficient Lightweight Feature Fusion Network for Change Detection
         </a>
@@ -109,6 +123,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Remote sensing change detection is essential for land use planning, urban monitoring, and disaster response. However, conventional deep learning methods often suffer from blurred building and vegetation edges, shadow misclassification, and low efficiency due to excessive complexity. To address these issues, we propose ELFFNet, a lightweight and efficient network that achieves high detection accuracy with reduced computational cost. ELFFNet integrates Asymmetric Dilated Convolution Modules for deep semantic extraction, Multi Efficient Attention Modules between encoder and decoder to retain fine spatial details, and a simplified Pyramid Pooling Module at the deepest stage for low-cost global context aggregation. Experiments on the GVLM-CD and WHU-CD data sets show superior performance, with Kappa coefficients of 82.86% and 94.48%, F1 scores of 91.72% and 95.24%, and mean intersection over union values of 84.96% and 94.73%. Importantly, ELFFNet requires a parameter size of 7.31 MB and 22.6 giga floating-point operations [GFLOPs])—far fewer than Transformer-based models—while delivering strong edge detection for small targets and complex disaster areas. This balance of accuracy and efficiency makes ELFFNet highly suitable for practical remote sensing applications.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00202R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            FastPro-Gaussian: Accelerated True Digital Orthophoto Map Generation with Progressive Densification and Spherical-to-Ellipsoidal Gaussian Transformation
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 3, 2026</div>
+    <div>Authors: Cui, Yichen; Shen, Hong; Lam, Chan-Tong;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            True digital orthophoto maps (TDOMs) serve as foundational geospatial products for applications in land surveying, urban planning, and emergency management. Conventional TDOM generation relies on differential correction, often resulting in cartographic artifacts such as geometric discontinuities, radiometric inconsistencies, and linear feature misalignments. Although recent methods leverage 3D Gaussian splatting to bypass differential correction, their computational demands hinder real-world deployment. To address these limitations, we propose FastPro-Gaussian, a novel framework enabling rapid high-quality TDOM generation on consumer-grade GPUs. Our contributions are threefold: block-based processing ensuring scalability for large-scale scenes; progressive densification stabilizing model optimization and reducing training iterations; and spherical-to-ellipsoidal Gaussian transformation, accelerating early-stage optimization of structural features (e.g., building edges). Experiments demonstrate that FastPro-Gaussian surpasses commercial solutions (ContextCapture, Metashape, and Pix4Dmapper) in rendering quality for building facades, edges, and roads. Compared to state-of-the-art methods, it achieves comparable TDOM fidelity with over two-fold acceleration in training time (notably more than two times faster than Tortho-GS). These gains in efficiency and efficacy confirm its strong potential for practical deployment in geospatial production pipelines.
         </details>
     </div>
 </article>
