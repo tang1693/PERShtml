@@ -3,6 +3,82 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00039R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Robust Simultaneous Localization and Mapping in Non-Gaussian Environments Using Gaussian-Manifold–Projected Structure–Spectrum Regularized Cubature Kalman Filter
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 27, 2026</div>
+    <div>Authors: Xu, Hanghang; Li, Kemeng; Zhang, Hongli; Wang, Yinggang; Chen, Yijin</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            To address the challenges of non-Gaussian process disturbances, observation contamination, and numerical degeneration of high-dimensional covariance matrices in outdoor large-scale mobile mapping and simultaneous localization and mapping (SLAM), this paper proposes a Gaussian-manifold–based structure–spectrum dual-domain regularized cubature Kalman filter, termed GM-SSDRCKF-SLAM. From an information-geometric perspective, the local approximation of the non-Gaussian posterior is formulated as a Kullback–Leibler divergence minimizing projection onto a statistical manifold. On this basis, a geometrically consistent recursive estimation framework is established by combining the tangent-space pose error modeling on the planar pose manifold. In the prediction stage, Student’s t–based local Gaussianization and L-curve–guided truncated singular value stabilization are introduced to mitigate the effects of heavy-tailed process noise and covariance spectral degeneration. In the observation stage, the Akaike Information Criterion and Bayesian Information Criterion–guided adaptive feature-landmark selection together with Student’s t robust weighting is used to jointly suppress abnormal measurements, weakly informative features, and redundant state expansion. Comparative experiments under multiple non-Gaussian noise settings are conducted on both a classical simulation environment and the Victoria Park real data set. Under severe observation contamination, GM-SSDRCKF reduces position root mean square error (RMSE) by 86.2% and 52.1% and orientation RMSE by 90.3% and 72.7%, relative to CKF-SLAM and Student’s t CKF-SLAM, respectively. Under coupled non-Gaussian disturbances, the corresponding reductions are 81.7% and 49.3% in position RMSE and 88.5% and 72.7% in orientation RMSE. In the real-world Victoria Park experiments, additional comparisons with invariant EKF-SLAM and robust GraphSLAM further demonstrate the advantage of the proposed method. Averaged over two real-data cases, GM-SSDRCKF reduces position RMSE by 85.3%, 68.2%, 70.1%, and 47.0% relative to CKF-SLAM, Student’s t CKF-SLAM, invariant EKF-SLAM, and robust GraphSLAM, respectively. The proposed method also yields shorter localization-error tails, more consistent normalized average estimation error squared behavior, and more stable covariance spectra. These results demonstrate that reliable SLAM in complex non-Gaussian environments requires the coordinated treatment of posterior approximation, geometric consistency, state-structure regulation, and covariance spectral stabilization.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00063R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Cross-view Localization and Synthesis: Data Sets, Challenges, and Opportunities
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 27, 2026</div>
+    <div>Authors: Xu, Ningli; Liu, Hanyang; Qin, Rongjun;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Cross-view localization and cross-view synthesis are commonly organized as separate retrieval and generation problems, although both integrate overhead imagery and ground-level visual evidence for navigation, mapping, digital twins, and immersive scene generation. This survey adopts a unified view in which both tasks are treated as instances of cross-view transfer. Their objectives differ, yet both are shaped by coupled viewpoint, scale, temporal, visibility, and sensor-domain gaps between near-nadir and ground-level observations. The survey formulates the intermediate transfer operation as the view-transformation primitive T, a cross-view transformation stage before task-specific retrieval or generation modules. In localization, T supports descriptor construction and pose-aware matching. In synthesis, it converts source observations, pose cues, layouts, geographic context, or scene supports into conditioning representations for generation. The resulting taxonomy organizes localization by the interaction between transformation and backbone and synthesis by the coupling among generation engine, conditioning representation, geographic objective, and rendering mechanism. The review further examines data sets, objectives, metrics, and protocols, linking empirical conclusions to geographic coverage, sampling density, pose metadata, sequence continuity, and metric design. Across both tasks, the analysis identifies trade-offs among geometric explicitness, scalability, data demand, generalization, photorealism, and geographic fidelity and isolates common failure modes caused by incomplete geometry, temporal drift, scale mismatch, and weak static-scene evidence. The resulting analysis motivates deployment-scale retrieval, continuous pose estimation, temporally aware supervision, multi-view consistent synthesis, geographic identity preservation, and unified discriminative-generative representations.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00042R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            VLGS-SLAM: Visual–Lidar Three-Dimensional Gaussian Splatting Simultaneous Localization and Mapping
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 27, 2026</div>
+    <div>Authors: Tu, Diantao; Ma, Wenjuan; Shen, Shuhan;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Recent studies highlight the effectiveness of 3D Gaussian splatting (3DGS) in visual simultaneous localization and mapping (SLAM) systems, which work well indoors but struggle in large-scale outdoor environments. Typically, lidar data are used to address this issue; however, current multi-modal SLAM systems use 3DGS mainly for mapping, leaving its potential to enhance tracking unexplored. In this paper, we present VLGS-SLAM, a novel visual–lidar SLAM pipeline that leverages lidar data and 3DGS for both pose estimation and mapping. Our approach integrates lidar points as 3D Gaussian primitives, ensuring precise scene geometry and reducing pose estimation errors caused by floating Gaussians. To enhance tracking performance, we apply regularization to Gaussian scaling, which constrains the shape of each Gaussian ellipsoid. For loop closure, we combine image similarity with lidar cloud distance to effectively detect and close loops. Our experiments demonstrate that VLGS-SLAM achieves state-of-the-art accuracy in the 3DGS-based SLAM field, outperforming many traditional SLAM algorithms
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00037R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Satellite-Based Framework for Detecting Seabed Dynamics from Shoreline Variability along Spit Coasts—A Pilot Study from the Hel Peninsula
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 21, 2026</div>
+    <div>Authors: Sapiega, Patryk; Zalewska, Tamara</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            This study presents a pilot, data-driven framework for detecting nearshore seabed dynamics based on shoreline variability derived from high-resolution satellite imagery, integrated with in situ bathymetric measurements along the Hel Peninsula in the southern Baltic Sea. The approach focuses on assessing whether satellite-derived shoreline displacement can serve as an indirect indicator of changes in seabed morphology within the sedimentologically active coastal zone. Four cross-shore transects were analyzed using Pléiades satellite imagery and field bathymetric data collected during two monitoring campaigns conducted in 2019 and 2022. Changes in seabed elevation were quantified through cross-sectional profile analysis, while key morphodynamic parameters, including closure depth and the length of the active seabed, were estimated using empirical formulations proposed by Hallermeier, Birkemeier, and Houston. To provide hydrodynamic context, wave and current conditions were characterized using Copernicus Marine Service reanalysis data. The results reveal pronounced spatial variability in seabed response along the Hel Peninsula, with erosion-dominated conditions in high-energy open-coast sectors and limited morphological change in semienclosed, low-energy environments. Among the tested formulations, Birkemeier’s equation showed the closest agreement with field-derived closure depths, while all empirical models systematically overestimated closure depth in low-energy settings. The findings demonstrate the potential of satellite-based shoreline observations as a supporting tool for coastal morphodynamic assessment while highlighting the limitations imposed by measurement uncertainty, short observation windows, and simplified process representation. Overall, the proposed framework should be regarded as a proof-of-concept application requiring longer observational time series, improved uncertainty quantification, and local calibration before operational implementation can be considered
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00046R5" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Uncertainty-Aware Weakly Supervised Building Change Detection with Point Annotations
         </a>
@@ -74,25 +150,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.26-00035R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Analytical Estimate of Digital Elevation Model Accuracy (Mean Square Error) as a Function of Cell Size and Dataset Elevation Error
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: August 7, 2026</div>
-    <div>Authors: López-Vázquez, Carlos</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Modern digital elevation models (DEMs) are generated with increasingly small cell sizes and high accuracy, yet no closed-form relationship links these variables. Previous work relied on empirical formulations validated experimentally. This paper derives an analytical relationship for the traditional elevation mean square error (MSE) accuracy metric and highlights limitations of empirical approaches. Common practice wrongly dismisses the effect of the choice of interpolation method on DEM accuracy. Accuracy reports may even fail to mention which interpolation method was used. The analysis was limited to two local interpolation methods: nearest neighbor and bilinear interpolation. In those cases we show that the model accuracy is bounded by three terms: one depending only on the dataset elevation MSE; mixed monomials depending on both the dataset elevation MSE and powers of the cell size h; and a term independent of the dataset elevation MSE and proportional to a power of h. For a given interpolation method, the exponents of h are constant, whereas the coefficients can be estimated from local terrain characteristics at the control points. For bilinear interpolation, the exponents are twice those for nearest-neighbor interpolation. The availability of this analytical relationship makes it possible to determine the cell size or instrument accuracy required to achieve a specified target DEM accuracy. Because the result depends strongly on the interpolation method, the recommended interpolation method should be routinely and explicitly mentioned in the DEM producer’s accuracy report
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00024R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Mitigating Radiometric Bias in Unmanned Aerial Vehicle Thermal Infrared Imagery Using Temperature-Controlled Reference Plates
         </a>
@@ -104,6 +161,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Temperature retrieval from unmanned aerial vehicle (UAV) thermal imagery commonly relies on proprietary manufacturer radiometric calibration software. However, the correction procedures used by these workflows are generally undisclosed, and some user-defined parameters, particularly altitude, are restricted to ranges that do not reflect real-world conditions, risking the introduction of bias and higher radiometric uncertainty. Accordingly, this study evaluates the accuracy of proprietary radiometric calibration by examining how its performance changes with flight altitude, while also proposing a practical method to correct residual bias after proprietary processing. Thermal imagery is collected with a DJI Matrice 300 RTK equipped with a Zenmuse H20T sensor at 15, 30, 45, and 60 m. Two temperature-controlled plates (TCPs) spanning cold and hot regimes are used to validate three DJI Thermal SDK workflows: (1) default settings; (2) custom settings using measured emissivity, flight altitude, humidity, and reflected apparent temperature (Treflected); and (3) custom settings with per-image tuning of Treflected. Residual bias is subsequently corrected using empirical line calibration (ELC) derived from TCP observations. Across all proprietary workflows, temperature error increases with altitude, indicating progressive gain and offset bias not fully corrected by manufacturer processing. Default settings produce the largest error, with mean absolute error increasing from 4.39°C at 15 m to 11.69°C at 60 m. Custom settings reduce error moderately (3.86°C to 9.43°C), while Treflected tuning improves close-range performance but does not eliminate altitude-dependent degradation (0.99°C to 8.57°C). Application of ELC substantially reduces residual bias across workflows, with best performance achieved by combining Treflected tuning with ELC, resulting in sub-1°C accuracy across altitudes. These results demonstrate that proprietary UAV thermal image processing alone is insufficient to ensure robust temperature retrieval but that a simple empirically calibrated postprocessing workflow using TCPs can mitigate altitude-dependent bias and enable high-accuracy temperature estimation in operational remote sensing applications
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00035R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Analytical Estimate of Digital Elevation Model Accuracy (Mean Square Error) as a Function of Cell Size and Dataset Elevation Error
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 7, 2026</div>
+    <div>Authors: López-Vázquez, Carlos</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Modern digital elevation models (DEMs) are generated with increasingly small cell sizes and high accuracy, yet no closed-form relationship links these variables. Previous work relied on empirical formulations validated experimentally. This paper derives an analytical relationship for the traditional elevation mean square error (MSE) accuracy metric and highlights limitations of empirical approaches. Common practice wrongly dismisses the effect of the choice of interpolation method on DEM accuracy. Accuracy reports may even fail to mention which interpolation method was used. The analysis was limited to two local interpolation methods: nearest neighbor and bilinear interpolation. In those cases we show that the model accuracy is bounded by three terms: one depending only on the dataset elevation MSE; mixed monomials depending on both the dataset elevation MSE and powers of the cell size h; and a term independent of the dataset elevation MSE and proportional to a power of h. For a given interpolation method, the exponents of h are constant, whereas the coefficients can be estimated from local terrain characteristics at the control points. For bilinear interpolation, the exponents are twice those for nearest-neighbor interpolation. The availability of this analytical relationship makes it possible to determine the cell size or instrument accuracy required to achieve a specified target DEM accuracy. Because the result depends strongly on the interpolation method, the recommended interpolation method should be routinely and explicitly mentioned in the DEM producer’s accuracy report
         </details>
     </div>
 </article>
@@ -131,25 +207,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00163R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            ELFFNet: An Efficient Lightweight Feature Fusion Network for Change Detection
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: August 3, 2026</div>
-    <div>Authors: Cui, Yichen; Shen, Hong; Lam, Chan-Tong;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Remote sensing change detection is essential for land use planning, urban monitoring, and disaster response. However, conventional deep learning methods often suffer from blurred building and vegetation edges, shadow misclassification, and low efficiency due to excessive complexity. To address these issues, we propose ELFFNet, a lightweight and efficient network that achieves high detection accuracy with reduced computational cost. ELFFNet integrates Asymmetric Dilated Convolution Modules for deep semantic extraction, Multi Efficient Attention Modules between encoder and decoder to retain fine spatial details, and a simplified Pyramid Pooling Module at the deepest stage for low-cost global context aggregation. Experiments on the GVLM-CD and WHU-CD data sets show superior performance, with Kappa coefficients of 82.86% and 94.48%, F1 scores of 91.72% and 95.24%, and mean intersection over union values of 84.96% and 94.73%. Importantly, ELFFNet requires a parameter size of 7.31 MB and 22.6 giga floating-point operations [GFLOPs])—far fewer than Transformer-based models—while delivering strong edge detection for small targets and complex disaster areas. This balance of accuracy and efficiency makes ELFFNet highly suitable for practical remote sensing applications.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00202R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             FastPro-Gaussian: Accelerated True Digital Orthophoto Map Generation with Progressive Densification and Spherical-to-Ellipsoidal Gaussian Transformation
         </a>
@@ -161,6 +218,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             True digital orthophoto maps (TDOMs) serve as foundational geospatial products for applications in land surveying, urban planning, and emergency management. Conventional TDOM generation relies on differential correction, often resulting in cartographic artifacts such as geometric discontinuities, radiometric inconsistencies, and linear feature misalignments. Although recent methods leverage 3D Gaussian splatting to bypass differential correction, their computational demands hinder real-world deployment. To address these limitations, we propose FastPro-Gaussian, a novel framework enabling rapid high-quality TDOM generation on consumer-grade GPUs. Our contributions are threefold: block-based processing ensuring scalability for large-scale scenes; progressive densification stabilizing model optimization and reducing training iterations; and spherical-to-ellipsoidal Gaussian transformation, accelerating early-stage optimization of structural features (e.g., building edges). Experiments demonstrate that FastPro-Gaussian surpasses commercial solutions (ContextCapture, Metashape, and Pix4Dmapper) in rendering quality for building facades, edges, and roads. Compared to state-of-the-art methods, it achieves comparable TDOM fidelity with over two-fold acceleration in training time (notably more than two times faster than Tortho-GS). These gains in efficiency and efficacy confirm its strong potential for practical deployment in geospatial production pipelines.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00163R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            ELFFNet: An Efficient Lightweight Feature Fusion Network for Change Detection
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 3, 2026</div>
+    <div>Authors: Cui, Yichen; Shen, Hong; Lam, Chan-Tong;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Remote sensing change detection is essential for land use planning, urban monitoring, and disaster response. However, conventional deep learning methods often suffer from blurred building and vegetation edges, shadow misclassification, and low efficiency due to excessive complexity. To address these issues, we propose ELFFNet, a lightweight and efficient network that achieves high detection accuracy with reduced computational cost. ELFFNet integrates Asymmetric Dilated Convolution Modules for deep semantic extraction, Multi Efficient Attention Modules between encoder and decoder to retain fine spatial details, and a simplified Pyramid Pooling Module at the deepest stage for low-cost global context aggregation. Experiments on the GVLM-CD and WHU-CD data sets show superior performance, with Kappa coefficients of 82.86% and 94.48%, F1 scores of 91.72% and 95.24%, and mean intersection over union values of 84.96% and 94.73%. Importantly, ELFFNet requires a parameter size of 7.31 MB and 22.6 giga floating-point operations [GFLOPs])—far fewer than Transformer-based models—while delivering strong edge detection for small targets and complex disaster areas. This balance of accuracy and efficiency makes ELFFNet highly suitable for practical remote sensing applications.
         </details>
     </div>
 </article>
@@ -788,25 +864,6 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Coral reefs are highly diverse and dynamic ecosystems that necessitate accurate assessment through timely understanding of their growth rates and health status in the face of global warming. This study introduces an innovative multi-modal deep learning network called DepthCNet, specifically designed to tackle the challenge of coral health assessment. By using pixel-level semantic segmentation and incorporating data inputs such as orthophotos and depth images, this network enables the identification and classification of the health status of corals (live, dead, and bleached) in underwater seabed images at the millimeter scale. In our study, we conducted performance and generalization experiments to evaluate the effectiveness of DepthCNet in comparison to alternative state-of-the-art (SOTA) network structures with potential for coral segmentation transferred from other domains. Our DepthCNet achieved an mean intersection over union (mIoU) of 65.3% in the coral segmentation task, with a notable 24.2% intersection over union (IoU) for bleached corals, representing a 5.9% improvement over other SOTA methods.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.26-00037R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Satellite-Based Framework for Detecting Seabed Dynamics from Shoreline Variability along Spit Coasts—A Pilot Study from the Hel Peninsula
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: In Press</div>
-    <div>Authors: Sapiega, Patryk; Zalewska, Tamara</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            This study presents a pilot, data-driven framework for detecting nearshore seabed dynamics based on shoreline variability derived from high-resolution satellite imagery, integrated with in situ bathymetric measurements along the Hel Peninsula in the southern Baltic Sea. The approach focuses on assessing whether satellite-derived shoreline displacement can serve as an indirect indicator of changes in seabed morphology within the sedimentologically active coastal zone. Four cross-shore transects were analyzed using Pléiades satellite imagery and field bathymetric data collected during two monitoring campaigns conducted in 2019 and 2022. Changes in seabed elevation were quantified through cross-sectional profile analysis, while key morphodynamic parameters, including closure depth and the length of the active seabed, were estimated using empirical formulations proposed by Hallermeier, Birkemeier, and Houston. To provide hydrodynamic context, wave and current conditions were characterized using Copernicus Marine Service reanalysis data. The results reveal pronounced spatial variability in seabed response along the Hel Peninsula, with erosion-dominated conditions in high-energy open-coast sectors and limited morphological change in semienclosed, low-energy environments. Among the tested formulations, Birkemeier’s equation showed the closest agreement with field-derived closure depths, while all empirical models systematically overestimated closure depth in low-energy settings. The findings demonstrate the potential of satellite-based shoreline observations as a supporting tool for coastal morphodynamic assessment while highlighting the limitations imposed by measurement uncertainty, short observation windows, and simplified process representation. Overall, the proposed framework should be regarded as a proof-of-concept application requiring longer observational time series, improved uncertainty quantification, and local calibration before operational implementation can be considered
         </details>
     </div>
 </article>
