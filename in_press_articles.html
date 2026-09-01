@@ -3,6 +3,25 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00071R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Interferometric Synthetic Aperture Radar–Guided Multi-Modal Deep Learning for Surface Deformation Target Detection and Boundary Extraction in Complex Mountainous Areas
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 31, 2026</div>
+    <div>Authors: Li, Zengying; Liang, Feng; Shi, Wenbing; Chen, Kuayue; Xie, Jing;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Automatic detection and precise boundary delineation of surface deformation targets in complex mountainous terrain are essential for monitoring geohazards such as landslides and mining-induced subsidence. To address the low efficiency of conventional visual interpretation, the fragmented boundaries derived from single-source interferometric synthetic aperture radar (InSAR) results, and the limited capability of optical imagery to characterize deformation activity, this study proposes an InSAR-guided two-stage multi-modal recognition framework. First, small baseline subset InSAR processing was performed using Sentinel-1 ascending-track data, and candidate deformation regions characterized by negative line-of-sight (LOS) anomalies were automatically generated using robust statistical thresholds, spatial-connectivity constraints, and topographic rules. Subsequently, within the candidate regions, InSAR-derived LOS deformation velocities, Sentinel-2 optical bands and spectral indices, and digital elevation model (DEM)–derived elevation and slope information were integrated to construct a multi-channel input. Deep learning–based semantic segmentation models were then used for target recognition and precise boundary delineation. Experiments were conducted using Fa’er Town in Liupanshui City, Guizhou Province, as the source domain and Panzhou City as the geographically adjacent target domain. The results showed that the convolutional neural network + Transformer model achieved the best overall performance in the within-domain evaluation, with intersection over union (IoU), boundary F1 score, and mean symmetric distance values of 0.9716, 0.9789, and 1.225 m, respectively. The ablation experiments indicated that the fusion of InSAR, optical, and DEM data yielded the best performance, achieving precision, recall, Dice, and IoU values of 0.996, 0.996, 0.996, and 0.991, respectively. The cross-region transfer experiment between geographically adjacent domains showed that directly transferring the source-domain model to the target domain resulted in a marked performance degradation, whereas few-shot fine-tuning substantially restored the model’s recognition capability in the target domain. These findings demonstrate that the proposed method effectively integrates deformation activity, spectral–textural features, and topographic constraints, thereby providing methodological support for the automatic detection and precise boundary delineation of surface deformation targets in complex mountainous terrain.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00039R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Robust Simultaneous Localization and Mapping in Non-Gaussian Environments Using Gaussian-Manifold–Projected Structure–Spectrum Regularized Cubature Kalman Filter
         </a>
@@ -150,25 +169,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.26-00024R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Mitigating Radiometric Bias in Unmanned Aerial Vehicle Thermal Infrared Imagery Using Temperature-Controlled Reference Plates
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: August 7, 2026</div>
-    <div>Authors: Cervini, Gaia; Jung, Jinha; Roberts, Nicholas A.; Gkritza, Konstantina;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Temperature retrieval from unmanned aerial vehicle (UAV) thermal imagery commonly relies on proprietary manufacturer radiometric calibration software. However, the correction procedures used by these workflows are generally undisclosed, and some user-defined parameters, particularly altitude, are restricted to ranges that do not reflect real-world conditions, risking the introduction of bias and higher radiometric uncertainty. Accordingly, this study evaluates the accuracy of proprietary radiometric calibration by examining how its performance changes with flight altitude, while also proposing a practical method to correct residual bias after proprietary processing. Thermal imagery is collected with a DJI Matrice 300 RTK equipped with a Zenmuse H20T sensor at 15, 30, 45, and 60 m. Two temperature-controlled plates (TCPs) spanning cold and hot regimes are used to validate three DJI Thermal SDK workflows: (1) default settings; (2) custom settings using measured emissivity, flight altitude, humidity, and reflected apparent temperature (Treflected); and (3) custom settings with per-image tuning of Treflected. Residual bias is subsequently corrected using empirical line calibration (ELC) derived from TCP observations. Across all proprietary workflows, temperature error increases with altitude, indicating progressive gain and offset bias not fully corrected by manufacturer processing. Default settings produce the largest error, with mean absolute error increasing from 4.39°C at 15 m to 11.69°C at 60 m. Custom settings reduce error moderately (3.86°C to 9.43°C), while Treflected tuning improves close-range performance but does not eliminate altitude-dependent degradation (0.99°C to 8.57°C). Application of ELC substantially reduces residual bias across workflows, with best performance achieved by combining Treflected tuning with ELC, resulting in sub-1°C accuracy across altitudes. These results demonstrate that proprietary UAV thermal image processing alone is insufficient to ensure robust temperature retrieval but that a simple empirically calibrated postprocessing workflow using TCPs can mitigate altitude-dependent bias and enable high-accuracy temperature estimation in operational remote sensing applications
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00035R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Analytical Estimate of Digital Elevation Model Accuracy (Mean Square Error) as a Function of Cell Size and Dataset Elevation Error
         </a>
@@ -180,6 +180,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Modern digital elevation models (DEMs) are generated with increasingly small cell sizes and high accuracy, yet no closed-form relationship links these variables. Previous work relied on empirical formulations validated experimentally. This paper derives an analytical relationship for the traditional elevation mean square error (MSE) accuracy metric and highlights limitations of empirical approaches. Common practice wrongly dismisses the effect of the choice of interpolation method on DEM accuracy. Accuracy reports may even fail to mention which interpolation method was used. The analysis was limited to two local interpolation methods: nearest neighbor and bilinear interpolation. In those cases we show that the model accuracy is bounded by three terms: one depending only on the dataset elevation MSE; mixed monomials depending on both the dataset elevation MSE and powers of the cell size h; and a term independent of the dataset elevation MSE and proportional to a power of h. For a given interpolation method, the exponents of h are constant, whereas the coefficients can be estimated from local terrain characteristics at the control points. For bilinear interpolation, the exponents are twice those for nearest-neighbor interpolation. The availability of this analytical relationship makes it possible to determine the cell size or instrument accuracy required to achieve a specified target DEM accuracy. Because the result depends strongly on the interpolation method, the recommended interpolation method should be routinely and explicitly mentioned in the DEM producer’s accuracy report
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00024R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Mitigating Radiometric Bias in Unmanned Aerial Vehicle Thermal Infrared Imagery Using Temperature-Controlled Reference Plates
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 7, 2026</div>
+    <div>Authors: Cervini, Gaia; Jung, Jinha; Roberts, Nicholas A.; Gkritza, Konstantina;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Temperature retrieval from unmanned aerial vehicle (UAV) thermal imagery commonly relies on proprietary manufacturer radiometric calibration software. However, the correction procedures used by these workflows are generally undisclosed, and some user-defined parameters, particularly altitude, are restricted to ranges that do not reflect real-world conditions, risking the introduction of bias and higher radiometric uncertainty. Accordingly, this study evaluates the accuracy of proprietary radiometric calibration by examining how its performance changes with flight altitude, while also proposing a practical method to correct residual bias after proprietary processing. Thermal imagery is collected with a DJI Matrice 300 RTK equipped with a Zenmuse H20T sensor at 15, 30, 45, and 60 m. Two temperature-controlled plates (TCPs) spanning cold and hot regimes are used to validate three DJI Thermal SDK workflows: (1) default settings; (2) custom settings using measured emissivity, flight altitude, humidity, and reflected apparent temperature (Treflected); and (3) custom settings with per-image tuning of Treflected. Residual bias is subsequently corrected using empirical line calibration (ELC) derived from TCP observations. Across all proprietary workflows, temperature error increases with altitude, indicating progressive gain and offset bias not fully corrected by manufacturer processing. Default settings produce the largest error, with mean absolute error increasing from 4.39°C at 15 m to 11.69°C at 60 m. Custom settings reduce error moderately (3.86°C to 9.43°C), while Treflected tuning improves close-range performance but does not eliminate altitude-dependent degradation (0.99°C to 8.57°C). Application of ELC substantially reduces residual bias across workflows, with best performance achieved by combining Treflected tuning with ELC, resulting in sub-1°C accuracy across altitudes. These results demonstrate that proprietary UAV thermal image processing alone is insufficient to ensure robust temperature retrieval but that a simple empirically calibrated postprocessing workflow using TCPs can mitigate altitude-dependent bias and enable high-accuracy temperature estimation in operational remote sensing applications
         </details>
     </div>
 </article>
@@ -359,25 +378,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.26-00018R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Building Extraction Model and Application from Multi-Scene Remote Sensing Data
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: May 28, 2026</div>
-    <div>Authors: Yang, Gangyu; Zhai, Wei; Li, Jincheng; Cao, Yingying</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            The extraction of building footprints based on high-resolution remote sensing images is widely used in many fields such as land survey and urban planning, and high resolution also brings complex background information. In order to improve the effectiveness of building footprint extraction, this paper proposes a RefineSegFormer that combines a hierarchical transformer encoder and a cross-level feedback Refine feature pyramid network implemented through deformable convolution. RefineSegFormer achieved an F1 score of 96.55% and an IoU of 93.33% on the widely recognized WHU building data set, an F1 of 93.19% and an IoU of 87.25% on the 0.3-m Mandalay City data set, and an F1 of 90.53% and an IoU of 82.70% on 2-m Dingri County data set, all of which achieved the best results, proving the effectiveness and practical application value of the proposed model in this paper. The improved lightweight model for building footprint extraction has better performance than the unimproved medium model. In submeter remote sensing image building footprint extraction, the parameters are only 20% of the medium model, which can achieve more than 98% of the performance of the improved medium model, balancing extraction accuracy and inference speed. In the extraction of building footprints from meter remote sensing images with a small number of buildings and high similarity between buildings and the background, it is more recommended to use the improved medium model. Compared with the unimproved medium model, F1 has increased by 6.71%, and IoU has increased by 10.55%. The model and code of RefineSegFormer can be available at: https://github.com/amanforinteresting/RefineSegFormer.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00214R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             IT-Seg: Morphology-Constrained and Spatially Guided Individual Tree Segmentation from Terrestrial and Mobile Point Clouds
         </a>
@@ -389,6 +389,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Individual trees are essential components of forest ecosystems, and accurate tree-level segmentation provides a crucial foundation for forest ecosystem modeling and biodiversity assessment. We propose a novel point cloud-based individual tree segmentation method guided by morphological prior constraints and single-tree canopy radiative effective extent (SCREE), a metric used to define the canopy boundary for each tree, computed from high-dimensional features output by a network. First, the original point cloud is divided into a central point set and a buffer point set based on morphological prior constraints. On this basis, different strategies are applied for trunk extraction from the central and buffer points: trunks in the central point set are extracted through adaptive density-based filtering, while trunks in the buffer point set are extracted using a semantic segmentation network. Finally, canopy points are assigned to individual trunks to obtain complete tree structures. This assignment is guided by the proposed SCREE, inferred using a diameter at breast height–height generative model to generate a constrained space. Validated on six forest scenes from three public data sets, the proposed method achieves an average instance-level accuracy of 84.71% and an average point-level accuracy of 81.85%, demonstrating strong robustness across diverse forest environments. Moreover, compared with existing methods, our method exhibits higher stability when handling variations in samples and the presence of small trees across different types of scanners.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00018R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Building Extraction Model and Application from Multi-Scene Remote Sensing Data
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: May 28, 2026</div>
+    <div>Authors: Yang, Gangyu; Zhai, Wei; Li, Jincheng; Cao, Yingying</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            The extraction of building footprints based on high-resolution remote sensing images is widely used in many fields such as land survey and urban planning, and high resolution also brings complex background information. In order to improve the effectiveness of building footprint extraction, this paper proposes a RefineSegFormer that combines a hierarchical transformer encoder and a cross-level feedback Refine feature pyramid network implemented through deformable convolution. RefineSegFormer achieved an F1 score of 96.55% and an IoU of 93.33% on the widely recognized WHU building data set, an F1 of 93.19% and an IoU of 87.25% on the 0.3-m Mandalay City data set, and an F1 of 90.53% and an IoU of 82.70% on 2-m Dingri County data set, all of which achieved the best results, proving the effectiveness and practical application value of the proposed model in this paper. The improved lightweight model for building footprint extraction has better performance than the unimproved medium model. In submeter remote sensing image building footprint extraction, the parameters are only 20% of the medium model, which can achieve more than 98% of the performance of the improved medium model, balancing extraction accuracy and inference speed. In the extraction of building footprints from meter remote sensing images with a small number of buildings and high similarity between buildings and the background, it is more recommended to use the improved medium model. Compared with the unimproved medium model, F1 has increased by 6.71%, and IoU has increased by 10.55%. The model and code of RefineSegFormer can be available at: https://github.com/amanforinteresting/RefineSegFormer.
         </details>
     </div>
 </article>
