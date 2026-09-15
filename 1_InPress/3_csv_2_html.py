@@ -65,6 +65,25 @@
 
 import pandas as pd
 
+
+def normalize_title(title):
+    return " ".join(str(title).strip().lower().split())
+
+
+EDITOR_CHOICE_TITLES = {
+    normalize_title(
+        "FastPro-Gaussian: Accelerated True Digital Orthophoto Map Generation "
+        "with Progressive Densification and Spherical-to-Ellipsoidal Gaussian Transformation"
+    ),
+}
+
+
+EDITOR_CHOICE_BADGE = '<span style="background-color: gold; color: black; font-weight: bold; padding: 3px 8px; border-radius: 5px; font-size: 12px; margin-left: 0px;">\n                Editor’s Choice\n            </span>'
+
+
+def is_editor_choice(title):
+    return normalize_title(title) in EDITOR_CHOICE_TITLES
+
 # Load the CSV file
 csv_filename = "1_InPress/filtered_InPress_articles_info_abs.csv"
 articles = pd.read_csv(csv_filename)
@@ -89,9 +108,12 @@ for index, row in articles.iterrows():
     article_html = f'<article style="{border_style}">\n'
 
     access_text = '<span style="color: rgb(0, 191, 255);">Open Access</span>' if row["Access"] == "Open Access content" else ""
+    editor_choice_badge = EDITOR_CHOICE_BADGE if is_editor_choice(row["Title"]) else ""
     article_html += f'''    <div style="display: flex; justify-content: space-between; align-items: center;">
         <div style="font-weight: bold; color: gray;">Research Articles {access_text}</div>
     </div>\n'''
+    if editor_choice_badge:
+        article_html += f"    {editor_choice_badge}\n"
 
     if pd.notna(row["Title"]) and row["Title"] != "N/A" and str(row["Title"]).strip() != "":
         article_html += f'''    <h3 style="margin: 5px 0;">
