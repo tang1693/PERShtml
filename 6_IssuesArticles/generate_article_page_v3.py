@@ -102,6 +102,7 @@ link_attrs = 'target="_blank" rel="noopener noreferrer"'
 EDITOR_CHOICE_TITLES = {
     normalize_title('CGMSANet: Hyperspectral Image Classification through Channel-Grouped Multi-Scale Feature Fusion and Attention Mechanisms'),
     normalize_title('Toward Detailed and Accurate Forest Inventory with Multi-Source Lidar Data'),
+    normalize_title('FastPro-Gaussian: Accelerated True Digital Orthophoto Map Generation with Progressive Densification and Spherical-to-Ellipsoidal Gaussian Transformation'),
 }
 
 
