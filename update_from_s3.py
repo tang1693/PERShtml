@@ -117,6 +117,42 @@ def canonical_issue_key(value):
 
 INPRESS_PATTERN = re.compile(r'in[\s-]?press', re.IGNORECASE)
 
+SEPTEMBER_2026_RESEARCH_DOIS = {
+    '10.14358/PERS.25-00163R3',
+    '10.14358/PERS.25-00204R2',
+    '10.14358/PERS.25-00202R3',
+    '10.14358/PERS.26-00015R2',
+    '10.14358/PERS.26-00005R4',
+    '10.14358/PERS.25-00083R3',
+}
+
+SEPTEMBER_2026_ROW_OVERRIDES = {
+    '10.14358/PERS.25-00202R3': {
+        'Authors': 'Yang, Chao; Li, Yapeng; Liu, Feiyang; Yao, Shihong; Zheng, Maoteng; Xiao, Zhiyan; Li, Guancheng; Zhang, Qichen; Ma, Kui;'
+    },
+}
+
+
+def apply_category_overrides(df):
+    """Apply known issue overrides when S3 metadata still labels issue articles as In-Press."""
+    years = df['Date MMDDYY'].apply(normalize_year)
+    issues = df['Issue Number'].apply(normalize_issue)
+    dois = df['DOI'].apply(normalize_doi)
+    normalized_overrides = {normalize_doi(doi) for doi in SEPTEMBER_2026_RESEARCH_DOIS}
+
+    mask = (years == '2026') & (issues == '09') & dois.isin(normalized_overrides)
+    if mask.any():
+        df.loc[mask, 'Article Category'] = 'Research Article'
+        print(f"   分类覆盖: 2026-09 Research Article {int(mask.sum())} 篇")
+
+    for doi, overrides in SEPTEMBER_2026_ROW_OVERRIDES.items():
+        row_mask = (years == '2026') & (issues == '09') & (dois == normalize_doi(doi))
+        if row_mask.any():
+            for column, value in overrides.items():
+                df.loc[row_mask, column] = value
+            print(f"   行内容覆盖: {doi}")
+    return df
+
 
 def is_inpress_category(value):
     """判断是否为 In-Press 类别（兼容 In-Press/InPress/In Press）"""
@@ -170,6 +206,7 @@ def parse_excel_metadata(excel_path):
     """解析 Excel 元数据"""
     print(f"\n📊 解析元数据: {excel_path}")
     df = pd.read_excel(excel_path)
+    df = apply_category_overrides(df)
     
     # 清理作者名
     df['Authors'] = df['Authors'].apply(clean_authors)
