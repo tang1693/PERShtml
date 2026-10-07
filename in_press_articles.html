@@ -22,120 +22,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00219R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            A Shallow Sea Bathymetric Inversion Method from Active–Passive Satellite Remote Sensing Data Based on a Residual Correction Model
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: October 1, 2026</div>
-    <div>Authors: Dong, Zhipeng; Li, Zhixian; Liu, Yanxiong; Feng, Yikai; Chen, Yilan; Huang, Guoan;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Satellite-derived bathymetry is an important method for obtaining shallow sea water depth. To address the problem that the traditional band log-ratio model exhibits significant discrepancies in bathymetric inversion accuracy in both shallow sea (<2 m) and deep sea (>12 m), where water depth is overestimated in shallow areas and underestimated in deep areas, this paper proposes a bathymetric inversion method from active–passive satellite remote sensing data based on a residual correction model. First, the proposed method uses the denoised Ice, Cloud, and Land Elevation Satellite-2 (ICESat-2) ATL03 data set as precise depth control points to construct and implement the traditional band log-ratio model, generating initial bathymetric inversion results. Second, the initial inversion result is compared with the ICESat-2 depth control points, and the residuals between the initial water depth estimates and the true water depths in the local region are calculated. Then, based on the relationship between the spectral characteristics of remote sensing images and water depth residuals, a random forest model is constructed to fit the residual distribution across the entire study area. Finally, using the residual distribution derived from this fitting process, the initial bathymetric inversion results for the entire region are corrected, thereby improving the accuracy and precision of the water depth data. Experimental results demonstrate that the proposed method achieves a bathymetric inversion accuracy with the root mean square error better than 1.57 m and the mean absolute error better than 1.15 m for islands with varying seabed topographies, providing high-precision shallow sea bathymetric inversion results.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00215R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Topologically Aware Roof Wireframe Reconstruction from Airborne Laser Scanning Point Clouds Using Persistent Homology and Hybrid Geometric–Topological Constraints
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: October 1, 2026</div>
-    <div>Authors: Huo, Pengpeng; Jiang, Jinguang; Kong, Gefei; Fan, Hongchao;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Airborne laser scanning point clouds constitute a primary data source for city-scale 3D building modeling. However, the automated reconstruction of geometrically accurate and topologically consistent roof wireframes persists as a formidable challenge, hindered by data noise, uneven point density, and the topological complexity of urban roofs. Existing data-driven methods exhibit high sensitivity to local fitting errors, frequently leading to topological inconsistencies, whereas model-driven approaches are constrained by predefined primitive libraries, limiting their generalization to complex composite roofs. To address these limitations, this paper proposes a novel framework for roof wireframe reconstruction that fuses topological data analysis (TDA) with hybrid geometric-topological constraints. A core innovation of this framework is the application of persistent homology to extract globally stable topological skeletons from 2.5D height scalar fields, serving as a robust topological prior independent of local geometric noise. Specifically, the method first generates regularized 3D eave lines constrained by 2D building footprints. Subsequently, a “geometry–topology” dual-domain cross-validation mechanism is used to validate geometric hypotheses derived from planar adjacencies against TDA-extracted topological critical points (ridges and valleys), thereby effectively suppressing spurious structure lines. Finally, a global optimization model governed by the minimum description length principle enforces implicit regularization to rectify local geometric distortions and guarantee topological closure. Experiments on the Trondheim dataset demonstrate that the proposed method achieves a root mean square error of 0.443 m, while enhancing the length-weighted completeness and correctness of structure lines to 96.23% and 97.41%, respectively. These results validate the efficacy of integrating height-field–based topological skeletons for reconstructing complex roof wireframes, offering a scalable and robust solution for automated large-scale urban 3D modeling.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.26-00014R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            An Anchor Point–Assisted Image-Matching Method for Weakly Textured Scenes Using Structured Features
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: October 1, 2026</div>
-    <div>Authors: Chen, Ming; Shi, Jiangong; Ma, Zhenling; Xie, Hong; Wang, Zhengjie;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Photogrammetric mapping missions using robots or unmanned aerial vehicles (UAVs) often encounter environments where sparse strong-texture structures are found alongside extensive weak-texture surfaces, such as indoor corridors with frames and aerial views of shorelines. Establishing accurate correspondences under such circumstances remains a major technical challenge. Traditional methods can only match a few or no correspondences. Deep learning algorithms can yield stable matches in weak-texture regions. However, they rely on large-scale annotated data and computational resources, limiting their real-time application and generalization capability. This article proposes an anchor point–assisted image-matching method, using Euclidean distances and angular relationships between corner points in the weak-texture area and anchor points in the strong-texture area to establish structured features, enhancing the distinctiveness of the corner points in the weak-texture area. Meanwhile, epipolar geometry constraints are applied to restrict the candidate corner points search to a one-dimensional range, thereby improving the accuracy, efficiency, and reliability of the corner point matching. Comparative experiments on indoor, outdoor, and UAV data sets demonstrate that the proposed method achieves a greater number of correct matches than scale-invariant feature transform (SIFT), oriented FAST and rotated BRIEF (ORB), KAZE, AKAZE, grid-based motion statistics (GMS), SuperGlue, and LightGlue with a conventional CPU configuration. The presented method, SuperGlue, and LightGlue achieve a success rate (SR) of 100% on three data sets and secure sufficient correspondences in weak-texture regions. In contrast, the SR obtained by traditional methods ranges from 70% to 80%. In addition, our method runs in under 3 seconds, whereas the deep learning methods still require over 10 seconds even on a lightweight CPU. The effects of anchor point numbers, dual threshold settings, and epipolar search range on matching performance are analyzed to identify the optimal parameter configuration. The proposed method provides potential for robot and UAV photogrammetric mapping applications in sparsely textured environments based on resource-constrained platforms.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00147R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Fine 3D Modeling of Tunnel Surrounding Rock and Extraction of Rock Mass Structure Features Based on RGB-D Camera
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: October 1, 2026</div>
-    <div>Authors: Zhang, Rongchun; Han, Jiaqi; Chen, Song; Jiang, Yi; He, Yanlan; Ge, Yufan; Shi, Shang; Liu, Lanfa;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            In the context of large-scale hydropower infrastructure, the accurate extraction of tunnel rock mass structural information is vital for informed engineering design. However, this task remains inherently difficult due to the complexity of subsurface geological conditions and the inherent limitations of conventional survey techniques. This study proposes an integrated methodology that combines high-resolution 3D reconstruction with the Geo-AINet ensemble learning framework to enable automated identification of structural planes. The process involves generating detailed tunnel models, extracting multi-dimensional semantic features, performing initial segmentation, and subsequently applying cluster analysis to refine the structural interpretations. Experimental validation confirms the method’s high level of precision: the extracted structural orientations exhibit average angular deviations of less than 3 degrees, with a maximum error margin not exceeding 5 degrees relative to manual measurements. These findings demonstrate the method’s capacity to meet stringent engineering standards while enhancing both the efficiency and safety of geological data acquisition in tunneling projects.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00150R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Cross-Domain Few-Shot Hyperspectral Classification with Feature Enhancement and Loss Optimization
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: October 1, 2026</div>
-    <div>Authors: Dang, Yuanyuan; Li, Mengyu ; Li, Hao</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Cross-domain few-shot learning has attracted increasing attention in hyperspectral image classification. However, in scenarios with scarce annotations and significant domain shifts, existing methods struggle to simultaneously adapt to the inherent spectral-spatial coupling of hyperspectral data while maintaining high-dimensional data-processing efficiency and balancing the learning of few-shot and cross-domain hard samples. This study proposes a collaborative optimization scheme based on improvements to the cross-domain few-shot learning with cross-modal alignment and supervised contrastive learning method. Specifically, an enhanced SimAM module dynamically weights spectral-spatial features to strengthen discriminative information of ground objects and mitigate domain shifts. A Channel Relation Attention module is introduced to capture channel-spatial dependencies and adaptively select key channels, improving high-dimensional feature processing efficiency. Moreover, a weighted joint loss function combining cross-entropy and focal loss is constructed, with class weights adjusted according to the joint distribution of source and target domains to balance sample learning priorities. Experiments on three benchmark hyperspectral data sets demonstrate that the proposed method achieves significant improvements in classification accuracy, robustness, and cross-domain adaptability.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00183R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Three-dimensional Drainage Infrastructure Modeling for Flood Vulnerability in Southeast Texas
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: October 1, 2026</div>
-    <div>Authors: Ibironke, Ademola; Dhakal, Uddav; Bhusal, Shishir; Wu, Xing; Kim, Yong Je; Lai, Feilin;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Urban flooding poses escalating risks to transportation infrastructure in low-lying, flood-prone regions, underscoring the need for scalable, elevation-aware assessment frameworks. This study evaluates the flood vulnerability of drainage infrastructure in Southeast Texas by developing an automated 3D modeling framework that integrates digital elevation models, airborne lidar data, and water surface elevation scenarios through a fully automated pipeline incorporating large-language-model–assisted data standardization, Python/ArcPy geometry generation, and attribute-driven computer-generated architecture procedural modeling. Using ArcGIS Pro and CityEngine, 842 culverts and 223 bridges were modeled following quality-control filtering, and flood exposure was quantified using an elevation-differencing metric for 100- and 500-year flood events. The results indicate that fewer than 2% of culverts remain above water during a 100-year flood, while fewer than 1% remain accessible under a 500-year event, with median inundation depths of approximately 0.54 and 0.90 m, respectively. The proposed workflow reduces manual processing time by approximately 80% while preserving vertical consistency, providing a transferable and uncertainty-aware framework to support regional flood-resilience planning and future integration with hydrodynamic models. The code and supporting materials associated with this study are publicly available via GitHub at: aibironke/3D-Drainage-Flood-Vulnerability
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00081R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             GMSINet for Building Extraction from Very-High-Resolution Remote Sensing Imagery
         </a>
@@ -489,6 +375,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             The harmonized Landsat and Sentinel-2 (HLS) version 2.0 product combines the observations of the land surface from the operational land imager (OLI) and multi-spectral instrument (MSI) sensors into a single data set and provides products that include L30, a 30-m OLI nadir bidirectional reflectance distribution function–adjusted reflectance (NBAR), and S30, a 30-m MSI NBAR. Prior research has shown good consistency between L30 and S30 products, but version 2.0 product performance has not been evaluated with a ground network of observations. The Radiometric Calibration Network (RadCalNet) portal provides surface reflectance along with various atmospheric parameters from four instrumented land sites: the Railroad Valley Playa in Nevada; La Crau in France; Baotou in China; and Gobabeb in Namibia. This study presents a rigorous, independent validation of the HLS version 2.0 L30 and S30 products using the RadCalNet. By leveraging RadCalNet’s automated, SI-traceable, hyperspectral bottom-of-atmosphere measurements across four globally distributed sites, we evaluated both the absolute surface reflectance accuracy of the S30 and L30 products and their cross-sensor consistency. Validation results demonstrate strong overall agreement with ground-truth measurements. Excluding localized anomalies at the Baotou site, both L30 and S30 surface reflectances agree with RadCalNet to within 10% at the shortest wavelengths and to within 5% for the near infrared and shortwave infrared bands. Furthermore, by using RadCalNet as a common transfer standard, the analysis reveals an interproduct agreement between L30 and S30 of within 4% across all spectral bands, with the exception of the blue band. A comprehensive summary of the observed differences at each wavelength across all the RadCalNet sites is presented, along with uncertainty estimates. Ultimately, this validation provides quantified, absolute uncertainty metrics that prove the successful radiometric harmonization of the Landsat and Sentinel-2 data streams, equipping the science community with the confidence required to use HLS time series for robust analysis while identifying some future improvements.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00106R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            DepthCNet: Advancing Coral Health Status Identification through Multi-Modal Semantic Segmentation using Underwater Imagery
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: July 16, 2026</div>
+    <div>Authors: Li, Ming; Qin, Jiangying; Gruen, Armin; Schindler, Konrad; Pan, Xiaotian;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Coral reefs are highly diverse and dynamic ecosystems that necessitate accurate assessment through timely understanding of their growth rates and health status in the face of global warming. This study introduces an innovative multi-modal deep learning network called DepthCNet, specifically designed to tackle the challenge of coral health assessment. By using pixel-level semantic segmentation and incorporating data inputs such as orthophotos and depth images, this network enables the identification and classification of the health status of corals (live, dead, and bleached) in underwater seabed images at the millimeter scale. In our study, we conducted performance and generalization experiments to evaluate the effectiveness of DepthCNet in comparison to alternative state-of-the-art (SOTA) network structures with potential for coral segmentation transferred from other domains. Our DepthCNet achieved an mean intersection over union (mIoU) of 65.3% in the coral segmentation task, with a notable 24.2% intersection over union (IoU) for bleached corals, representing a 5.9% improvement over other SOTA methods.
         </details>
     </div>
 </article>
@@ -869,25 +774,6 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Small object detection in remote sensing images is crucial for maximizing data utility, but small objects face challenges due to their limited pixel coverage, low resolution, and susceptibility to background noise. This paper proposes an orientated small object detection model for remote sensing images based on cross-scale feature fusion and large kernel decomposition. The model consists of four main components: the image feature extraction module, the multi-scale feature fusion module, the cross-fusion region proposal network for generating candidate regions, and the dual detection head for predicting target categories and rotating bounding boxes. Experiments are conducted on two datasets, SODA-A and HRSC-2016, and the results show that the proposed model improves the mean average precision (mAP) by at least 6.3% over classical 1-stage models and by at least 2.6% over classical 2-stage model. In particular, when detecting very small objects (area less than 144 pixels), the mAP value is as high as 17.2%, which is a significant improvement compared with other models, indicating that it is very effective in dealing with the difficult task of small object detection.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00106R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            DepthCNet: Advancing Coral Health Status Identification through Multi-Modal Semantic Segmentation using Underwater Imagery
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: In Press</div>
-    <div>Authors: Li, Ming; Qin, Jiangying; Gruen, Armin; Schindler, Konrad; Pan, Xiaotian;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Coral reefs are highly diverse and dynamic ecosystems that necessitate accurate assessment through timely understanding of their growth rates and health status in the face of global warming. This study introduces an innovative multi-modal deep learning network called DepthCNet, specifically designed to tackle the challenge of coral health assessment. By using pixel-level semantic segmentation and incorporating data inputs such as orthophotos and depth images, this network enables the identification and classification of the health status of corals (live, dead, and bleached) in underwater seabed images at the millimeter scale. In our study, we conducted performance and generalization experiments to evaluate the effectiveness of DepthCNet in comparison to alternative state-of-the-art (SOTA) network structures with potential for coral segmentation transferred from other domains. Our DepthCNet achieved an mean intersection over union (mIoU) of 65.3% in the coral segmentation task, with a notable 24.2% intersection over union (IoU) for bleached corals, representing a 5.9% improvement over other SOTA methods.
         </details>
     </div>
 </article>

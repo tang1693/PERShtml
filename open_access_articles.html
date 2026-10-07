@@ -4,6 +4,26 @@
         
     </div>
     <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00215R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Topologically Aware Roof Wireframe Reconstruction from Airborne Laser Scanning Point Clouds Using Persistent Homology and Hybrid Geometric–Topological Constraints
+        </a>
+    </h3>
+    <div style="font-style: italic;">October 2026, pp. 883–891</div>
+    <div>Authors: Huo, Pengpeng; Jiang, Jinguang; Kong, Gefei; Fan, Hongchao;</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Airborne laser scanning point clouds constitute a primary data source for city-scale 3D building modeling. However, the automated reconstruction of geometrically accurate and topologically consistent roof wireframes persists as a formidable challenge, hindered by data noise, uneven point density, and the topological complexity of urban roofs. Existing data-driven methods exhibit high sensitivity to local fitting errors, frequently leading to topological inconsistencies, whereas model-driven approaches are constrained by predefined primitive libraries, limiting their generalization to complex composite roofs. To address these limitations, this paper proposes a novel framework for roof wireframe reconstruction that fuses topological data analysis (TDA) with hybrid geometric-topological constraints. A core innovation of this framework is the application of persistent homology to extract globally stable topological skeletons from 2.5D height scalar fields, serving as a robust topological prior independent of local geometric noise. Specifically, the method first generates regularized 3D eave lines constrained by 2D building footprints. Subsequently, a “geometry–topology” dual-domain cross-validation mechanism is used to validate geometric hypotheses derived from planar adjacencies against TDA-extracted topological critical points (ridges and valleys), thereby effectively suppressing spurious structure lines. Finally, a global optimization model governed by the minimum description length principle enforces implicit regularization to rectify local geometric distortions and guarantee topological closure. Experiments on the Trondheim dataset demonstrate that the proposed method achieves a root mean square error of 0.443 m, while enhancing the length-weighted completeness and correctness of structure lines to 96.23% and 97.41%, respectively. These results validate the efficacy of integrating height-field–based topological skeletons for reconstructing complex roof wireframes, offering a scalable and robust solution for automated large-scale urban 3D modeling.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00015R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             UAV Lidar vs. Structure-from-Motion (SfM) Photogrammetry for Coastal Dune Monitoring: A Two-Year Multi-Temporal Case Study from the Southern Baltic Sea
         </a>
@@ -35,26 +55,6 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             The mapping and modeling of canopies is important for the understanding, monitoring, and management of vegetation systems. To effectively model or simulate canopy spectra at the hyperspectral level, background soil spectra must first be simulated accurately. Spectrometer data simulation such as this will become increasingly relevant as newer imaging spectroscopy missions such as PRISMA and AVIRIS-NG start to produce more data sets. In this study, the brightness–shape–moisture (BSM) radiative transfer model (RTM) with localized parameter distributions was used in conjunction with the PROSAIL-5 RTM to simulate canopy spectra for different biomes in the semiarid regions of Southern Africa as captured with PRISMA or AVIRIS-NG sensors. It is hypothesized that a PROSAIL-5 RTM with biome-specific BSM parameters can more accurately simulate PRISMA and AVIRIS-NG spectra than a PROSAIL-5 model simulated with the default soil spectrum, as represented by lower relative root mean square error (RRMSE) values against actual spectra. It is demonstrated that the PRISMA and AVIRIS-NG canopy spectra are more effectively simulated using their respective biome-specific BSM parameter regimes, with RRMSE improvements from 14.56% to 13.91% and from 13.64% to 10.71% for two tested images captured with these sensors.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-        
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00112R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Semantic Change Detection with Constrained Dual-Head Convolutional Neural Network Architecture for Oil/Gas Well Site Monitoring
-        </a>
-    </h3>
-    <div style="font-style: italic;">July 2026, pp. 647-658</div>
-    <div>Authors: Xu, Hongzhang; He, Hongjie; Zhang, Ying; Zhang, Dedong; Li, Jonathan;</div>
-    <div>
-        Abstract: 
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            High-resolution mapping of land disturbance and reclamation is important for assessing the cumulative environmental effects of oil/gas production. The growing availability of high-resolution satellite imagery, combined with recent advances in deep learning, offers a desirable solution for detecting land surface changes on disturbed land. In this study, we constructed the Alberta oil/gas wells semantic change detection (SCD) data set in Alberta, Canada, based on high-resolution satellite imagery from WorldView-2 and SPOT-6. The data set consists of 328 pairs of bitemporal images (512 × 512 pixels at 1.5-m resolution), along with corresponding semantic change maps, binary change maps, and land cover maps. In addition, we proposed a constrained dual-head convolutional neural network (CNN) framework that jointly learns semantic change and binary change tasks. Specifically, two segmentation heads are designed—one for semantic changes and one for binary changes—and are explicitly connected through a cosine similarity loss that enforces consistency between the two tasks. Taking High-Resolution Net (HRNet)-v2 as the backbone, our model was pretrained on the large-scale SEmantic Change detectiON Data Set (SECOND) and fine-tuned on our developed data set. Comparative experiments with BiSRNet, HGINet, and SCanNet demonstrate that our approach achieves superior performance, with the highest mean intersection over union (mIoU) (79.47%) and separated Kappa (SeK) (28.40%) after fine-tuning. Incorporating land cover maps as additional supervision further boosts results, with our approach reaching an mIoU of 80.05% and a SeK of 29.71%. These findings highlight the effectiveness of the proposed constrained dual-head CNN architecture and the benefit of leveraging land cover information for advancing SCD in remote sensing.
         </details>
     </div>
 </article>
@@ -124,6 +124,46 @@
         
     </div>
     <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00112R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Semantic Change Detection with Constrained Dual-Head Convolutional Neural Network Architecture for Oil/Gas Well Site Monitoring
+        </a>
+    </h3>
+    <div style="font-style: italic;">July 2026, pp. 647-658</div>
+    <div>Authors: Xu, Hongzhang; He, Hongjie; Zhang, Ying; Zhang, Dedong; Li, Jonathan;</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            High-resolution mapping of land disturbance and reclamation is important for assessing the cumulative environmental effects of oil/gas production. The growing availability of high-resolution satellite imagery, combined with recent advances in deep learning, offers a desirable solution for detecting land surface changes on disturbed land. In this study, we constructed the Alberta oil/gas wells semantic change detection (SCD) data set in Alberta, Canada, based on high-resolution satellite imagery from WorldView-2 and SPOT-6. The data set consists of 328 pairs of bitemporal images (512 × 512 pixels at 1.5-m resolution), along with corresponding semantic change maps, binary change maps, and land cover maps. In addition, we proposed a constrained dual-head convolutional neural network (CNN) framework that jointly learns semantic change and binary change tasks. Specifically, two segmentation heads are designed—one for semantic changes and one for binary changes—and are explicitly connected through a cosine similarity loss that enforces consistency between the two tasks. Taking High-Resolution Net (HRNet)-v2 as the backbone, our model was pretrained on the large-scale SEmantic Change detectiON Data Set (SECOND) and fine-tuned on our developed data set. Comparative experiments with BiSRNet, HGINet, and SCanNet demonstrate that our approach achieves superior performance, with the highest mean intersection over union (mIoU) (79.47%) and separated Kappa (SeK) (28.40%) after fine-tuning. Incorporating land cover maps as additional supervision further boosts results, with our approach reaching an mIoU of 80.05% and a SeK of 29.71%. These findings highlight the effectiveness of the proposed constrained dual-head CNN architecture and the benefit of leveraging land cover information for advancing SCD in remote sensing.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00125R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Posicooper: A Position-Prior-Driven Cooperative Perception Framework
+        </a>
+    </h3>
+    <div style="font-style: italic;">June 2026, pp. 533–541</div>
+    <div>Authors: Qiu, Huan; Zhou, Jian; Xiong, Chengzhuo; Bian, Haomiao; Li, Yikang; Li, Bijun;</div>
+    <div>
+        Abstract: 
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Multi-agent collaborative perception enhances the perception coverage and robustness of intelligent agents in complex traffic environments by sharing and fusing information from diverse viewpoints. However, in vehicle-to-everything (V2X) scenarios, existing collaborative perception methods still face two major challenges: (i) an excessive reliance on raw sensor data to construct a global environmental representation, which causes communication bandwidth to surge dramatically as the perception range expands; and (ii) a disjoint treatment of traffic participants’ trajectory and location information from sensor observations, neglecting the dual role of agents as both “perception sources” and “perception targets,” thereby limiting further improvements in collaborative perception performance. To address these issues, this paper proposes a novel position prior–driven cooperative perception framework, Posicooper. The proposed method fully leverages widely distributed positioning information and introduces two key designs: in terms of communication strategy, Posicooper constructs a global confidence map based on position priors to identify critical perception regions and selectively transmit their feature information, significantly reducing communication overhead; and in terms of perception modeling, it introduces a critical region guidance module that generates guidance maps from position priors to direct the network’s attention to important regions, thereby enhancing feature representation and improving detection accuracy. Experiments on two representative V2X collaborative perception data sets, OPV2V and V2XSet, demonstrate that Posicooper reduces communication costs by 28.6% while achieving an approximately  11.0% improvement in object detection accuracy, highlighting its strong potential for deployment in real-world traffic scenarios.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
+        
+    </div>
+    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.25-00220R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Beyond Global Navigation Satellite Systems–Based Georeferencing: Recent Trends in Positioning and Navigation
         </a>
@@ -155,26 +195,6 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             With the rapid proliferation of unmanned aerial vehicles (UAVs), concerns regarding privacy breaches, unauthorized intrusions, and public safety have become increasingly critical. To address these challenges, this study developed a lidar–pan-tilt-zoom (PTZ) camera fusion system for real-time UAV detection and tracking. The proposed approach integrates YOLOv11-based visual detection, PointPillars point-cloud processing, and an adaptive extended Kalman filter (EKF) within a unified framework to achieve robust and temporally consistent target state estimation under sparse observation conditions. A spatially constrained virtual-point augmentation scheme is introduced to improve feature stability and model generalization under sparse lidar point-cloud conditions. Furthermore, a dual-layer fusion EKF strategy is designed to jointly exploit PointPillars detection outputs and adaptive noise–aware centroid measurements, enabling robust dynamic state estimation and continuous tracking even with intermittent data. The proposed system was implemented and evaluated through both public data sets and real-world outdoor experiments. Experimental results demonstrate that the lidar–PTZ fusion system achieves an average positional deviation of ±1.62 m, an effective detection range of about 30 m, and a maximum valid range of approximately 42 m, while maintaining a frame-level detection continuity of 96.8% and operating at around 32 frames/second. The evaluation results demonstrate that the fusion strategy effectively mitigates the limitations of single-sensor detection and provides a reliable foundation for multi-target cooperative sensing and airspace security monitoring applications.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles <span style="color: rgb(0, 191, 255);">Open Access</span></div>
-        
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00125R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Posicooper: A Position-Prior-Driven Cooperative Perception Framework
-        </a>
-    </h3>
-    <div style="font-style: italic;">June 2026, pp. 533–541</div>
-    <div>Authors: Qiu, Huan; Zhou, Jian; Xiong, Chengzhuo; Bian, Haomiao; Li, Yikang; Li, Bijun;</div>
-    <div>
-        Abstract: 
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Multi-agent collaborative perception enhances the perception coverage and robustness of intelligent agents in complex traffic environments by sharing and fusing information from diverse viewpoints. However, in vehicle-to-everything (V2X) scenarios, existing collaborative perception methods still face two major challenges: (i) an excessive reliance on raw sensor data to construct a global environmental representation, which causes communication bandwidth to surge dramatically as the perception range expands; and (ii) a disjoint treatment of traffic participants’ trajectory and location information from sensor observations, neglecting the dual role of agents as both “perception sources” and “perception targets,” thereby limiting further improvements in collaborative perception performance. To address these issues, this paper proposes a novel position prior–driven cooperative perception framework, Posicooper. The proposed method fully leverages widely distributed positioning information and introduces two key designs: in terms of communication strategy, Posicooper constructs a global confidence map based on position priors to identify critical perception regions and selectively transmit their feature information, significantly reducing communication overhead; and in terms of perception modeling, it introduces a critical region guidance module that generates guidance maps from position priors to direct the network’s attention to important regions, thereby enhancing feature representation and improving detection accuracy. Experiments on two representative V2X collaborative perception data sets, OPV2V and V2XSet, demonstrate that Posicooper reduces communication costs by 28.6% while achieving an approximately  11.0% improvement in object detection accuracy, highlighting its strong potential for deployment in real-world traffic scenarios.
         </details>
     </div>
 </article>
