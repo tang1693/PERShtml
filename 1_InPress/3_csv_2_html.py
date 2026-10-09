@@ -75,6 +75,10 @@ EDITOR_CHOICE_TITLES = {
         "FastPro-Gaussian: Accelerated True Digital Orthophoto Map Generation "
         "with Progressive Densification and Spherical-to-Ellipsoidal Gaussian Transformation"
     ),
+    normalize_title(
+        "Topologically Aware Roof Wireframe Reconstruction from Airborne Laser Scanning "
+        "Point Clouds Using Persistent Homology and Hybrid Geometric–Topological Constraints"
+    ),
 }
 
 
