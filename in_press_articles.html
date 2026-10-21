@@ -3,6 +3,25 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00054R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            IPN-LightGlue: Illumination-Aware Deep Feature Matching via Adaptive Matchability Modulation
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: October 20, 2026</div>
+    <div>Authors: Yu, Yining; Yan, Wenlin; Xiao, Yihong; Zhao, Ying</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Under adverse illumination, matchability scores may distinguish valid key points from ambiguous candidates less reliably. Fixed decision thresholds can then retain unreliable correspondences or discard useful candidates, destabilizing geometric estimation with random sample consensus. IPN-LightGlue is introduced to address this problem by coupling an illumination perception network (IPN) with adaptive matchability modulation. The IPN uses a frozen MobileNetV3-Small backbone to predict a normalized image-level illumination score, which is converted into a non-positive bias on LightGlue’s matchability logits. This design leaves the feature extractor unchanged and adds 74 000 trainable parameters. On the evaluation hardware, an isolated IPN forward pass takes 3.399 ± 0.829 ms per image, and the complete pipeline incurs a runtime overhead of 4.169% to 8.027% relative to LightGlue. Mean matching accuracy at a 3-pixel threshold (MMA@3px) increases from 79.9% to 85.2% on the HPatches illumination subset. For the multi-illumination data set, which isolates illumination-direction changes from viewpoint variation, MMA@3px rises from 85.2% to 89.5%, whereas mean corner error decreases by 16.4%. The method also reduces mean corner error from 59.75 pixels to 7.14 pixels on the HPatches viewpoint subset, despite the IPN being supervised only on radiometric variation. Neither contrast-limited adaptive histogram equalization nor zero-reference deep curve estimation, applied before matching, improves MMA@3px over LightGlue in these evaluations. The findings support illumination-aware matchability modulation as a way to improve correspondence accuracy and geometric stability without modifying the input image
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00068R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Improved Grey Wolf Optimization Algorithm for Intelligent Indoor Positioning Application
         </a>
@@ -478,25 +497,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00177R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Hierarchical Integration of Multi-Source Lidar for Forest Volume Estimation across Individual Trees and Plot Scales
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: July 2, 2026</div>
-    <div>Authors: Gu, Denuo; Pang, Yong; Du, Liming; Kong, Dan;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Accurate stem volume estimation remains contingent on an analytical tree (i.e., tree felled and sectionally measured to obtain reference stem volume) as the calibration benchmark for remote sensing and allometric equation, thereby limiting scalability and operational efficiency in large-scale forest carbon assessment. To overcome this bottleneck, we propose a hierarchical integration framework for multi-source lidar-based stem volume estimation, termed “hierarchical integration of volume estimation” (HIVE), which establishes a lidar-driven estimation chain linking individual trees to plot-level assessments. Specifically, we first establish a volumetric benchmark from terrestrial laser scanning (TLS) by reconstructing stems with the quantitative structure model (QSM), which serves as a surrogate for analytical trees. We then transfer this benchmark to airborne laser scanning (ALS) by mapping the lidar biomass index (LBI) and tree height to TLS-derived reference volume, effectively coupling nondestructive TLS-based volumetric calibration with broad spatial coverage. Cross-scale calibration and validation then enforce tree-plot consistency, enabling accurate upscaling without reliance on traditional field calibration based on the manual diameter at breast height and tree height measurements. For 41 Japanese larch (Larix kaempferi) trees, TLS-based TreeQSM yielded stem volume estimates consistent with analytical-tree measurements (R2 = 0.97, relative root mean square error [rRMSE] = 12.90%) and outperformed traditional allometric equations (R2 = 0.96, rRMSE = 14.34%). Furthermore, using k-fold cross-validation on 81 TLS-ALS paired trees, the tree-level LBI model showed consistent predictive performance (R2 = 0.81, rRMSE = 27.62%). When transferred to the plot level, stem volume estimates across 67 plots agreed well with field survey references (R2 = 0.72, rRMSE = 23.53%). This approach provides an innovative solution for efficient large-scale forest volume estimation by substantially reducing reliance on traditional field surveys for model calibration and opens new possibilities for carbon stock assessment and sustainable forest management.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00022R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Edge-ANN: Storage-Efficient Edge-Based Remote Sensing Feature Retrieval
         </a>
@@ -527,44 +527,6 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Monitoring large-scale surface deformation using satellite radar data is crucial for advancing regional and continental-scale geodynamic observations. However, challenges arise when unifying deformation data from different tracks of the same satellite, primarily due to inconsistencies in reference baselines and variations in radar viewing angles. This study proposes an interferometric synthetic aperture radar (InSAR) deformation datum connection method with a fixed line-of-sight (LOS) direction. The method combines Bayesian inference with a Markov random field model and integrates InSAR and global navigation satellite system deformation measurements to unify deformation datums across multi-track SAR interferometric results using only a single orbit direction (ascending-only or descending-only), without requiring both ascending and descending data sets. In the simulation experiments, the root mean square error (RMSE) of the LOS displacement rate difference in the overlapping regions of adjacent-track SAR images decreased by 99%. Applying the developed methodology for InSAR observations of the 2023 Mw 7.8 Kahramanmaraş earthquake in Türkiye, the RMSE of displacement differences in the overlapping regions of adjacent tracks was reduced from 98 to 34 mm, demonstrating the effectiveness of the proposed unified datum approach. 
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00214R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            IT-Seg: Morphology-Constrained and Spatially Guided Individual Tree Segmentation from Terrestrial and Mobile Point Clouds
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: May 28, 2026</div>
-    <div>Authors: Chen, Maolin; Yin, Hanwen; Zhang, Zhiqing; Zhang, Huan; Bo, Liming;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Individual trees are essential components of forest ecosystems, and accurate tree-level segmentation provides a crucial foundation for forest ecosystem modeling and biodiversity assessment. We propose a novel point cloud-based individual tree segmentation method guided by morphological prior constraints and single-tree canopy radiative effective extent (SCREE), a metric used to define the canopy boundary for each tree, computed from high-dimensional features output by a network. First, the original point cloud is divided into a central point set and a buffer point set based on morphological prior constraints. On this basis, different strategies are applied for trunk extraction from the central and buffer points: trunks in the central point set are extracted through adaptive density-based filtering, while trunks in the buffer point set are extracted using a semantic segmentation network. Finally, canopy points are assigned to individual trunks to obtain complete tree structures. This assignment is guided by the proposed SCREE, inferred using a diameter at breast height–height generative model to generate a constrained space. Validated on six forest scenes from three public data sets, the proposed method achieves an average instance-level accuracy of 84.71% and an average point-level accuracy of 81.85%, demonstrating strong robustness across diverse forest environments. Moreover, compared with existing methods, our method exhibits higher stability when handling variations in samples and the presence of small trees across different types of scanners.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.26-00018R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Building Extraction Model and Application from Multi-Scene Remote Sensing Data
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: May 28, 2026</div>
-    <div>Authors: Yang, Gangyu; Zhai, Wei; Li, Jincheng; Cao, Yingying</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            The extraction of building footprints based on high-resolution remote sensing images is widely used in many fields such as land survey and urban planning, and high resolution also brings complex background information. In order to improve the effectiveness of building footprint extraction, this paper proposes a RefineSegFormer that combines a hierarchical transformer encoder and a cross-level feedback Refine feature pyramid network implemented through deformable convolution. RefineSegFormer achieved an F1 score of 96.55% and an IoU of 93.33% on the widely recognized WHU building data set, an F1 of 93.19% and an IoU of 87.25% on the 0.3-m Mandalay City data set, and an F1 of 90.53% and an IoU of 82.70% on 2-m Dingri County data set, all of which achieved the best results, proving the effectiveness and practical application value of the proposed model in this paper. The improved lightweight model for building footprint extraction has better performance than the unimproved medium model. In submeter remote sensing image building footprint extraction, the parameters are only 20% of the medium model, which can achieve more than 98% of the performance of the improved medium model, balancing extraction accuracy and inference speed. In the extraction of building footprints from meter remote sensing images with a small number of buildings and high similarity between buildings and the background, it is more recommended to use the improved medium model. Compared with the unimproved medium model, F1 has increased by 6.71%, and IoU has increased by 10.55%. The model and code of RefineSegFormer can be available at: https://github.com/amanforinteresting/RefineSegFormer.
         </details>
     </div>
 </article>
@@ -617,25 +579,6 @@
     </h3>
     <div style="font-style: italic;">Avaliable online: May 7, 2026</div>
     <div>Authors: Zhong, Cheng; Long, Siqing; Zhang, Yunjie; Cai, Ming;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Recent developments in urban air mobility (UAM) have intensified the demand for real-time risk assessment and dynamic obstacle avoidance technologies to ensure safe and flexible unmanned aerial vehicle (UAV) operations in complex low-altitude environments. However, UAM is still in its early stages of development. UAV operations largely rely on preflight static risk assessments and conflict-free trajectory planning and do not account for the effect of environmental disturbances during flight. Therefore, dynamic risk evaluation and obstacle avoidance methods are required to adapt to real-time changes in low-altitude environments and meet the safety demands of UAM operations. This study proposes a novel probabilistic risk field (PRF) for dynamic obstacle avoidance of low-altitude UAVs. Specifically, the model constructs a repulsive risk field based on the UAV’s physical attributes and motion states and incorporates a probabilistic position deviation model to model uncertainty during flight. This framework enables dynamic risk modeling under complex and uncertain low-altitude conditions. Simulation experiments under different conflict scenarios and uncertainty levels demonstrate that the proposed PRF method reduces the maximum collision risk by more than 50% compared to conventional risk field approaches. The PRF model provides a robust framework for uncertainty-aware dynamic obstacle avoidance and holds potential for broader applications in urban air mobility systems, reasonable flight planning, and low-altitude airspace management.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00218R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            A Probabilistic Risk Field Model for Dynamic Obstacle Avoidance of Unmanned Aerial Vehicles under State Uncertainty
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: May 6, 2026</div>
-    <div>Authors: Wang, Xiangfei; Xu, Bo; Li, Xin</div>
     <div>
         Abstract:
         <details>
