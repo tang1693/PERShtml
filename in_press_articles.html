@@ -3,6 +3,65 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00079R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            An Automatic Calibration Method for Installation Angles of Unmanned Aerial Vehicle Lidar Systems
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: November 20, 2026</div>
+    <div>Authors: Li, Zijie; Hu, Qingwu;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            The measurement accuracy of unmanned aerial vehicle (UAV) light detection and ranging (lidar) systems highly depends on the accuracy of installation parameters between the laser scanner and the position and orientation system. Traditional methods rely on artificial targets and are inefficient. This paper proposes a largely automatic calibration method using building roofs as natural calibration fields. The technical workflow includes the following steps. First, the cloth simulation filter is used to separate nonground point clouds. Then, the region-growing algorithm is adopted to robustly segment individual roof planes. Subsequently, an improved robust symmetric iterated closest point algorithm is applied to achieve high-precision registration of roofs between strips. The geometric centers of the registered roofs are used as homologous tie points. Finally, a least-squares optimization model is constructed to calculate the optimal parameters. Experimental results based on data collected from three lidar systems—FT800, FT1500, and MT1500—demonstrate that the proposed method exhibits promising generalizability across different scanning mechanisms. Taking the FT1500 system data at a flight altitude of 200 m as an example, the misalignment errors at gable roof peaks (0.059 m in pitch, 0.062 m in roll) are superior to those achieved by traditional manual methods (0.092 m in pitch, 0.120 m in roll). The absolute accuracy of the point clouds reaches the subdecimeter level (d3D = 0.079 m), while the relative strip alignment consistency improves from 0.351 to 0.098 m in the horizontal component and from 0.219 to 0.059 m in the vertical component. The proposed method effectively reduces layering and ghosting between flight strips while improving both absolute and relative point cloud accuracy, providing an efficient solution for largely automatic calibration of UAV lidar systems
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00107R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Gain Mechanism Analysis of Optical-to-synthetic Aperture Radar (SAR) Cross-modal Data Augmentation for SAR Object Detection
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: November 20, 2026</div>
+    <div>Authors: Xiao, Changlin; Yang, Weichen ; Ma, Guangdi; Wang, Xiang; Niu, Yiming; Lu, Yilong; Lu, Jiangping; Chen, Wei</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Optical-to-SAR (O2S) generation is increasingly used to ease the scarcity of annotated synthetic aperture radar (SAR) samples for object detection. Most prior work judges synthetic data by visual metrics and offers little guidance on mixing ratios, detector dependence, or true gain bounds. Using coregistered optical–SAR pairs (QXSLAB_SAROPT), we evaluated a grayscale control and three generators—CycleGAN, Cross-CycleGAN, and E3Diff—with five detectors (YOLO11s, CenterNet, Faster R-CNN, RT-DETR-l, and DINOv3-YOLOv12) under progressive mixing on ship detection and seven-class aircraft recognition. From prior knowledge of generator objectives and detector inductive biases, we hypothesized that pairing is not universal and therefore grouped both sides into simple structural types before the experiments, with falsifiable matching predictions. Through multi-dimensional experiments, we find: (1) grayscale cannot emulate SAR scattering and causes negative transfer; (2) pixel scores (peak signal-to-noise ratio [PSNR]/ structural similarity index measure [SSIM]) are decoupled from mean average precision (mAP) and so selection should be detection-driven; (3) no generator is universally best—pairing is type- and scene-dependent—and complex multi-class aircraft scenes partially falsify it, demonstrating that the a priori hypothesis is predictive in simple scenes but not predictive in complex multi-class scenes; (4) mixing has a useful window rather than “more is better,” with larger gains for lower-baseline detectors (up to +6.1/+11.0 mAP@0.5 on ships/aircraft); (5) gains mainly improve detection/recall (mAP@0.5), with limited tight-localization benefit; and (6) abundant real SAR yields diminishing returns. These results provide hypothesis-driven pairing and dosing guidance for O2S augmentation in SAR detection.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00089R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Automatic Geometric Structure Reconstruction 
+of Buildings from Remote Sensing Data: 
+A Comprehensive Survey
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: November 18, 2026</div>
+    <div>Authors: Zhao, Wufan; Wang, Tengxi; Zhang, Shuai; Hua, Tongyan; Li, Zhuoxiao; Persello, Claudio; Qin, Rongjun;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Rapid urbanization and the development of urban digital twins have driven a pivotal shift in remote sensing, moving from basic pixel-level building identification to precise geometric structure reconstruction. Although existing literature mainly reviews early primitive-fitting techniques or isolated raster segmentation, comprehensive analyses of the transition to topologically consistent vector geometries remain limited. To address this gap, this paper provides a comprehensive survey structured according to progressive dimensional complexity, detailing the extraction of 2-dimensional planar footprints, 2.5-dimensional  roof topologies, and full 3-dimensional  polyhedral models. We critically assess the evolution of methodologies driven by optical imagery, lidar point clouds, and multi-modal fusion strategies. In particular, we highlight the transition from traditional model-driven geometric regularization to advanced deep learning architectures, including end-to-end vector regression, graph neural networks, and generative diffusion models. Our analysis shows that although contemporary neural networks can directly convert unstructured earth observation data into compact wireframes and watertight meshes, challenges remain, particularly in terms of architectural diversity and severe data occlusions. Finally, we examine the transformative potential of large-scale foundation models (vision-language model and large language models), semantic enrichment standards, and real-time dynamic monitoring, outlining a clear roadmap for the future of highly automated, city-scale 3-dimensional urban modeling. Resources accompanying this survey are available at https://github.com/ai4city-hkust/building-geometric-reconstruction-survey.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00120R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Leveraging Phase, Coherence, and Intensity of Synthetic Aperture Radar Imagery for Landslide Potential-effect Evaluation: Application to the Qinling Mountains in China
         </a>
@@ -345,25 +404,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.26-00037R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Satellite-Based Framework for Detecting Seabed Dynamics from Shoreline Variability along Spit Coasts—A Pilot Study from the Hel Peninsula
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: August 21, 2026</div>
-    <div>Authors: Sapiega, Patryk; Zalewska, Tamara</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            This study presents a pilot, data-driven framework for detecting nearshore seabed dynamics based on shoreline variability derived from high-resolution satellite imagery, integrated with in situ bathymetric measurements along the Hel Peninsula in the southern Baltic Sea. The approach focuses on assessing whether satellite-derived shoreline displacement can serve as an indirect indicator of changes in seabed morphology within the sedimentologically active coastal zone. Four cross-shore transects were analyzed using Pléiades satellite imagery and field bathymetric data collected during two monitoring campaigns conducted in 2019 and 2022. Changes in seabed elevation were quantified through cross-sectional profile analysis, while key morphodynamic parameters, including closure depth and the length of the active seabed, were estimated using empirical formulations proposed by Hallermeier, Birkemeier, and Houston. To provide hydrodynamic context, wave and current conditions were characterized using Copernicus Marine Service reanalysis data. The results reveal pronounced spatial variability in seabed response along the Hel Peninsula, with erosion-dominated conditions in high-energy open-coast sectors and limited morphological change in semienclosed, low-energy environments. Among the tested formulations, Birkemeier’s equation showed the closest agreement with field-derived closure depths, while all empirical models systematically overestimated closure depth in low-energy settings. The findings demonstrate the potential of satellite-based shoreline observations as a supporting tool for coastal morphodynamic assessment while highlighting the limitations imposed by measurement uncertainty, short observation windows, and simplified process representation. Overall, the proposed framework should be regarded as a proof-of-concept application requiring longer observational time series, improved uncertainty quantification, and local calibration before operational implementation can be considered
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00046R5" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Uncertainty-Aware Weakly Supervised Building Change Detection with Point Annotations
         </a>
@@ -375,6 +415,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Point-based weakly supervised strategies can reduce annotation costs but suffer from the problems of semantic sparsity and boundary ambiguity. This paper proposes an uncertainty-aware weakly supervised building change detection method with point annotations. First, the method leverages the proposal generation capability and embedding space of the Segment Anything model to generate reliable three-class pseudo-labels. By fusing appearance similarity and geometric overlap at the proposal level, it distinguishes high-confidence changed/no-change regions and uncertain regions, which not only enriches the semantic information of annotations but also mitigates the prompt-induced semantic bias. Then, an entropy minimization strategy is adopted to impose constraints on low-confidence uncertain pixels, which suppresses noisy supervision while achieving refined boundary extraction. To verify the effectiveness of the proposed method, experiments on standard building change detection benchmark data sets show that compared with existing weakly supervised methods, the proposal-level matching strategy significantly improves the fidelity of pseudo-labels, thus yielding more robust and accurate change detection results.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00037R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Satellite-Based Framework for Detecting Seabed Dynamics from Shoreline Variability along Spit Coasts—A Pilot Study from the Hel Peninsula
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 21, 2026</div>
+    <div>Authors: Sapiega, Patryk; Zalewska, Tamara</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            This study presents a pilot, data-driven framework for detecting nearshore seabed dynamics based on shoreline variability derived from high-resolution satellite imagery, integrated with in situ bathymetric measurements along the Hel Peninsula in the southern Baltic Sea. The approach focuses on assessing whether satellite-derived shoreline displacement can serve as an indirect indicator of changes in seabed morphology within the sedimentologically active coastal zone. Four cross-shore transects were analyzed using Pléiades satellite imagery and field bathymetric data collected during two monitoring campaigns conducted in 2019 and 2022. Changes in seabed elevation were quantified through cross-sectional profile analysis, while key morphodynamic parameters, including closure depth and the length of the active seabed, were estimated using empirical formulations proposed by Hallermeier, Birkemeier, and Houston. To provide hydrodynamic context, wave and current conditions were characterized using Copernicus Marine Service reanalysis data. The results reveal pronounced spatial variability in seabed response along the Hel Peninsula, with erosion-dominated conditions in high-energy open-coast sectors and limited morphological change in semienclosed, low-energy environments. Among the tested formulations, Birkemeier’s equation showed the closest agreement with field-derived closure depths, while all empirical models systematically overestimated closure depth in low-energy settings. The findings demonstrate the potential of satellite-based shoreline observations as a supporting tool for coastal morphodynamic assessment while highlighting the limitations imposed by measurement uncertainty, short observation windows, and simplified process representation. Overall, the proposed framework should be regarded as a proof-of-concept application requiring longer observational time series, improved uncertainty quantification, and local calibration before operational implementation can be considered
         </details>
     </div>
 </article>
@@ -440,25 +499,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.26-00024R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            Mitigating Radiometric Bias in Unmanned Aerial Vehicle Thermal Infrared Imagery Using Temperature-Controlled Reference Plates
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: August 7, 2026</div>
-    <div>Authors: Cervini, Gaia; Jung, Jinha; Roberts, Nicholas A.; Gkritza, Konstantina;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Temperature retrieval from unmanned aerial vehicle (UAV) thermal imagery commonly relies on proprietary manufacturer radiometric calibration software. However, the correction procedures used by these workflows are generally undisclosed, and some user-defined parameters, particularly altitude, are restricted to ranges that do not reflect real-world conditions, risking the introduction of bias and higher radiometric uncertainty. Accordingly, this study evaluates the accuracy of proprietary radiometric calibration by examining how its performance changes with flight altitude, while also proposing a practical method to correct residual bias after proprietary processing. Thermal imagery is collected with a DJI Matrice 300 RTK equipped with a Zenmuse H20T sensor at 15, 30, 45, and 60 m. Two temperature-controlled plates (TCPs) spanning cold and hot regimes are used to validate three DJI Thermal SDK workflows: (1) default settings; (2) custom settings using measured emissivity, flight altitude, humidity, and reflected apparent temperature (Treflected); and (3) custom settings with per-image tuning of Treflected. Residual bias is subsequently corrected using empirical line calibration (ELC) derived from TCP observations. Across all proprietary workflows, temperature error increases with altitude, indicating progressive gain and offset bias not fully corrected by manufacturer processing. Default settings produce the largest error, with mean absolute error increasing from 4.39°C at 15 m to 11.69°C at 60 m. Custom settings reduce error moderately (3.86°C to 9.43°C), while Treflected tuning improves close-range performance but does not eliminate altitude-dependent degradation (0.99°C to 8.57°C). Application of ELC substantially reduces residual bias across workflows, with best performance achieved by combining Treflected tuning with ELC, resulting in sub-1°C accuracy across altitudes. These results demonstrate that proprietary UAV thermal image processing alone is insufficient to ensure robust temperature retrieval but that a simple empirically calibrated postprocessing workflow using TCPs can mitigate altitude-dependent bias and enable high-accuracy temperature estimation in operational remote sensing applications
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00035R4" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Analytical Estimate of Digital Elevation Model Accuracy (Mean Square Error) as a Function of Cell Size and Dataset Elevation Error
         </a>
@@ -470,6 +510,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Modern digital elevation models (DEMs) are generated with increasingly small cell sizes and high accuracy, yet no closed-form relationship links these variables. Previous work relied on empirical formulations validated experimentally. This paper derives an analytical relationship for the traditional elevation mean square error (MSE) accuracy metric and highlights limitations of empirical approaches. Common practice wrongly dismisses the effect of the choice of interpolation method on DEM accuracy. Accuracy reports may even fail to mention which interpolation method was used. The analysis was limited to two local interpolation methods: nearest neighbor and bilinear interpolation. In those cases we show that the model accuracy is bounded by three terms: one depending only on the dataset elevation MSE; mixed monomials depending on both the dataset elevation MSE and powers of the cell size h; and a term independent of the dataset elevation MSE and proportional to a power of h. For a given interpolation method, the exponents of h are constant, whereas the coefficients can be estimated from local terrain characteristics at the control points. For bilinear interpolation, the exponents are twice those for nearest-neighbor interpolation. The availability of this analytical relationship makes it possible to determine the cell size or instrument accuracy required to achieve a specified target DEM accuracy. Because the result depends strongly on the interpolation method, the recommended interpolation method should be routinely and explicitly mentioned in the DEM producer’s accuracy report
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.26-00024R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            Mitigating Radiometric Bias in Unmanned Aerial Vehicle Thermal Infrared Imagery Using Temperature-Controlled Reference Plates
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: August 7, 2026</div>
+    <div>Authors: Cervini, Gaia; Jung, Jinha; Roberts, Nicholas A.; Gkritza, Konstantina;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Temperature retrieval from unmanned aerial vehicle (UAV) thermal imagery commonly relies on proprietary manufacturer radiometric calibration software. However, the correction procedures used by these workflows are generally undisclosed, and some user-defined parameters, particularly altitude, are restricted to ranges that do not reflect real-world conditions, risking the introduction of bias and higher radiometric uncertainty. Accordingly, this study evaluates the accuracy of proprietary radiometric calibration by examining how its performance changes with flight altitude, while also proposing a practical method to correct residual bias after proprietary processing. Thermal imagery is collected with a DJI Matrice 300 RTK equipped with a Zenmuse H20T sensor at 15, 30, 45, and 60 m. Two temperature-controlled plates (TCPs) spanning cold and hot regimes are used to validate three DJI Thermal SDK workflows: (1) default settings; (2) custom settings using measured emissivity, flight altitude, humidity, and reflected apparent temperature (Treflected); and (3) custom settings with per-image tuning of Treflected. Residual bias is subsequently corrected using empirical line calibration (ELC) derived from TCP observations. Across all proprietary workflows, temperature error increases with altitude, indicating progressive gain and offset bias not fully corrected by manufacturer processing. Default settings produce the largest error, with mean absolute error increasing from 4.39°C at 15 m to 11.69°C at 60 m. Custom settings reduce error moderately (3.86°C to 9.43°C), while Treflected tuning improves close-range performance but does not eliminate altitude-dependent degradation (0.99°C to 8.57°C). Application of ELC substantially reduces residual bias across workflows, with best performance achieved by combining Treflected tuning with ELC, resulting in sub-1°C accuracy across altitudes. These results demonstrate that proprietary UAV thermal image processing alone is insufficient to ensure robust temperature retrieval but that a simple empirically calibrated postprocessing workflow using TCPs can mitigate altitude-dependent bias and enable high-accuracy temperature estimation in operational remote sensing applications
         </details>
     </div>
 </article>
@@ -535,25 +594,6 @@
         <div style="font-weight: bold; color: gray;">Research Articles </div>
     </div>
     <h3 style="margin: 5px 0;">
-        <a href="https://doi.org/10.14358/PERS.25-00106R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
-            DepthCNet: Advancing Coral Health Status Identification through Multi-Modal Semantic Segmentation using Underwater Imagery
-        </a>
-    </h3>
-    <div style="font-style: italic;">Avaliable online: July 16, 2026</div>
-    <div>Authors: Li, Ming; Qin, Jiangying; Gruen, Armin; Schindler, Konrad; Pan, Xiaotian;</div>
-    <div>
-        Abstract:
-        <details>
-            <summary style="color: #1b5faa;">Read more...</summary>
-            Coral reefs are highly diverse and dynamic ecosystems that necessitate accurate assessment through timely understanding of their growth rates and health status in the face of global warming. This study introduces an innovative multi-modal deep learning network called DepthCNet, specifically designed to tackle the challenge of coral health assessment. By using pixel-level semantic segmentation and incorporating data inputs such as orthophotos and depth images, this network enables the identification and classification of the health status of corals (live, dead, and bleached) in underwater seabed images at the millimeter scale. In our study, we conducted performance and generalization experiments to evaluate the effectiveness of DepthCNet in comparison to alternative state-of-the-art (SOTA) network structures with potential for coral segmentation transferred from other domains. Our DepthCNet achieved an mean intersection over union (mIoU) of 65.3% in the coral segmentation task, with a notable 24.2% intersection over union (IoU) for bleached corals, representing a 5.9% improvement over other SOTA methods.
-        </details>
-    </div>
-</article>
-<article style="border-top: 1px solid #000; padding: 15px;">
-    <div style="display: flex; justify-content: space-between; align-items: center;">
-        <div style="font-weight: bold; color: gray;">Research Articles </div>
-    </div>
-    <h3 style="margin: 5px 0;">
         <a href="https://doi.org/10.14358/PERS.26-00034R2" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
             Multi-Modal Remote Sensing Image Registration: A Comprehensive Review, Challenges, and Prospects
         </a>
@@ -565,6 +605,25 @@
         <details>
             <summary style="color: #1b5faa;">Read more...</summary>
             Multi-modal remote sensing image registration is a crucial prerequisite for the collaborative processing and downstream application of remote sensing data, such as image fusion, change detection, and target recognition. However, significant variations in radiometry, geometry, scale, viewpoint, and time often exist between multi-modal images. These differences, driven by varying sensor geometries, physical radiation mechanisms, imaging platforms, and environmental disturbances, pose severe challenges to achieving high-precision, robust registration. This paper systematically reviews the progress of mainstream multi-modal remote sensing image registration methods. Based on their registration pipelines, existing approaches are categorized into three main types: region-based, feature-based, and deep learning–based methods. We detail the core principles, representative algorithms, advantages, and limitations of each category. Additionally, we summarize publicly available multi-modal image data sets in the remote sensing domain, analyzing their specific characteristics and applicable scenarios. Finally, we highlight current bottlenecks in high-precision registration research and outline future development trends. This review aims to provide a comprehensive reference and valuable insights for researchers in related fields.
+        </details>
+    </div>
+</article>
+<article style="border-top: 1px solid #000; padding: 15px;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div style="font-weight: bold; color: gray;">Research Articles </div>
+    </div>
+    <h3 style="margin: 5px 0;">
+        <a href="https://doi.org/10.14358/PERS.25-00106R3" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #1b5faa;">
+            DepthCNet: Advancing Coral Health Status Identification through Multi-Modal Semantic Segmentation using Underwater Imagery
+        </a>
+    </h3>
+    <div style="font-style: italic;">Avaliable online: July 16, 2026</div>
+    <div>Authors: Li, Ming; Qin, Jiangying; Gruen, Armin; Schindler, Konrad; Pan, Xiaotian;</div>
+    <div>
+        Abstract:
+        <details>
+            <summary style="color: #1b5faa;">Read more...</summary>
+            Coral reefs are highly diverse and dynamic ecosystems that necessitate accurate assessment through timely understanding of their growth rates and health status in the face of global warming. This study introduces an innovative multi-modal deep learning network called DepthCNet, specifically designed to tackle the challenge of coral health assessment. By using pixel-level semantic segmentation and incorporating data inputs such as orthophotos and depth images, this network enables the identification and classification of the health status of corals (live, dead, and bleached) in underwater seabed images at the millimeter scale. In our study, we conducted performance and generalization experiments to evaluate the effectiveness of DepthCNet in comparison to alternative state-of-the-art (SOTA) network structures with potential for coral segmentation transferred from other domains. Our DepthCNet achieved an mean intersection over union (mIoU) of 65.3% in the coral segmentation task, with a notable 24.2% intersection over union (IoU) for bleached corals, representing a 5.9% improvement over other SOTA methods.
         </details>
     </div>
 </article>
